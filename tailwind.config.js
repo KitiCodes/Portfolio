@@ -47,7 +47,9 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
+        // Make Antonio the default sans font for the entire app
         sans: [
+          "Antonio",
           "ui-sans-serif",
           "system-ui",
           "sans-serif",

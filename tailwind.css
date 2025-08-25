@@ -1,19 +1,12 @@
-@tailwind components;
-@tailwind utilities;
-
-@layer components {
-  .all-\[unset\] {
-    all: unset;
-  }
-}
-
+/* Tailwind layers in the recommended order */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+  /* #D3CCC3 ≈ hsl(34, 15%, 80%) */
+  --background: 34 15% 80%;
     --foreground: 222.2 47.4% 11.2%;
 
     --muted: 210 40% 96.1%;
@@ -79,13 +72,23 @@
   }
 }
 
+@layer components {
+  .all-\[unset\] {
+    all: unset;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
   }
 
+  html {
+    font-family: theme("fontFamily.sans");
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans font-normal; /* Antonio Regular (400) */
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }

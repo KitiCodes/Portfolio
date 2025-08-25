@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "homepage": "https://KitiCodes.github.io/Portfolio/",
+  "homepage": "./",
   "source": "./index.html",
   "type": "module",
   "name": "anima-project",

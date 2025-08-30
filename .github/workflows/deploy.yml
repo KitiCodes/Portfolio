@@ -22,6 +22,9 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Add SPA fallback (404.html)
+        run: cp dist/index.html dist/404.html
+
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -29,3 +32,4 @@ jobs:
           publish_dir: ./dist
           publish_branch: gh-pages
           cname: sabinehansen.art
+          enable_jekyll: false

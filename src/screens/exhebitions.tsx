@@ -35,7 +35,7 @@ export const Exhebitions = (): JSX.Element => (
 				</header>
 				{/* Main content */}
 				<main className="w-full">
-					<div className="w-[1440px] h-[2118px] relative bg-stone-300 overflow-hidden" style={{ marginTop: -124 }}>
+					<div className="w-[1440px] h-[2118px] relative bg-background overflow-hidden" style={{ marginTop: -124 }}>
 						<div className="w-80 h-24 left-[968px] top-[1217px] absolute justify-start">
 							<span className="text-black text-base font-normal font-['Antonio'] leading-tight">Ausstellung<br /></span>
 							<span className="text-black text-base font-thin font-['Antonio'] leading-tight">seit Augsut 2024<br />Aumann Authentics, Kiel<br /></span>

@@ -1,4 +1,3 @@
-import { SiteHeader } from "../components/SiteHeader";
 import { FooterBar } from "../components/FooterBar";
 import { ContactSection } from "../components/ContactSection";
 import kontaktImg from "../assets/Kontakt.jpg"; 
@@ -33,7 +32,7 @@ export const Contact = (): JSX.Element => (
 		</header>
 		{/* Main content */}
 		<main className="w-full">
-			<div className="w-[1440px] h-[1458px] relative bg-stone-300 overflow-hidden" style={{ marginTop: -124 }}>
+			<div className="w-[1440px] h-[1458px] relative bg-background overflow-hidden" style={{ marginTop: -124 }}>
 				<div className="w-[508px] h-96 left-[149px] top-[269px] absolute text-center justify-start">
 					<span className="text-black text-4xl font-normal font-['Antonio'] leading-[60px]">
 						Bei Interesse an meinen Bildern freue ich mich über eine E-Mail:

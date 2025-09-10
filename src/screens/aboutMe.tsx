@@ -41,7 +41,7 @@ export const AboutMe = (): JSX.Element => (
 				</header>
 				{/* Main content */}
 				<main className="w-full">
-					<div className="w-[1440px] h-[2822px] relative bg-stone-300 overflow-hidden" style={{ marginTop: -124 }}>
+					<div className="w-[1440px] h-[2822px] relative bg-background overflow-hidden" style={{ marginTop: -124 }}>
 						<FooterBar className="absolute" style={{ width: 430, top: 2767, left: 20 }} />
 						<img className="w-96 h-[524px] left-[56px] top-[200px] absolute object-cover" src={UMtopImg} alt="Über mich – Portrait" loading="lazy" />
 						<div className="w-[806px] h-72 left-[523px] top-[409px] absolute text-center justify-start text-black text-4xl font-thin font-['Antonio'] leading-[54px]">

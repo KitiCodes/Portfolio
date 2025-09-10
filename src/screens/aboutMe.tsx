@@ -1,4 +1,3 @@
-import { SiteHeader } from "../components/SiteHeader";
 import { Link, NavLink } from "react-router-dom";
 import { ContactSection } from "../components/ContactSection";
 import { FooterBar } from "../components/FooterBar";
@@ -33,9 +32,9 @@ export const AboutMe = (): JSX.Element => (
 							</Link>
 						</h1>
 						<nav className="flex items-center gap-[72px] [font-family:'Antonio',Helvetica]">
-							<NavLink to="/ausstellungen" className={({ isActive }) => ["text-[16px] font-thin px-0", "hover:text-[#854686] hover:bg-transparent", isActive ? "text-[#854686]" : "text-white"].join(" ")}>Ausstellungen</NavLink>
-							<NavLink to="/ueber" className={({ isActive }) => ["text-[16px] font-thin px-0", "hover:text-[#854686] hover:bg-transparent", isActive ? "text-[#854686]" : "text-white"].join(" ")}>Über mich</NavLink>
-							<NavLink to="/kontakt" className={({ isActive }) => ["text-[16px] font-thin px-0", "hover:text-[#854686] hover:bg-transparent", isActive ? "text-[#854686]" : "text-white"].join(" ")}>Kontakt</NavLink>
+							<NavLink to="/exhibitions" className={({ isActive }) => ["text-[16px] font-thin px-0", "hover:text-[#854686] hover:bg-transparent", isActive ? "text-[#854686]" : "text-white"].join(" ")}>Ausstellungen</NavLink>
+							<NavLink to="/about-me" className={({ isActive }) => ["text-[16px] font-thin px-0", "hover:text-[#854686] hover:bg-transparent", isActive ? "text-[#854686]" : "text-white"].join(" ")}>Über mich</NavLink>
+							<NavLink to="/contact" className={({ isActive }) => ["text-[16px] font-thin px-0", "hover:text-[#854686] hover:bg-transparent", isActive ? "text-[#854686]" : "text-white"].join(" ")}>Kontakt</NavLink>
 						</nav>
 					</div>
 				</header>

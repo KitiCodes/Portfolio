@@ -10,7 +10,7 @@ import smAufbruchII from "../assets/optimized/sm/AufbruchII-web.webp";
 import lgAufbruchII from "../assets/optimized/lg/AufbruchII-web.webp";
 import smEismeer from "../assets/optimized/sm/Eismeer-web.webp";
 import lgEismeer from "../assets/optimized/lg/Eismeer-web.webp";
-import smFruehling from "../assets/optimized/sm/Frühling-web.webp";
+import smFruehling from "../assets/optimized/sm/Fruehling-web.webp";
 import lgFruehling from "../assets/optimized/lg/Fruehling-web.webp";
 import smKuechenphilosophie from "../assets/optimized/sm/Küchenphilosophie-web.webp";
 import lgKuechenphilosophie from "../assets/optimized/lg/Küchenphilosophie-web.webp";
@@ -54,6 +54,7 @@ type Artwork = {
 };
 
 const artworks: Artwork[] = [
+  // Restore the vertical position of the first artwork so it sits closer to the header like before
   { id: 1, smallSrc: smAufbruchI, largeSrc: lgAufbruchI, alt: "Aufbruch I", title: "Aufbruch I", year: "2022", dimensions: "70 x 60 cm", img: { w: 706, h: 600, top: 232, left: 31 }, caption: { w: 196, top: 316, left: 812 } },
   { id: 2, smallSrc: smFruehling, largeSrc: lgFruehling, alt: "Frühling", title: "Frühling", year: "2020", dimensions: "70 x 70 cm", img: { w: 491, h: 486, top: 647, left: 918 }, caption: { w: 196, top: 965, left: 704, align: "right" } },
   { id: 3, smallSrc: smEismeer, largeSrc: lgEismeer, alt: "Eismeer", title: "Eismeer", year: "2020", dimensions: "80 x 40 cm", img: { w: 1202, h: 600, top: 1166, left: 68 }, caption: { w: 196, top: 1409, left: 1291 } },
@@ -75,6 +76,7 @@ export function DesktopDark(): JSX.Element {
   const [currentIndex, setCurrentIndex] = useState(0);
   const headerContainerRef = useRef<HTMLDivElement | null>(null);
   const kontaktRef = useRef<HTMLAnchorElement | null>(null);
+  const [langLeft, setLangLeft] = useState<number>(0);
 
   const openPreview = useCallback((index: number) => {
     setCurrentIndex(index);
@@ -93,6 +95,24 @@ export function DesktopDark(): JSX.Element {
     setCurrentIndex((i) => (i + 1) % artworks.length);
   }, []);
 
+  // Lock background scroll when preview is open & add keyboard controls (restore previous behavior)
+  useEffect(() => {
+    if (isPreviewOpen) {
+      const onKey = (e: KeyboardEvent) => {
+        if (e.key === "Escape") closePreview();
+        if (e.key === "ArrowLeft") showPrev();
+        if (e.key === "ArrowRight") showNext();
+      };
+      document.addEventListener("keydown", onKey);
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.removeEventListener("keydown", onKey);
+        document.body.style.overflow = prevOverflow;
+      };
+    }
+  }, [isPreviewOpen, closePreview, showPrev, showNext]);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (!isPreviewOpen) return;
@@ -100,14 +120,45 @@ export function DesktopDark(): JSX.Element {
       if (e.key === "ArrowLeft") showPrev();
       if (e.key === "ArrowRight") showNext();
     };
+    // keep existing global listener removal behavior in case other code depends on it
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [isPreviewOpen, closePreview, showPrev, showNext]);
 
-  const current = artworks[currentIndex];
+  // Compute language label position (centered over "Kontakt") — restore previous behavior
+  useEffect(() => {
+    const update = () => {
+      const kontakt = kontaktRef.current;
+      const container = headerContainerRef.current;
+      if (!kontakt || !container) return;
+      const kRect = kontakt.getBoundingClientRect();
+      const cRect = container.getBoundingClientRect();
+      const center = kRect.left - cRect.left + kRect.width / 2;
+      setLangLeft(center);
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  // current will be accessed inside the lightbox IIFE as needed
 
   return (
     <main>
+      {/* Language bar (top, non-sticky) */}
+      <div className="w-full">
+        <div className="container mx-auto relative h-7 px-4">
+          <div
+            className="absolute top-1/2 -translate-y-1/2 [font-family:'Antonio',Helvetica] text-[16px] font-thin leading-none text-black"
+            style={{ left: langLeft, transform: "translate(-50%, -50%)" }}
+          >
+            <a href="#de" className="hover:underline">de</a>
+            <span className="px-1">|</span>
+            <a href="#en" className="hover:underline">en</a>
+          </div>
+        </div>
+      </div>
+
       {/* Sticky Navigation Bar to match other pages */}
       <header className="sticky top-0 z-50 bg-[#af8f5b] shadow">
         <div ref={headerContainerRef} className="container mx-auto flex h-24 items-center justify-between px-6">
@@ -124,7 +175,7 @@ export function DesktopDark(): JSX.Element {
         </div>
       </header>
 
-      <div className="relative" style={{ width: 1440, height: 7700, margin: "0 auto" }} aria-label="Galerie">
+      <div className="relative" style={{ width: 1440, height: 7700, marginTop: -124, marginLeft: "auto", marginRight: "auto" }} aria-label="Galerie">
         {artworks.map((artwork, idx) => (
           <figure key={artwork.id} className="absolute" style={{ top: artwork.img.top, left: artwork.img.left, width: artwork.img.w, height: artwork.img.h }}>
             <picture>
@@ -135,11 +186,17 @@ export function DesktopDark(): JSX.Element {
           </figure>
         ))}
 
-        {/* Captions (example rendering) */}
+        {/* Captions (title, year, dimensions) — restore multi-line details */}
         {artworks.map((artwork) =>
           artwork.caption ? (
-            <div key={`cap-${artwork.id}`} className="absolute" style={{ top: artwork.caption.top, left: artwork.caption.left, width: artwork.caption.w ?? 196, textAlign: artwork.caption.align === "right" ? "right" : "left" }}>
-              <div className="text-black">{(artwork.title || artwork.alt) ?? ""}</div>
+            <div
+              key={`cap-${artwork.id}`}
+              className="absolute [font-family:'Antonio',Helvetica] text-black text-base leading-[120%] z-20"
+              style={{ top: artwork.caption.top, left: artwork.caption.left, width: artwork.caption.w ?? 196, textAlign: artwork.caption.align === "right" ? "right" : "left" }}
+            >
+              <div className="font-normal">{artwork.title}</div>
+              <div className="font-thin">{artwork.year}</div>
+              <div className="font-thin">{artwork.dimensions}</div>
             </div>
           ) : null
         )}
@@ -150,20 +207,63 @@ export function DesktopDark(): JSX.Element {
 
       {/* Lightbox preview */}
       {isPreviewOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/70 z-50">
-          <button aria-label="close" onClick={closePreview} className="absolute top-4 right-4 text-white text-2xl">×</button>
-          <button aria-label="prev" onClick={showPrev} className="absolute left-4 text-white text-2xl">{'<'}</button>
-          <div className="max-w-[90vw] max-h-[80vh]">
-            <picture>
-              <source srcSet={current.largeSrc} type="image/webp" />
-              {/* webp-only: largeSrc for lightbox/high-quality view */}
-              <img src={current.largeSrc} alt={current.alt} className="max-w-full max-h-full object-contain" />
-            </picture>
-            <div className="mt-4 text-center text-white">
-             {(current.title || current.alt) ?? ""}
-           </div>
+        <div role="dialog" aria-modal="true" className="fixed inset-0 z-[100] bg-[#D3CCC3]">
+          {/* Close button */}
+          <button aria-label="Close preview" onClick={closePreview} className="absolute top-2 right-6 md:right-10 w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-5xl md:text-7xl leading-none text-black hover:text-[#854686] focus:outline-none transition-colors">
+            ×
+          </button>
+
+          {/* Navigation arrows */}
+          <button aria-label="Previous image" onClick={showPrev} className="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 w-14 h-14 md:w-20 md:h-20 flex items-center justify-center text-4xl md:text-6xl text-black hover:text-[#854686] select-none transition-colors">
+            {'<'}
+          </button>
+          <button aria-label="Next image" onClick={showNext} className="absolute right-4 md:right-10 top-1/2 -translate-y-1/2 w-14 h-14 md:w-20 md:h-20 flex items-center justify-center text-4xl md:text-6xl text-black hover:text-[#854686] select-none transition-colors">
+            {'>'}
+          </button>
+
+          {/* Content */}
+          <div className="h-full w-full flex flex-col items-center justify-center px-4 md:px-8">
+            {(() => {
+              const cur = artworks[currentIndex];
+              const group = cur.groupId ? artworks.filter((a) => a.groupId === cur.groupId) : null;
+
+              if (group && group.length > 1) {
+                return (
+                  <>
+                    <div className="flex items-center justify-center gap-4 md:gap-8 w-full">
+                      {group.map((a) => (
+                        <picture key={a.id}>
+                          <source srcSet={a.largeSrc} type="image/webp" />
+                          <img src={a.largeSrc} alt={a.alt} className="max-w-[40vw] max-h-[70vh] md:max-w-[35vw] md:max-h-[72vh] object-contain" />
+                        </picture>
+                      ))}
+                    </div>
+                    {(() => {
+                      const main = group.find((a) => (a.title ?? "").trim().length > 0) ?? group[0];
+                      const mainTitle = (main.title || main.alt) ?? "";
+                      return (
+                        <div className="mt-4 md:mt-6 text-center [font-family:'Antonio',Helvetica] text-black text-lg md:text-xl">
+                          {mainTitle}
+                        </div>
+                      );
+                    })()}
+                  </>
+                );
+              }
+
+              return (
+                <>
+                  <picture>
+                    <source srcSet={cur.largeSrc} type="image/webp" />
+                    <img src={cur.largeSrc} alt={cur.alt} className="max-w-[90vw] max-h-[70vh] md:max-w-[72vw] md:max-h-[72vh] object-contain" />
+                  </picture>
+                  <div className="mt-4 md:mt-6 text-center [font-family:'Antonio',Helvetica] text-black text-lg md:text-xl">
+                    {(cur.title || cur.alt) ?? ""}
+                  </div>
+                </>
+              );
+            })()}
           </div>
-          <button aria-label="next" onClick={showNext} className="absolute right-4 text-white text-2xl">{'>'}</button>
         </div>
       )}
     </main>

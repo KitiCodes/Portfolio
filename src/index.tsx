@@ -13,9 +13,9 @@ createRoot(document.getElementById("app") as HTMLElement).render(
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<DesktopDark />} />
-        <Route path="/ausstellungen" element={<Exhebitions />} />
-        <Route path="/ueber" element={<AboutMe />} />
-        <Route path="/kontakt" element={<Contact />} />
+        <Route path="/exhibitions" element={<Exhebitions />} />
+        <Route path="/about-me" element={<AboutMe />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

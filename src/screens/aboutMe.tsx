@@ -1,15 +1,15 @@
 import { Link, NavLink } from "react-router-dom";
 import { ContactSection } from "../components/ContactSection";
 import { FooterBar } from "../components/FooterBar";
-import UMtopImg from "../assets/UM0.jpeg";
-import UMb1Img from "../assets/UM1.jpg";
-import UMb2Img from "../assets/UM2.jpg";
-import UMb3Img from "../assets/UM3.jpg";
-import UMb4Img from "../assets/UM4.jpg";
-import UMb5Img from "../assets/UM5.jpg";
-import UMb6Img from "../assets/UM6.jpg";
-import UMb7Img from "../assets/UM7.jpg";
-import UMb8Img from "../assets/UM8.jpg";
+import UMtopImg from "../assets/optimized/sm/UM0.webp";
+import UMb1Img from "../assets/optimized/sm/UM1.webp";
+import UMb2Img from "../assets/optimized/sm/UM2.webp";
+import UMb3Img from "../assets/optimized/sm/UM3.webp";
+import UMb4Img from "../assets/optimized/sm/UM4.webp";
+import UMb5Img from "../assets/optimized/sm/UM5.webp";
+import UMb6Img from "../assets/optimized/sm/UM6.webp";
+import UMb7Img from "../assets/optimized/sm/UM7.webp";
+import UMb8Img from "../assets/optimized/sm/UM8.webp";
 
 export const AboutMe = (): JSX.Element => (
 			<div className="min-h-screen bg-background text-foreground">

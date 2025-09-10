@@ -1,8 +1,9 @@
 import { ContactSection } from "../components/ContactSection";
 import { FooterBar } from "../components/FooterBar";
-const Ausstellung3Img = new URL("../assets/Ausstellung-Offenes Atelier.jpg", import.meta.url).href;
-const Ausstellung2Img = new URL("../assets/Ausstellung-Giesecke.jpg", import.meta.url).href;
-const Ausstellung1Img = new URL("../assets/Ausstellung-Aumann.jpg", import.meta.url).href;
+// Use optimized small WebP artworks for page rendering (sm folder)
+const Ausstellung3Img = new URL("../assets/optimized/sm/Ausstellung-Offenes Atelier.webp", import.meta.url).href;
+const Ausstellung2Img = new URL("../assets/optimized/sm/Ausstellung-Giesecke.webp", import.meta.url).href;
+const Ausstellung1Img = new URL("../assets/optimized/sm/Ausstellung-Aumann.webp", import.meta.url).href;
 import { Link, NavLink } from "react-router-dom";
 
 export const Exhebitions = (): JSX.Element => (

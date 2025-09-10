@@ -1,6 +1,6 @@
 import { FooterBar } from "../components/FooterBar";
 import { ContactSection } from "../components/ContactSection";
-import kontaktImg from "../assets/Kontakt.jpg"; 
+import kontaktImg from "../assets/optimized/sm/Kontakt.webp";
 import { Link, NavLink } from "react-router-dom";
 
 export const Contact = (): JSX.Element => (

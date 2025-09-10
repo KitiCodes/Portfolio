@@ -19,7 +19,18 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.use(express.static(distPath));
+app.use(express.static(distPath, {
+  setHeaders: (res, filePath) => {
+    const rel = filePath.replace(distPath + path.sep, '').replace(/\\/g, '/');
+    if (rel === 'index.html') {
+      res.setHeader('Cache-Control', 'no-cache');
+    } else if (rel.startsWith('assets/')) {
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    } else {
+      res.setHeader('Cache-Control', 'public, max-age=31536000');
+    }
+  }
+}));
 
 app.get('*', (_req, res) => {
   res.sendFile(path.join(distPath, 'index.html'));

@@ -10,7 +10,6 @@ createRoot(document.getElementById("app") as HTMLElement).render(
   <StrictMode>
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Routes>
-        <Route path="/Portfolio" element={<DesktopDark />} />
         <Route path="/" element={<DesktopDark />} />
         <Route path="/ausstellungen" element={<Exhebitions />} />
         <Route path="/ueber" element={<AboutMe />} />

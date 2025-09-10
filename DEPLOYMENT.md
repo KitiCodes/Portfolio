@@ -1,94 +1,41 @@
-# Deployment Guide
+# Deployment Guide (Heroku)
 
-This document provides information about deploying the Sabine Hansen Portfolio to GitHub Pages.
+This project is now configured for deployment on Heroku using an Express server that serves the Vite production build from `dist/`.
 
-## Current Deployment Status
+## What changed from GitHub Pages
+- Removed GitHub Pages workflow (`.github/workflows/deploy.yml`).
+- Removed `public/CNAME` and `homepage` field.
+- Removed `gh-pages` scripts/dependency from `package.json`.
+- Added Express server (`server.js`) and a `Procfile`.
+- Ensured Vite config has no GitHub Pages base path.
 
-✅ **The portfolio is already deployed and live!**
-- Site URL: https://sabinehansen.art
-- GitHub Pages URL: https://whoistahito.github.io/Portfolio
-- Deployment branch: `gh-pages`
+## Requirements
+- Node.js 20.x on Heroku (declared in `package.json` engines).
+- Heroku CLI installed and logged in.
 
-## How It Works
+## Local verification
+1. Install dependencies and build:
+   - `npm install`
+   - `npm run build`
+2. Start the server locally:
+   - `node server.js`
+3. Open http://localhost:3000 and navigate to routes like `/ueber` or `/ausstellungen` to confirm SPA fallback works.
 
-### Automatic Deployment
-Every time you push changes to the `main` branch, GitHub Actions automatically:
-1. Builds the React application using Vite
-2. Optimizes assets for production
-3. Creates SPA fallback support (404.html)
-4. Deploys to the `gh-pages` branch
-5. Updates the live site
+## Deploy to Heroku
+1. Create the app (once):
+   - `heroku login`
+   - `heroku create` (or `heroku create <your-app-name>`) 
+2. Set the Heroku git remote if needed:
+   - `heroku git:remote -a <your-app-name>`
+3. Push to Heroku:
+   - `git push heroku main`
 
-### Workflow Details
-The deployment is handled by `.github/workflows/deploy.yml`:
-- **Trigger**: Push to main branch or manual dispatch
-- **Node Version**: 20.x (with npm cache)
-- **Build Command**: `npm run build`
-- **Deploy Tool**: peaceiris/actions-gh-pages@v4
-- **Custom Domain**: sabinehansen.art (configured via CNAME)
+Heroku will:
+- Install dependencies
+- Run `heroku-postbuild` (which builds the Vite app)
+- Start the web dyno with `web: node server.js` from the `Procfile`
 
-## Troubleshooting
-
-### Common Issues
-
-1. **Build Fails**
-   - Check workflow logs in the Actions tab
-   - Ensure all dependencies are properly listed in package.json
-   - Test locally with `npm run build`
-
-2. **Site Not Updating**
-   - Check if the workflow completed successfully
-   - GitHub Pages may take a few minutes to update
-   - Clear browser cache
-
-3. **Routing Issues (404 on refresh)**
-   - This is already handled with 404.html fallback
-   - Ensure BrowserRouter is used (not HashRouter)
-
-4. **Custom Domain Not Working**
-   - Check DNS settings for sabinehansen.art
-   - Ensure CNAME record points to whoistahito.github.io
-   - Verify domain in repository settings
-
-### Manual Deployment
-
-If you need to deploy manually:
-
-1. Build the project:
-   ```bash
-   npm run build
-   ```
-
-2. Deploy using gh-pages:
-   ```bash
-   npm run deploy
-   ```
-
-### Repository Settings
-
-Ensure GitHub Pages is enabled in repository settings:
-1. Go to repository Settings → Pages
-2. Source: "Deploy from a branch"
-3. Branch: `gh-pages`
-4. Folder: `/ (root)`
-5. Custom domain: `sabinehansen.art`
-
-## SEO & Performance
-
-The deployment includes:
-- ✅ Meta descriptions and Open Graph tags
-- ✅ Favicon and app icons
-- ✅ Compressed assets and optimized images
-- ✅ SPA routing support
-- ✅ Custom domain with HTTPS
-
-## Monitoring
-
-To monitor deployment status:
-1. Check the Actions tab for workflow runs
-2. View the `gh-pages` branch for deployed content
-3. Monitor site uptime and performance
-
----
-
-*Last updated: August 2025*
+## Notes
+- SPA routing is handled by the Express catch-all route returning `dist/index.html`.
+- No DNS configuration is required for Heroku by default. You can use the default `<app-name>.herokuapp.com` domain.
+- If you previously had a custom domain pointing to GitHub Pages, remove those DNS records before adding a new domain for Heroku (optional, not covered here).

@@ -1,5 +1,6 @@
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
+import { FooterBarMobile } from "../components/FooterBarMobile";
 
 // Optimized WebP imports (small variants for mobile)
 import AusstellungOffenes from "../assets/optimized/sm/Ausstellung-Offenes Atelier.webp";
@@ -35,13 +36,6 @@ export const ExhebitionsMobile = (): JSX.Element => {
       imageClasses: "w-[238px] h-[168px] top-[404px] left-[11px]",
       textClasses: "top-[461px] left-[260px]",
     },
-  ];
-
-  const footerLinks = [
-    { text: "Sabine Hansen", classes: "w-[57px] left-3" },
-    { text: "2025", classes: "w-[18px] left-[93px]" },
-    { text: "Impressum", classes: "w-11 left-[155px]" },
-    { text: "Datenschutz", classes: "w-12 left-[243px]" },
   ];
 
   return (
@@ -139,21 +133,8 @@ export const ExhebitionsMobile = (): JSX.Element => {
             </CardContent>
           </Card>
 
-          <div className="absolute w-[432px] h-[19px] top-[287px] left-0">
-            {footerLinks.map((link, index) => (
-              <div
-                key={index}
-                className={`absolute ${link.classes} top-0.5 [font-family:'Antonio',Helvetica] font-normal text-black text-[11px] tracking-[-0.22px] leading-[13.2px] whitespace-nowrap`}
-              >
-                {link.text}
-              </div>
-            ))}
-            <img
-              className="absolute w-[18px] h-[15px] top-0.5 left-[72px]"
-              alt="Copyright"
-              src="/copyright.png"
-            />
-          </div>
+          {/* Use FooterBarMobile component with mobile-appropriate styling */}
+          <FooterBarMobile className="absolute top-[287px] left-3" />
         </footer>
       </div>
     </div>

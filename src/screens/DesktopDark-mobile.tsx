@@ -1,5 +1,6 @@
 import { Button } from "../components/ui/button-mobile";
 import { Card, CardContent } from "../components/ui/card";
+import { FooterBarMobile } from "../components/FooterBarMobile";
 
 // Optimized WebP imports (small variants for mobile)
 import smAufbruchI from "../assets/optimized/sm/AufbruchI-web.webp";
@@ -172,29 +173,6 @@ const artworks = [
 	},
 ];
 
-const footerLinks = [
-	{
-		text: "Sabine Hansen",
-		classes:
-			"absolute w-[57px] top-0.5 left-3 [font-family:'Antonio',Helvetica] font-normal text-black text-[11px] tracking-[-0.22px] leading-[13.2px] whitespace-nowrap",
-	},
-	{
-		text: "2025",
-		classes:
-			"absolute w-[18px] top-0.5 left-[93px] [font-family:'Antonio',Helvetica] font-normal text-black text-[11px] tracking-[-0.22px] leading-[13.2px] whitespace-nowrap",
-	},
-	{
-		text: "Impressum",
-		classes:
-			"absolute w-11 top-0.5 left-[155px] [font-family:'Antonio',Helvetica] font-normal text-black text-[11px] tracking-[-0.22px] leading-[13.2px] whitespace-nowrap",
-	},
-	{
-		text: "Datenschutz",
-		classes:
-			"absolute w-12 top-0.5 left-[243px] [font-family:'Antonio',Helvetica] font-normal text-black text-[11px] tracking-[-0.22px] leading-[13.2px] whitespace-nowrap",
-	},
-];
-
 export const DesktopDarkMobile = (): JSX.Element => {
 	return (
 		<div className="bg-[#d3ccc3] grid justify-items-center [align-items:start] w-screen">
@@ -225,11 +203,6 @@ export const DesktopDarkMobile = (): JSX.Element => {
 
 				<Card className="absolute w-[432px] h-[19px] top-[3763px] left-0 bg-transparent border-none shadow-none">
 					<CardContent className="p-0">
-						{footerLinks.map((link, index) => (
-							<div key={index} className={link.classes}>
-								{link.text}
-							</div>
-						))}
 						<img
 							className="absolute w-[18px] h-[15px] top-0.5 left-[72px]"
 							alt="Copyright"
@@ -311,6 +284,9 @@ export const DesktopDarkMobile = (): JSX.Element => {
 						</Button>
 					</div>
 				</header>
+
+				{/* Use FooterBarMobile component with mobile-appropriate styling */}
+				<FooterBarMobile className="absolute top-[3763px] left-3" />
 			</div>
 		</div>
 	);

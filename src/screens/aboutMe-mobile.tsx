@@ -1,6 +1,7 @@
 import { MenuIcon } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
+import { FooterBarMobile } from "../components/FooterBarMobile";
 
 // Optimized WebP imports (small variants for mobile)
 import UMtopImg from "../assets/optimized/sm/UM0.webp";
@@ -49,13 +50,6 @@ export const AboutMeMobile = (): JSX.Element => {
       alt: "Img",
       className: "w-20 h-[123px] top-[1020px] left-[296px] object-cover",
     },
-  ];
-
-  const footerLinks = [
-    { text: "Sabine Hansen", className: "w-[57px] top-0.5 left-3" },
-    { text: "2025", className: "w-[18px] top-0.5 left-[93px]" },
-    { text: "Impressum", className: "w-11 top-0.5 left-[155px]" },
-    { text: "Datenschutz", className: "w-12 top-0.5 left-[243px]" },
   ];
 
   return (
@@ -165,22 +159,8 @@ export const AboutMeMobile = (): JSX.Element => {
           </CardContent>
         </Card>
 
-        <footer className="absolute w-[432px] h-[19px] top-[1551px] left-0">
-          {footerLinks.map((link, index) => (
-            <div
-              key={`footer-link-${index}`}
-              className={`absolute ${link.className} [font-family:'Antonio',Helvetica] font-normal text-black text-[11px] tracking-[-0.22px] leading-[13.2px] whitespace-nowrap`}
-            >
-              {link.text}
-            </div>
-          ))}
-
-          <img
-            className="absolute w-[18px] h-[15px] top-0.5 left-[72px]"
-            alt="Copyright"
-            src="/copyright.png"
-          />
-        </footer>
+        {/* Use FooterBarMobile component with mobile-appropriate styling */}
+        <FooterBarMobile className="absolute top-[1551px] left-3" />
       </div>
     </div>
   );

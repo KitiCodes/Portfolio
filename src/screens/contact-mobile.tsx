@@ -1,17 +1,11 @@
 import { InstagramIcon } from "lucide-react";
 import { Button } from "../components/ui/button-mobile";
+import { FooterBarMobile } from "../components/FooterBarMobile";
 
 // Optimized WebP import (small variant for mobile)
 import kontaktImg from "../assets/optimized/sm/Kontakt.webp";
 
 export const ContactMobile = (): JSX.Element => {
-  const footerLinks = [
-    { text: "Sabine Hansen", className: "w-[57px]" },
-    { text: "2025", className: "w-[18px]" },
-    { text: "Impressum", className: "w-11" },
-    { text: "Datenschutz", className: "w-12" },
-  ];
-
   return (
     <div className="bg-[#d3ccc3] grid justify-items-center [align-items:start] w-screen">
       <div className="bg-[#d3ccc3] overflow-hidden w-[390px] h-[546px] relative">
@@ -74,29 +68,8 @@ export const ContactMobile = (): JSX.Element => {
           </div>
         </header>
 
-        <footer className="absolute w-[432px] h-[19px] top-[513px] left-0">
-          <div className="absolute w-11 top-0.5 left-[155px] [font-family:'Antonio',Helvetica] font-normal text-black text-[11px] tracking-[-0.22px] leading-[13.2px] whitespace-nowrap">
-            Impressum
-          </div>
-
-          <div className="absolute w-12 top-0.5 left-[243px] [font-family:'Antonio',Helvetica] font-normal text-black text-[11px] tracking-[-0.22px] leading-[13.2px] whitespace-nowrap">
-            Datenschutz
-          </div>
-
-          <img
-            className="absolute w-[18px] h-[15px] top-0.5 left-[72px]"
-            alt="Copyright"
-            src="/copyright.png"
-          />
-
-          <div className="absolute w-[18px] top-0.5 left-[93px] [font-family:'Antonio',Helvetica] font-normal text-black text-[11px] tracking-[-0.22px] leading-[13.2px] whitespace-nowrap">
-            2025
-          </div>
-
-          <div className="absolute w-[57px] top-0.5 left-3 [font-family:'Antonio',Helvetica] font-normal text-black text-[11px] tracking-[-0.22px] leading-[13.2px] whitespace-nowrap">
-            Sabine Hansen
-          </div>
-        </footer>
+        {/* Use FooterBarMobile component with mobile-appropriate styling */}
+        <FooterBarMobile className="absolute top-[513px] left-3" />
       </div>
     </div>
   );

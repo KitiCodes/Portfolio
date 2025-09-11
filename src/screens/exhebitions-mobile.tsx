@@ -1,6 +1,6 @@
-import { Card, CardContent } from "../components/ui/card";
 import { FooterBarMobile } from "../components/FooterBarMobile";
 import SiteHeaderMobile from "../components/SiteHeaderMobile";
+import ContactSectionMobile from "../components/ContactSectionMobile";
 
 // Optimized WebP imports (small variants for mobile)
 import AusstellungOffenes from "../assets/optimized/sm/Ausstellung-Offenes Atelier.webp";
@@ -78,48 +78,11 @@ export const ExhebitionsMobile = (): JSX.Element => {
           </div>
         ))}
 
+        {/* Unified contact block at previous position (654px from top) */}
+        <ContactSectionMobile className="absolute top-[654px] left-0" />
 
-        <footer className="absolute w-[432px] h-[313px] top-[654px] left-0">
-          <Card className="absolute w-[390px] h-[313px] top-0 left-0 bg-transparent border-0 shadow-none">
-            <CardContent className="relative h-[313px] p-0">
-              <div className="absolute w-[390px] h-[313px] top-0 left-0">
-                <div className="flex flex-col items-start gap-2.5 relative w-[245px] h-[121px] -top-px left-[73px]">
-                  <div className="relative self-stretch [font-family:'Antonio',Helvetica] font-normal text-black text-4xl text-center tracking-[-0.72px] leading-[43.2px]">
-                    <span className="tracking-[-0.26px]">
-                      Sabine Hansen
-                      <br />
-                    </span>
-                  </div>
-                  <div className="relative self-stretch [font-family:'Antonio',Helvetica] font-normal text-black text-4xl text-center tracking-[-0.72px] leading-[43.2px]">
-                    <span className="text-2xl tracking-[-0.12px] leading-[28.8px]">
-                      Schwentinental, Deutschland
-                      <br />
-                    </span>
-                  </div>
-                  <div className="relative self-stretch [font-family:'Antonio',Helvetica] font-normal text-black text-4xl text-center tracking-[-0.72px] leading-[43.2px]">
-                    <a
-                      href="mailto:kontakt@sabinehansen.art"
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      <span className="text-2xl tracking-[-0.12px] leading-[28.8px] underline">
-                        kontakt@sabinehansen.art
-                      </span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <img
-                className="absolute w-[46px] h-[53px] top-[166px] left-[172px]"
-                alt="Instagram"
-                src="/instagram.png"
-              />
-            </CardContent>
-          </Card>
-
-          {/* Use FooterBarMobile component with mobile-appropriate styling */}
-          <FooterBarMobile className="absolute top-[287px] left-3" />
-        </footer>
+        {/* FooterBarMobile positioned equivalent to former relative 287px inside footer => 654 + 287 = 941 */}
+        <FooterBarMobile className="absolute top-[941px] left-3" />
       </div>
     </div>
   );

@@ -201,16 +201,6 @@ export const DesktopDarkMobile = (): JSX.Element => {
 					</div>
 				))}
 
-				<Card className="absolute w-[432px] h-[19px] top-[3763px] left-0 bg-transparent border-none shadow-none">
-					<CardContent className="p-0">
-						<img
-							className="absolute w-[18px] h-[15px] top-0.5 left-[72px]"
-							alt="Copyright"
-							src="/copyright.png"
-						/>
-					</CardContent>
-				</Card>
-
 				<Card className="absolute w-[390px] h-[313px] top-[3442px] left-0 bg-transparent border-none shadow-none">
 					<CardContent className="p-0">
 						<div className="relative h-[313px]">

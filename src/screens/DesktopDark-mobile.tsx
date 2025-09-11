@@ -48,7 +48,7 @@ const artworks = [
 		imageClasses:
 			"absolute w-[278px] h-[236px] top-[99px] left-[13px] object-cover",
 		textClasses:
-			"absolute top-32 left-[311px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]",
+			"absolute top-32 left-[311px] w-[79px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]",
 	},
 	{
 		id: 2,
@@ -74,7 +74,7 @@ const artworks = [
 		imageClasses:
 			"absolute w-[315px] h-[157px] top-[609px] left-0 object-cover",
 		textClasses:
-			"absolute w-[108px] top-[654px] left-[324px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]",
+			"absolute w-[66px] top-[654px] left-[324px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]",
 	},
 	{
 		id: 4,
@@ -87,7 +87,7 @@ const artworks = [
 		imageClasses:
 			"absolute w-[313px] h-[306px] top-[801px] left-[11px] object-cover",
 		textClasses:
-			"absolute w-[67px] top-[986px] left-[328px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]",
+			"absolute w-[67px] top-[986px] left-[323px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]",
 	},
 	{
 		id: 5,
@@ -193,7 +193,7 @@ const artworks = [
 		imageClasses:
 			"absolute w-[276px] h-[276px] top-[2530px] left-0 object-cover",
 		textClasses:
-			"absolute top-[2617px] left-[295px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]",
+			"absolute top-[2617px] left-[295px] w-[95px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]",
 	},
 	{
 		id: 13,
@@ -325,12 +325,12 @@ export const DesktopDarkMobile = (): JSX.Element => {
 	}, []);
 
 	return (
-		<div className="bg-[#d4cdc4] grid justify-items-center [align-items:start] w-screen">
+		<div className="bg-[#d4cdc4] grid justify-items-center [align-items:start] w-screen overflow-x-hidden">
 			{/* Sticky mobile header (language moved into dropdown) */}
 			<SiteHeaderMobile />
 
 			{/* consistent gap below header for all mobile pages */}
-			<div className="bg-[#d4cdc4] w-[390px] relative">
+			<div className="bg-[#d4cdc4] w-[390px] relative overflow-x-hidden">
 				<div ref={stackingRef} className="relative w-full pt-2" style={{ minHeight: stackHeight }}>
 					{/* Shift the whole artworks stack up slightly to reduce the initial top gap */}
 					<div className="relative -translate-y-12">
@@ -373,7 +373,7 @@ export const DesktopDarkMobile = (): JSX.Element => {
 					<div
 						role="dialog"
 						aria-modal="true"
-						className="fixed inset-0 z-[100] bg-[#d4cdc4] flex items-center justify-center"
+						className="fixed inset-0 z-[100] bg-[#d4cdc4] flex items-center justify-center overflow-hidden"
 						onTouchStart={onTouchStart}
 						onTouchEnd={onTouchEnd}
 						onClick={(e) => {

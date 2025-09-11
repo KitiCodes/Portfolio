@@ -82,23 +82,11 @@ export const ExhebitionsMobile = (): JSX.Element => {
 
   return (
     <div className="bg-[#d4cdc4] grid justify-items-center [align-items:start] w-screen">
-      {/* Language bar (centered) */}
-      <div className="w-full">
-        <div className="mx-auto relative h-7 px-4" style={{ maxWidth: 1200 }}>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 [font-family:'Antonio',Helvetica] text-[16px] font-thin leading-none text-black">
-            <a href="#de" className="hover:underline">de</a>
-            <span className="px-1">|</span>
-            <a href="#en" className="hover:underline">en</a>
-          </div>
-        </div>
-      </div>
-
-      {/* Sticky mobile header */}
+      {/* Sticky mobile header (language moved into dropdown) */}
       <SiteHeaderMobile />
 
       {/* container: stacking area (for absolutely-positioned exhibition assets) + normal flow below */}
       <div className="bg-[#d4cdc4] w-[390px] relative">
-        {/* consistent gap below header for all mobile pages */}
         {/* Stacking area: keep relative so child images/text can still be absolute if needed */}
         <div ref={stackingRef} className="relative w-full pt-6" style={{ minHeight: stackHeight }}>
           {exhibitions.map((exhibition) => (

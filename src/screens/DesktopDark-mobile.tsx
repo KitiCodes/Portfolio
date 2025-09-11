@@ -326,18 +326,7 @@ export const DesktopDarkMobile = (): JSX.Element => {
 
 	return (
 		<div className="bg-[#d4cdc4] grid justify-items-center [align-items:start] w-screen">
-			{/* Language bar (centered) */}
-			<div className="w-full">
-				<div className="mx-auto relative h-7 px-4" style={{ maxWidth: 1200 }}>
-					<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 [font-family:'Antonio',Helvetica] text-[16px] font-thin leading-none text-black">
-						<a href="#de" className="hover:underline">de</a>
-						<span className="px-1">|</span>
-						<a href="#en" className="hover:underline">en</a>
-					</div>
-				</div>
-			</div>
-
-			{/* Sticky mobile header replaces MobileNavbar */}
+			{/* Sticky mobile header (language moved into dropdown) */}
 			<SiteHeaderMobile />
 
 			{/* consistent gap below header for all mobile pages */}
@@ -373,79 +362,79 @@ export const DesktopDarkMobile = (): JSX.Element => {
 					</div>
 				</div>
 
-				{/* Contact block unified component in normal flow */}
+				{/* Contact block unified component in normal flow - moved outside stackingRef */}
 				<div className="w-full flex flex-col items-start">
 					<ContactSectionMobile className="mt-6 w-full" />
 					<FooterBarMobile className="mt-4 pl-3" />
 				</div>
-			</div>
 
-			{/* Lightbox preview overlay */}
-			{isPreviewOpen && (
-				<div
-					role="dialog"
-					aria-modal="true"
-					className="fixed inset-0 z-[100] bg-[#d4cdc4] flex items-center justify-center"
-					onTouchStart={onTouchStart}
-					onTouchEnd={onTouchEnd}
-					onClick={(e) => {
-						// close when clicking the overlay background (but not when clicking inside content)
-						if (e.target === e.currentTarget) closePreview();
-					}}
-				>
-					{/* Close button pinned to top-right, on top of content */}
-					<button
-						ref={closeBtnRef}
-						aria-label="Close preview"
-						onClick={closePreview}
-						className="absolute top-4 right-4 w-12 h-12 flex items-center justify-center text-3xl text-black z-20"
+				{/* Lightbox preview overlay */}
+				{isPreviewOpen && (
+					<div
+						role="dialog"
+						aria-modal="true"
+						className="fixed inset-0 z-[100] bg-[#d4cdc4] flex items-center justify-center"
+						onTouchStart={onTouchStart}
+						onTouchEnd={onTouchEnd}
+						onClick={(e) => {
+							// close when clicking the overlay background (but not when clicking inside content)
+							if (e.target === e.currentTarget) closePreview();
+						}}
 					>
-						×
-					</button>
+						{/* Close button pinned to top-right, on top of content */}
+						<button
+							ref={closeBtnRef}
+							aria-label="Close preview"
+							onClick={closePreview}
+							className="absolute top-4 right-4 w-12 h-12 flex items-center justify-center text-3xl text-black z-20"
+						>
+							×
+						</button>
 
-					{/* Main content (image[s] + caption) */}
-					<div className="relative w-full h-full flex items-center justify-center px-3 pb-12">
-						{(() => {
-							const cur = artworks[currentIndex] as any;
-							const groupIdxs = cur.groupId ? groups.get(cur.groupId) : null;
+						{/* Main content (image[s] + caption) */}
+						<div className="relative w-full h-full flex items-center justify-center px-3 pb-12">
+							{(() => {
+								const cur = artworks[currentIndex] as any;
+								const groupIdxs = cur.groupId ? groups.get(cur.groupId) : null;
 
-							if (groupIdxs && groupIdxs.length > 1) {
-								const group = groupIdxs.map((i) => artworks[i]);
-								const main = group.find((a) => (a.title ?? "").trim().length > 0) ?? group[0];
-								return (
-									<div className="flex flex-col items-center gap-4">
-										<div className="flex gap-2 items-center justify-center">
-											{group.map((a) => (
-												<img key={a.id} src={a.large} alt={a.alt || a.title || 'Artwork'} className="max-w-[40vw] max-h-[60vh] object-contain mx-auto" />
-											))}
+								if (groupIdxs && groupIdxs.length > 1) {
+									const group = groupIdxs.map((i) => artworks[i]);
+									const main = group.find((a) => (a.title ?? "").trim().length > 0) ?? group[0];
+									return (
+										<div className="flex flex-col items-center gap-4">
+											<div className="flex gap-2 items-center justify-center">
+												{group.map((a) => (
+													<img key={a.id} src={a.large} alt={a.alt || a.title || 'Artwork'} className="max-w-[40vw] max-h-[60vh] object-contain mx-auto" />
+												))}
+											</div>
+											{/* Caption row with inline arrows and title */}
+											<div className="flex items-center justify-center gap-4 [font-family:'Antonio',Helvetica] text-black text-lg">
+												<button aria-label="Previous image" onClick={showPrev} className="text-inherit leading-none select-none bg-transparent border-0 p-0 m-0 appearance-none">‹</button>
+												<span className="text-center">{(main.title || main.alt) ?? ""}</span>
+												<button aria-label="Next image" onClick={showNext} className="text-inherit leading-none select-none bg-transparent border-0 p-0 m-0 appearance-none">›</button>
+											</div>
 										</div>
+									);
+								}
+
+								return (
+									<div className="flex flex-col items-center">
+										<img src={cur.large} alt={cur.alt || cur.title || 'Artwork'} className="max-w-[92vw] max-h-[72vh] object-contain mx-auto" />
 										{/* Caption row with inline arrows and title */}
-										<div className="flex items-center justify-center gap-4 [font-family:'Antonio',Helvetica] text-black text-lg">
+										<div className="mt-3 flex items-center justify-center gap-4 [font-family:'Antonio',Helvetica] text-black text-lg">
 											<button aria-label="Previous image" onClick={showPrev} className="text-inherit leading-none select-none bg-transparent border-0 p-0 m-0 appearance-none">‹</button>
-											<span className="text-center">{(main.title || main.alt) ?? ""}</span>
+											<span className="text-center">{(cur.title || cur.alt) ?? ""}</span>
 											<button aria-label="Next image" onClick={showNext} className="text-inherit leading-none select-none bg-transparent border-0 p-0 m-0 appearance-none">›</button>
 										</div>
 									</div>
 								);
-							}
+							})()}
+						</div>
 
-							return (
-								<div className="flex flex-col items-center">
-									<img src={cur.large} alt={cur.alt || cur.title || 'Artwork'} className="max-w-[92vw] max-h-[72vh] object-contain mx-auto" />
-									{/* Caption row with inline arrows and title */}
-									<div className="mt-3 flex items-center justify-center gap-4 [font-family:'Antonio',Helvetica] text-black text-lg">
-										<button aria-label="Previous image" onClick={showPrev} className="text-inherit leading-none select-none bg-transparent border-0 p-0 m-0 appearance-none">‹</button>
-										<span className="text-center">{(cur.title || cur.alt) ?? ""}</span>
-										<button aria-label="Next image" onClick={showNext} className="text-inherit leading-none select-none bg-transparent border-0 p-0 m-0 appearance-none">›</button>
-									</div>
-								</div>
-							);
-						})()}
+						{/* Bottom control bar removed; arrows are inline with title */}
 					</div>
-
-					{/* Bottom control bar removed; arrows are inline with title */}
-				</div>
-			)}
+				)}
+			</div>
 		</div>
 	);
 };

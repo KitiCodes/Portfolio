@@ -75,7 +75,7 @@ export default function SiteHeaderMobile(): JSX.Element {
         </div>
 
         {/* Sliding nav when open */}
-        <nav ref={navRef} className={`transition-max-h duration-300 overflow-hidden bg-[#af8f5b] ${open ? 'max-h-64' : 'max-h-0'}`} aria-hidden={!open}>
+        <nav ref={navRef} className={`transition-max-h duration-300 overflow-hidden bg-[#af8f5b] ${open ? 'max-h-80' : 'max-h-0'}`} aria-hidden={!open}>
           <div className="w-full px-4 py-3 flex flex-col gap-2">
             <NavLink to="/exhibitions" onClick={() => setOpen(false)} className={({ isActive }) => (isActive ? 'text-[#854686]' : 'text-white')}>
               Ausstellungen
@@ -86,10 +86,18 @@ export default function SiteHeaderMobile(): JSX.Element {
             <NavLink to="/contact" onClick={() => setOpen(false)} className={({ isActive }) => (isActive ? 'text-[#854686]' : 'text-white')}>
               Kontakt
             </NavLink>
+
+            {/* separator */}
+            <div className="h-px bg-white/30 my-2" role="separator" />
+            {/* Language selector moved here */}
+            <div className="flex items-center gap-2 text-white text-sm [font-family:'Antonio',Helvetica]">
+              <a href="#de" className="hover:underline">de</a>
+              <span className="opacity-80">|</span>
+              <a href="#en" className="hover:underline">en</a>
+            </div>
           </div>
         </nav>
       </header>
-      {/* spacer removed: with sticky header, layout flows naturally and expands when menu opens */}
     </>
   );
 }

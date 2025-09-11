@@ -9,7 +9,7 @@ export const FooterBarMobile = ({ className, style, ...rest }: FooterBarMobilePr
   return (
     <footer
       className={[
-        "flex items-center gap-2 text-[11px] text-black [font-family:'Antonio',Helvetica] font-normal tracking-[-0.22px] leading-[13.2px]",
+        "flex items-center gap-2 text-[11px] text-black [font-family:'Antonio',Helvetica] font-normal tracking-[-0.22px] leading-[13.2px] mb-8",
         className || "",
       ].join(" ")}
       style={style}

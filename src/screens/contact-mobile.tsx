@@ -42,25 +42,15 @@ export const ContactMobile = (): JSX.Element => {
   return (
     // make the page at least full viewport height so short content pushes footer to bottom
     <div className="bg-[#d4cdc4] grid justify-items-center [align-items:start] w-screen min-h-screen">
-      {/* Language bar (centered) */}
-      <div className="w-full">
-        <div className="mx-auto relative h-7 px-4" style={{ maxWidth: 1200 }}>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 [font-family:'Antonio',Helvetica] text-[16px] font-thin leading-none text-black">
-            <a href="#de" className="hover:underline">de</a>
-            <span className="px-1">|</span>
-            <a href="#en" className="hover:underline">en</a>
-          </div>
-        </div>
-      </div>
-
-      {/* Sticky mobile header */}
+      {/* Sticky mobile header (language moved into dropdown) */}
       <SiteHeaderMobile />
 
       {/* make the content column grow so footer is pushed to the bottom when space allows */}
       <div className="bg-[#d4cdc4] w-[390px] relative flex flex-col">
-        {/* consistent gap below header for all mobile pages */}
-        <div ref={stackingRef} className="relative w-full flex-1 pt-6" style={{ minHeight: stackHeight }}>
-          <div className="absolute w-[167px] top-[139px] left-[11px] [font-family:'Antonio',Helvetica] font-normal text-black text-base text-center tracking-[-0.32px] leading-6">
+        {/* normalized, tighter gap below header for this mobile page */}
+        <div ref={stackingRef} className="relative w-full flex-1 pt-0" style={{ minHeight: stackHeight }}>
+          {/* content positioned absolutely within stacking area */}
+          <div className="absolute w-[167px] top-[115px] left-[11px] [font-family:'Antonio',Helvetica] font-normal text-black text-base text-center tracking-[-0.32px] leading-6">
             <span className="tracking-[-0.05px]">
               Bei Interesse an meinen Bildern freue ich mich über eine E-Mail:
               <br />
@@ -80,17 +70,18 @@ export const ContactMobile = (): JSX.Element => {
             </a>
           </div>
 
-          <InstagramIcon className="absolute w-14 h-[37px] top-[371px] left-[67px]" />
+          <InstagramIcon className="absolute w-14 h-[37px] top-[347px] left-[67px]" />
 
           <img
-            className="absolute w-[186px] h-[353px] top-[77px] left-[196px]"
+            className="absolute w-[186px] h-[353px] top-[53px] left-[196px]"
             alt="Element"
             src={kontaktImg}
           />
         </div>
 
         <div className="w-full flex flex-col items-start">
-          <FooterBarMobile className="mt-4 pl-3" />
+          {/* keep left padding; reduce bottom margin for this page specifically */}
+          <FooterBarMobile className="mt-4 pl-3 !mb-2" />
         </div>
       </div>
     </div>

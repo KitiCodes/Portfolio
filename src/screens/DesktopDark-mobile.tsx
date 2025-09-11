@@ -1,222 +1,320 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { ContactSection } from "../components/ContactSection";
-import { FooterBar } from "../components/FooterBar";
-import SiteHeaderMobile from "../components/SiteHeaderMobile";
+import { Button } from "../components/ui/button-mobile";
+import { Card, CardContent } from "../components/ui/card";
 
-const sm = {
-  AufbruchI: new URL("../assets/optimized/sm/AufbruchI-web.webp", import.meta.url).href,
-  AufbruchII: new URL("../assets/optimized/sm/AufbruchII-web.webp", import.meta.url).href,
-  Fruehling: new URL("../assets/optimized/sm/Fruehling-web.webp", import.meta.url).href,
-  Eismeer: new URL("../assets/optimized/sm/Eismeer-web.webp", import.meta.url).href,
-  Zaghaft: new URL("../assets/optimized/sm/Zaghaft-beginnt-etwas-Neues-web.webp", import.meta.url).href,
-  Power: new URL("../assets/optimized/sm/power-web.webp", import.meta.url).href,
-  TanzendeA: new URL("../assets/optimized/sm/Tanzende-a-web.webp", import.meta.url).href,
-  TanzendeB: new URL("../assets/optimized/sm/Tanzende-b-web.webp", import.meta.url).href,
-  Sonnenblumen: new URL("../assets/optimized/sm/Sonnenblumen-web.webp", import.meta.url).href,
-  Kuechen: new URL("../assets/optimized/sm/Kuechenphilosophie-web.webp", import.meta.url).href,
-  OhneA: new URL("../assets/optimized/sm/ohneTitel-a-web.webp", import.meta.url).href,
-  OhneB: new URL("../assets/optimized/sm/ohneTitelb-web.webp", import.meta.url).href,
-  Ohne1: new URL("../assets/optimized/sm/ohneTitel1-web.webp", import.meta.url).href,
-  Spuren: new URL("../assets/optimized/sm/Spuren-web.webp", import.meta.url).href,
-  Kontakt: new URL("../assets/optimized/sm/Kontakt.webp", import.meta.url).href,
-};
+// Optimized WebP imports (small variants for mobile)
+import smAufbruchI from "../assets/optimized/sm/AufbruchI-web.webp";
+import smAufbruchII from "../assets/optimized/sm/AufbruchII-web.webp";
+import smEismeer from "../assets/optimized/sm/Eismeer-web.webp";
+import smFruehling from "../assets/optimized/sm/Fruehling-web.webp";
+import smKuechenphilosophie from "../assets/optimized/sm/Küchenphilosophie-web.webp";
+import smOhneTitelA from "../assets/optimized/sm/ohneTitel-a-web.webp";
+import smOhneTitel1 from "../assets/optimized/sm/ohneTitel1-web.webp";
+import smOhneTitelB from "../assets/optimized/sm/ohneTitelb-web.webp";
+import smPower from "../assets/optimized/sm/power-web.webp";
+import smSonnenblumen from "../assets/optimized/sm/Sonnenblumen-web.webp";
+import smSpuren from "../assets/optimized/sm/Spuren-web.webp";
+import smTanzendeA from "../assets/optimized/sm/Tanzende-a-web.webp";
+import smTanzendeB from "../assets/optimized/sm/Tanzende-b-web.webp";
+import smZaghaft from "../assets/optimized/sm/Zaghaft-beginnt-etwas-Neues-web.webp";
 
-const lg = {
-  AufbruchI: new URL("../assets/optimized/lg/AufbruchI-web.webp", import.meta.url).href,
-  AufbruchII: new URL("../assets/optimized/lg/AufbruchII-web.webp", import.meta.url).href,
-  Fruehling: new URL("../assets/optimized/lg/Fruehling-web.webp", import.meta.url).href,
-  Eismeer: new URL("../assets/optimized/lg/Eismeer-web.webp", import.meta.url).href,
-  Zaghaft: new URL("../assets/optimized/lg/Zaghaft-beginnt-etwas-Neues-web.webp", import.meta.url).href,
-  Power: new URL("../assets/optimized/lg/power-web.webp", import.meta.url).href,
-  TanzendeA: new URL("../assets/optimized/lg/Tanzende-a-web.webp", import.meta.url).href,
-  TanzendeB: new URL("../assets/optimized/lg/Tanzende-b-web.webp", import.meta.url).href,
-  Sonnenblumen: new URL("../assets/optimized/lg/Sonnenblumen-web.webp", import.meta.url).href,
-  Kuechen: new URL("../assets/optimized/lg/Kuechenphilosophie-web.webp", import.meta.url).href,
-  OhneA: new URL("../assets/optimized/lg/ohneTitel-a-web.webp", import.meta.url).href,
-  OhneB: new URL("../assets/optimized/lg/ohneTitelb-web.webp", import.meta.url).href,
-  Ohne1: new URL("../assets/optimized/lg/ohneTitel1-web.webp", import.meta.url).href,
-  Spuren: new URL("../assets/optimized/lg/Spuren-web.webp", import.meta.url).href,
-  Kontakt: new URL("../assets/optimized/lg/Kontakt.webp", import.meta.url).href,
-};
+const artworks = [
+	{
+		id: 1,
+		image: smAufbruchI,
+		title: "Aufbruch I",
+		year: "2022",
+		dimensions: "70 x 60 cm",
+		imageClasses:
+			"absolute w-[278px] h-[236px] top-[99px] left-[13px] object-cover",
+		textClasses:
+			"absolute top-32 left-[311px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]",
+	},
+	{
+		id: 2,
+		image: smFruehling,
+		title: "Frühling",
+		year: "2020",
+		dimensions: "70 x 70 cm",
+		imageClasses:
+			"absolute w-[247px] h-[244px] top-[353px] left-[137px] object-cover",
+		textClasses:
+			"absolute w-14 top-[497px] left-[68px] [font-family:'Antonio',Helvetica] font-normal text-black text-base text-right tracking-[-0.32px] leading-[19.2px]",
+	},
+	{
+		id: 3,
+		image: smEismeer,
+		title: "Eismeer",
+		year: "2020",
+		dimensions: "80 x 40 cm",
+		imageClasses:
+			"absolute w-[315px] h-[157px] top-[609px] left-0 object-cover",
+		textClasses:
+			"absolute w-[108px] top-[654px] left-[324px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]",
+	},
+	{
+		id: 4,
+		image: smZaghaft,
+		title: "Zaghaft beginnt etwas Neues",
+		year: "2021",
+		dimensions: "70 x 70 cm",
+		imageClasses:
+			"absolute w-[313px] h-[306px] top-[801px] left-[11px] object-cover",
+		textClasses:
+			"absolute w-[67px] top-[986px] left-[328px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]",
+	},
+	{
+		id: 5,
+		image: smPower,
+		title: "power",
+		year: "2021",
+		dimensions: "70 x 70 cm",
+		imageClasses:
+			"absolute w-[302px] h-80 top-[1127px] left-[82px] object-cover",
+		textClasses:
+			"absolute w-14 top-[1210px] left-[11px] [font-family:'Antonio',Helvetica] font-normal text-black text-base text-right tracking-[-0.32px] leading-[19.2px]",
+	},
+	{
+		id: 6,
+		image: smTanzendeA,
+		title: "Tanzende",
+		year: "2024",
+		dimensions: "je 80 x 40 cm",
+		imageClasses:
+			"absolute w-[135px] h-[272px] top-[1473px] left-[11px] object-cover",
+		textClasses:
+			"absolute w-[69px] top-[1648px] left-[301px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]",
+	},
+	{
+		id: 7,
+		image: smTanzendeB,
+		title: "",
+		year: "",
+		dimensions: "",
+		imageClasses:
+			"absolute w-[138px] h-[272px] top-[1473px] left-[154px] object-cover",
+		textClasses: "",
+	},
+	{
+		id: 8,
+		image: smSonnenblumen,
+		title: "Sonnenblumen",
+		year: "2021",
+		dimensions: "100 x 80 cm",
+		imageClasses:
+			"absolute w-[290px] h-[194px] top-[1753px] left-[100px] object-cover",
+		textClasses:
+			"absolute w-[85px] top-[1780px] left-[11px] [font-family:'Antonio',Helvetica] font-normal text-black text-base text-right tracking-[-0.32px] leading-[19.2px]",
+	},
+	{
+		id: 9,
+		image: smKuechenphilosophie,
+		title: "Küchenphilosophie",
+		year: "2022",
+		dimensions: "100 x 100 cm",
+		imageClasses:
+			"absolute w-[254px] h-[252px] top-[1961px] left-[5px] object-cover",
+		textClasses:
+			"absolute w-[108px] top-[2095px] left-[271px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]",
+	},
+	{
+		id: 10,
+		image: smOhneTitelA,
+		title: "ohne Titel",
+		year: "2024",
+		dimensions: "je 80 x 40 cm",
+		imageClasses:
+			"absolute w-[131px] h-[261px] top-[2243px] left-[254px] object-cover",
+		textClasses:
+			"absolute top-[2379px] left-[19px] [font-family:'Antonio',Helvetica] font-normal text-black text-base text-right tracking-[-0.32px] leading-[19.2px]",
+	},
+	{
+		id: 11,
+		image: smOhneTitelB,
+		title: "",
+		year: "",
+		dimensions: "",
+		imageClasses:
+			"absolute w-[130px] h-[261px] top-[2243px] left-[121px] object-cover",
+		textClasses: "",
+	},
+	{
+		id: 12,
+		image: smAufbruchII,
+		title: "Aufbruch II",
+		year: "2024",
+		dimensions: "100 x 100 cm",
+		imageClasses:
+			"absolute w-[276px] h-[276px] top-[2530px] left-0 object-cover",
+		textClasses:
+			"absolute top-[2617px] left-[295px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]",
+	},
+	{
+		id: 13,
+		image: smOhneTitel1,
+		title: "ohne Titel",
+		year: "2025",
+		dimensions: "120 x 100 cm",
+		imageClasses:
+			"absolute w-[286px] h-[190px] top-[2814px] left-[88px] object-cover",
+		textClasses:
+			"absolute w-[69px] top-[2832px] left-[11px] [font-family:'Antonio',Helvetica] font-normal text-black text-base text-right tracking-[-0.32px] leading-[19.2px]",
+	},
+	{
+		id: 14,
+		image: smSpuren,
+		title: "Spuren",
+		year: "2022",
+		dimensions: "100 x 100 cm",
+		imageClasses:
+			"absolute w-[281px] h-[283px] top-[3034px] left-[11px] object-cover",
+		textClasses:
+			"absolute w-[69px] top-[3167px] left-[306px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]",
+	},
+];
 
-type Artwork = {
-  id: number;
-  smallSrc: string;
-  largeSrc: string;
-  alt: string;
-  title: string;
-  year?: string;
-  dimensions?: string;
-  groupId?: string;
-  className: string; // for absolute placement on the mobile layout
-};
-
-const artworks: Artwork[] = [
-  { id: 1, smallSrc: sm.AufbruchI, largeSrc: lg.AufbruchI, alt: "Aufbruch I", title: "Aufbruch I", year: "2022", dimensions: "70 x 60 cm", className: "w-72 h-60 left-[13px] top-[99px] absolute" },
-  { id: 2, smallSrc: sm.AufbruchII, largeSrc: lg.AufbruchII, alt: "Aufbruch II", title: "Aufbruch II", year: "2024", dimensions: "100 x 100 cm", className: "w-60 h-60 left-[137px] top-[353px] absolute" },
-  { id: 3, smallSrc: sm.Fruehling, largeSrc: lg.Fruehling, alt: "Frühling", title: "Frühling", year: "2020", dimensions: "70 x 70 cm", className: "w-80 h-40 left-0 top-[609px] absolute" },
-  { id: 4, smallSrc: sm.Eismeer, largeSrc: lg.Eismeer, alt: "Eismeer", title: "Eismeer", year: "2020", dimensions: "80 x 40 cm", className: "w-80 h-80 left-[11px] top-[801px] absolute" },
-  { id: 5, smallSrc: sm.Zaghaft, largeSrc: lg.Zaghaft, alt: "Zaghaft beginnt etwas Neues", title: "Zaghaft beginnt etwas Neues", year: "2021", dimensions: "70 x 70 cm", className: "w-72 h-80 left-[82px] top-[1127px] absolute" },
-  { id: 6, smallSrc: sm.Power, largeSrc: lg.Power, alt: "power", title: "power", year: "2021", dimensions: "70 x 70 cm", className: "w-32 h-64 left-[11px] top-[1473px] absolute" },
-  { id: 7, smallSrc: sm.TanzendeA, largeSrc: lg.TanzendeA, alt: "Tanzende A", title: "Tanzende", year: "2024", dimensions: "je 80 x 40 cm", groupId: "tanzende", className: "w-36 h-64 left-[154px] top-[1473px] absolute" },
-  { id: 8, smallSrc: sm.TanzendeB, largeSrc: lg.TanzendeB, alt: "Tanzende B", title: "", year: "", dimensions: "", groupId: "tanzende", className: "w-72 h-48 left-[100px] top-[1753px] absolute" },
-  { id: 9, smallSrc: sm.Sonnenblumen, largeSrc: lg.Sonnenblumen, alt: "Sonnenblumen", title: "Sonnenblumen", year: "2021", dimensions: "100 x 80 cm", className: "w-64 h-64 left-[5px] top-[1961px] absolute" },
-  { id: 10, smallSrc: sm.Kuechen, largeSrc: lg.Kuechen, alt: "Küchenphilosophie", title: "Küchenphilosophie", year: "2022", dimensions: "100 x 100 cm", className: "w-32 h-64 left-[254px] top-[2243px] absolute" },
-  { id: 11, smallSrc: sm.OhneA, largeSrc: lg.OhneA, alt: "ohne Titel A", title: "ohne Titel", year: "2024", dimensions: "je 80 x 40 cm", groupId: "ohne-titel-diptych", className: "w-32 h-64 left-[121px] top-[2243px] absolute" },
-  { id: 12, smallSrc: sm.OhneB, largeSrc: lg.OhneB, alt: "ohne Titel B", title: "", year: "", dimensions: "", groupId: "ohne-titel-diptych", className: "w-72 h-48 left-[88px] top-[2814px] absolute" },
-  { id: 13, smallSrc: sm.AufbruchII, largeSrc: lg.AufbruchII, alt: "Aufbruch II", title: "Aufbruch II", year: "2024", dimensions: "100 x 100 cm", className: "w-72 h-72 left-0 top-[2530px] absolute" },
-  { id: 14, smallSrc: sm.Ohne1, largeSrc: lg.Ohne1, alt: "ohne Titel 1", title: "ohne Titel", year: "2025", dimensions: "120 x 100 cm", className: "w-72 h-72 left-[11px] top-[3034px] absolute" },
-  { id: 15, smallSrc: sm.Spuren, largeSrc: lg.Spuren, alt: "Spuren", title: "Spuren", year: "2022", dimensions: "100 x 100 cm", className: "w-72 h-72 left-[11px] top-[3034px] absolute" },
+const footerLinks = [
+	{
+		text: "Sabine Hansen",
+		classes:
+			"absolute w-[57px] top-0.5 left-3 [font-family:'Antonio',Helvetica] font-normal text-black text-[11px] tracking-[-0.22px] leading-[13.2px] whitespace-nowrap",
+	},
+	{
+		text: "2025",
+		classes:
+			"absolute w-[18px] top-0.5 left-[93px] [font-family:'Antonio',Helvetica] font-normal text-black text-[11px] tracking-[-0.22px] leading-[13.2px] whitespace-nowrap",
+	},
+	{
+		text: "Impressum",
+		classes:
+			"absolute w-11 top-0.5 left-[155px] [font-family:'Antonio',Helvetica] font-normal text-black text-[11px] tracking-[-0.22px] leading-[13.2px] whitespace-nowrap",
+	},
+	{
+		text: "Datenschutz",
+		classes:
+			"absolute w-12 top-0.5 left-[243px] [font-family:'Antonio',Helvetica] font-normal text-black text-[11px] tracking-[-0.22px] leading-[13.2px] whitespace-nowrap",
+	},
 ];
 
 export const DesktopDarkMobile = (): JSX.Element => {
-  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const touchStartX = useRef<number | null>(null);
-  const closeBtnRef = useRef<HTMLButtonElement | null>(null);
+	return (
+		<div className="bg-[#d3ccc3] grid justify-items-center [align-items:start] w-screen">
+			<div className="bg-[#d3ccc3] overflow-hidden w-[390px] h-[3790px] relative">
+				{artworks.map((artwork) => (
+					<div key={artwork.id}>
+						<img
+							className={artwork.imageClasses}
+							alt="Element web"
+							src={artwork.image}
+						/>
+						{artwork.title && (
+							<div className={artwork.textClasses}>
+								<span className="tracking-[-0.05px]">
+									{artwork.title}
+									<br />
+								</span>
+								<span className="font-thin tracking-[-0.05px]">
+									{artwork.year}
+									<br />
+									{artwork.dimensions}
+									<br />
+								</span>
+							</div>
+						)}
+					</div>
+				))}
 
-  const openPreview = useCallback((index: number) => {
-    setCurrentIndex(index);
-    setIsPreviewOpen(true);
-  }, []);
+				<Card className="absolute w-[432px] h-[19px] top-[3763px] left-0 bg-transparent border-none shadow-none">
+					<CardContent className="p-0">
+						{footerLinks.map((link, index) => (
+							<div key={index} className={link.classes}>
+								{link.text}
+							</div>
+						))}
+						<img
+							className="absolute w-[18px] h-[15px] top-0.5 left-[72px]"
+							alt="Copyright"
+							src="/copyright.png"
+						/>
+					</CardContent>
+				</Card>
 
-  const closePreview = useCallback(() => {
-    setIsPreviewOpen(false);
-  }, []);
+				<Card className="absolute w-[390px] h-[313px] top-[3442px] left-0 bg-transparent border-none shadow-none">
+					<CardContent className="p-0">
+						<div className="relative h-[313px]">
+							<div className="absolute w-[390px] h-[313px] top-0 left-0">
+								<div className="flex flex-col items-start gap-2.5 relative w-[245px] h-[121px] -top-px left-[73px]">
+									<div className="relative self-stretch [font-family:'Antonio',Helvetica] font-normal text-black text-4xl text-center tracking-[-0.72px] leading-[43.2px]">
+										<span className="tracking-[-0.26px]">
+											Sabine Hansen
+											<br />
+										</span>
+									</div>
 
-  const showPrev = useCallback(() => {
-    setCurrentIndex((i) => (i - 1 + artworks.length) % artworks.length);
-  }, []);
+									<div className="relative self-stretch [font-family:'Antonio',Helvetica] font-normal text-black text-4xl text-center tracking-[-0.72px] leading-[43.2px]">
+										<span className="text-2xl tracking-[-0.12px] leading-[28.8px]">
+											Schwentinental, Deutschland
+											<br />
+										</span>
+									</div>
 
-  const showNext = useCallback(() => {
-    setCurrentIndex((i) => (i + 1) % artworks.length);
-  }, []);
+									<div className="relative self-stretch [font-family:'Antonio',Helvetica] font-normal text-black text-4xl text-center tracking-[-0.72px] leading-[43.2px]">
+										<a
+											href="mailto:kontakt@sabinehansen.art"
+											rel="noopener noreferrer"
+											target="_blank"
+										>
+											<span className="text-2xl tracking-[-0.12px] leading-[28.8px] underline">
+												kontakt@sabinehansen.art
+											</span>
+										</a>
+									</div>
+								</div>
+							</div>
 
-  useEffect(() => {
-    if (!isPreviewOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closePreview();
-      if (e.key === "ArrowLeft") showPrev();
-      if (e.key === "ArrowRight") showNext();
-    };
-    document.addEventListener("keydown", onKey);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+							<img
+								className="absolute w-[46px] h-[53px] top-[166px] left-[172px]"
+								alt="Instagram"
+								src="/instagram.png"
+							/>
+						</div>
+					</CardContent>
+				</Card>
 
-    // focus close button for accessibility
-    if (closeBtnRef.current) closeBtnRef.current.focus();
+				<header className="absolute w-[390px] h-[53px] top-[13px] left-0 bg-[#af8f5b]">
+					<div className="relative w-[356px] h-12 -top-px left-[7px]">
+						<div className="absolute w-[342px] top-0 left-0 [font-family:'Antonio',Helvetica] font-normal text-[#fffdfd] text-[40px] tracking-[-0.80px] leading-[48.0px]">
+							Sabine Hansen
+						</div>
 
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prev;
-    };
-  }, [isPreviewOpen, closePreview, showPrev, showNext]);
-
-  // touch handlers for swipe
-  const onTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-  const onTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX.current == null) return;
-    const dx = e.changedTouches[0].clientX - touchStartX.current;
-    if (dx > 50) showPrev();
-    if (dx < -50) showNext();
-    touchStartX.current = null;
-  };
-
-  return (
-    <div className="min-h-screen bg-background text-foreground relative">
-      {/* Language bar */}
-      <div className="w-full">
-        <div className="container mx-auto relative h-7 px-4">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 [font-family:'Antonio',Helvetica] text-[16px] font-thin leading-none text-black">
-            <a href="#de" className="hover:underline">de</a>
-            <span className="px-1">|</span>
-            <a href="#en" className="hover:underline">en</a>
-          </div>
-        </div>
-      </div>
-
-      {/* Sticky mobile header */}
-      <SiteHeaderMobile />
-
-      {/* mobile absolute-layout gallery (keeps previous positions) */}
-      <div className="w-96 h-[3790px] relative bg-stone-300 overflow-hidden mx-auto">
-        {artworks.map((a, idx) => (
-          <img
-            key={a.id}
-            src={a.smallSrc}
-            alt={a.alt}
-            className={`${a.className} object-cover cursor-pointer`}
-            loading="lazy"
-            onClick={() => openPreview(idx)}
-          />
-        ))}
-
-        {/* captions retained as text blocks positioned as before */}
-        <div className="w-16 h-24 left-[328px] top-[987px] absolute justify-start"><span className="text-black text-base font-normal font-['Antonio'] leading-tight">Zaghaft beginnt etwas Neues<br/></span><span className="text-black text-base font-thin font-['Antonio'] leading-tight">2021<br/>70 x 70 cm<br/></span></div>
-        <div className="w-16 left-[301px] top-[1649px] absolute justify-start"><span className="text-black text-base font-normal font-['Antonio'] leading-tight">Tanzende<br/></span><span className="text-black text-base font-thin font-['Antonio'] leading-tight">2024<br/>je 80 x 40 cm<br/></span></div>
-        <div className="w-20 left-[11px] top-[1781px] absolute text-right justify-start"><span className="text-black text-base font-normal font-['Antonio'] leading-tight">Sonnenblumen<br/></span><span className="text-black text-base font-thin font-['Antonio'] leading-tight">2021<br/>100 x 80 cm<br/></span></div>
-        <div className="left-[311px] top-[129px] absolute justify-start"><span className="text-black text-base font-normal font-['Antonio'] leading-tight">Aufbruch I<br/></span><span className="text-black text-base font-thin font-['Antonio'] leading-tight">2022<br/>70 x 60 cm<br/></span></div>
-        <div className="w-14 left-[68px] top-[498px] absolute text-right justify-start"><span className="text-black text-base font-normal font-['Antonio'] leading-tight">Frühling<br/></span><span className="text-black text-base font-thin font-['Antonio'] leading-tight">2020<br/>70 x 70 cm<br/></span></div>
-        <div className="w-14 left-[11px] top-[1211px] absolute text-right justify-start"><span className="text-black text-base font-normal font-['Antonio'] leading-tight">power<br/></span><span className="text-black text-base font-thin font-['Antonio'] leading-tight">2021<br/>70 x 70 cm<br/></span></div>
-        <div className="w-28 h-24 left-[324px] top-[655px] absolute justify-start"><span className="text-black text-base font-normal font-['Antonio'] leading-tight">Eismeer<br/></span><span className="text-black text-base font-thin font-['Antonio'] leading-tight">2020<br/>80 x 40 cm<br/></span></div>
-
-        <ContactSection className="absolute" style={{ width: 360, top: 3442, left: 18 }} />
-        <FooterBar className="absolute" style={{ width: 360, top: 3740, left: 18 }} />
-      </div>
-
-      {/* Lightbox preview overlay */}
-      {isPreviewOpen && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 z-[100] bg-[#D3CCC3] flex items-center justify-center px-4"
-          onTouchStart={onTouchStart}
-          onTouchEnd={onTouchEnd}
-          onClick={(e) => {
-            // close when clicking the overlay background (but not when clicking inside content)
-            if (e.target === e.currentTarget) closePreview();
-          }}
-        >
-          <button ref={closeBtnRef} aria-label="Close preview" onClick={closePreview} className="absolute top-4 right-4 w-12 h-12 flex items-center justify-center text-3xl text-black">
-            ×
-          </button>
-
-          <button aria-label="Previous image" onClick={showPrev} className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center text-2xl text-black">{'<'}</button>
-          <button aria-label="Next image" onClick={showNext} className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center text-2xl text-black">{'>'}</button>
-
-          <div className="max-w-full max-h-full flex flex-col items-center justify-center">
-            {(() => {
-              const cur = artworks[currentIndex];
-              const group = cur.groupId ? artworks.filter((a) => a.groupId === cur.groupId) : null;
-
-              if (group && group.length > 1) {
-                const main = group.find((a) => (a.title ?? "").trim().length > 0) ?? group[0];
-                return (
-                  <div className="flex flex-col items-center gap-4">
-                    <div className="flex gap-2 items-center justify-center">
-                      {group.map((a) => (
-                        <img key={a.id} src={a.largeSrc} alt={a.alt} className="max-w-[40vw] max-h-[60vh] object-contain" />
-                      ))}
-                    </div>
-                    <div className="text-center [font-family:'Antonio',Helvetica] text-black text-lg">{(main.title || main.alt) ?? ""}</div>
-                  </div>
-                );
-              }
-
-              return (
-                <div className="flex flex-col items-center">
-                  <img src={cur.largeSrc} alt={cur.alt} className="max-w-[92vw] max-h-[82vh] object-contain" />
-                  <div className="mt-3 text-center [font-family:'Antonio',Helvetica] text-black text-lg">{(cur.title || cur.alt) ?? ""}</div>
-                </div>
-              );
-            })()}
-          </div>
-        </div>
-      )}
-    </div>
-  );
+						<Button
+							variant="ghost"
+							size="icon"
+							className="absolute w-[27px] h-5 top-[19px] left-[329px] p-0 h-auto bg-transparent hover:bg-transparent"
+						>
+							<div className="relative w-[27px] h-5">
+								<img
+									className="top-[-3px] absolute w-[27px] h-[3px] left-0"
+									alt="Line"
+									src="/line-2.svg"
+								/>
+								<img
+									className="top-[17px] absolute w-[27px] h-[3px] left-0"
+									alt="Line"
+									src="/line-2.svg"
+								/>
+								<img
+									className="top-[7px] absolute w-[27px] h-[3px] left-0"
+									alt="Line"
+									src="/line-2.svg"
+								/>
+							</div>
+						</Button>
+					</div>
+				</header>
+			</div>
+		</div>
+	);
 };
+
 
 export default DesktopDarkMobile;

@@ -1,25 +1,102 @@
-import SiteHeaderMobile from "../components/SiteHeaderMobile";
-import kontaktImgSm from "../assets/optimized/sm/Kontakt.webp";
+import { InstagramIcon } from "lucide-react";
+import { Button } from "../components/ui/button-mobile";
+
+// Optimized WebP import (small variant for mobile)
+import kontaktImg from "../assets/optimized/sm/Kontakt.webp";
 
 export const ContactMobile = (): JSX.Element => {
+  const footerLinks = [
+    { text: "Sabine Hansen", className: "w-[57px]" },
+    { text: "2025", className: "w-[18px]" },
+    { text: "Impressum", className: "w-11" },
+    { text: "Datenschutz", className: "w-12" },
+  ];
+
   return (
-    <div className="w-96 h-[546px] relative bg-stone-300 overflow-hidden">
-      <SiteHeaderMobile />
+    <div className="bg-[#d3ccc3] grid justify-items-center [align-items:start] w-screen">
+      <div className="bg-[#d3ccc3] overflow-hidden w-[390px] h-[546px] relative">
+        <div className="absolute w-[167px] top-[139px] left-[11px] [font-family:'Antonio',Helvetica] font-normal text-black text-base text-center tracking-[-0.32px] leading-6">
+          <span className="tracking-[-0.05px]">
+            Bei Interesse an meinen Bildern freue ich mich über eine E-Mail:
+            <br />
+            <br />
+            <br />
+            <br />
+          </span>
 
-      <div className="w-40 h-48 left-[11px] top-[140px] absolute text-center justify-start">
-        <span className="text-black text-base font-normal font-['Antonio'] leading-normal">Bei Interesse an meinen Bildern freue ich mich über eine E-Mail:<br/><br/><br/><br/></span>
-        <span className="text-black text-base font-normal font-['Antonio'] underline leading-normal">kontakt@sabinehansen.art</span>
-      </div>
+          <a
+            href="mailto:kontakt@sabinehansen.art"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <span className="tracking-[-0.05px] underline">
+              kontakt@sabinehansen.art
+            </span>
+          </a>
+        </div>
 
-      <img className="w-14 h-9 left-[67px] top-[371px] absolute" src={kontaktImgSm} alt="Kontakt" />
-      <img className="w-48 h-96 left-[196px] top-[77px] absolute" src={kontaktImgSm} alt="Kontakt preview" />
+        <InstagramIcon className="absolute w-14 h-[37px] top-[371px] left-[67px]" />
 
-      <div className="w-96 h-5 left-0 top-[513px] absolute">
-        <img className="w-4 h-3.5 left-[72px] top-[2px] absolute" src={kontaktImgSm} alt="logo" />
-        <div className="w-11 h-3 left-[155px] top-[2.79px] absolute justify-start text-black text-xs font-normal font-['Antonio'] leading-3">Impressum </div>
-        <div className="w-12 h-3 left-[243px] top-[2.79px] absolute justify-start text-black text-xs font-normal font-['Antonio'] leading-3">Datenschutz</div>
-        <div className="w-4 h-3 left-[93px] top-[2.79px] absolute justify-start text-black text-xs font-normal font-['Antonio'] leading-3">2025</div>
-        <div className="w-14 h-3 left-[12px] top-[2.79px] absolute justify-start text-black text-xs font-normal font-['Antonio'] leading-3">Sabine Hansen</div>
+        <img
+          className="absolute w-[186px] h-[353px] top-[77px] left-[196px]"
+          alt="Element"
+          src={kontaktImg}
+        />
+
+        <header className="absolute w-[390px] h-[53px] top-[13px] left-0 bg-[#af8f5b]">
+          <div className="relative w-[356px] h-12 -top-px left-[7px]">
+            <div className="absolute w-[342px] top-0 left-0 [font-family:'Antonio',Helvetica] font-normal text-[#fffdfd] text-[40px] tracking-[-0.80px] leading-[48.0px]">
+              Sabine Hansen
+            </div>
+
+            <Button
+              variant="ghost"
+              className="absolute w-[27px] h-5 top-[19px] left-[329px] p-0 h-auto"
+            >
+              <div className="relative w-[27px] h-5">
+                <img
+                  className="top-[-3px] absolute w-[27px] h-[3px] left-0"
+                  alt="Line"
+                  src="/line-2.svg"
+                />
+                <img
+                  className="top-[17px] absolute w-[27px] h-[3px] left-0"
+                  alt="Line"
+                  src="/line-2.svg"
+                />
+                <img
+                  className="top-[7px] absolute w-[27px] h-[3px] left-0"
+                  alt="Line"
+                  src="/line-2.svg"
+                />
+              </div>
+            </Button>
+          </div>
+        </header>
+
+        <footer className="absolute w-[432px] h-[19px] top-[513px] left-0">
+          <div className="absolute w-11 top-0.5 left-[155px] [font-family:'Antonio',Helvetica] font-normal text-black text-[11px] tracking-[-0.22px] leading-[13.2px] whitespace-nowrap">
+            Impressum
+          </div>
+
+          <div className="absolute w-12 top-0.5 left-[243px] [font-family:'Antonio',Helvetica] font-normal text-black text-[11px] tracking-[-0.22px] leading-[13.2px] whitespace-nowrap">
+            Datenschutz
+          </div>
+
+          <img
+            className="absolute w-[18px] h-[15px] top-0.5 left-[72px]"
+            alt="Copyright"
+            src="/copyright.png"
+          />
+
+          <div className="absolute w-[18px] top-0.5 left-[93px] [font-family:'Antonio',Helvetica] font-normal text-black text-[11px] tracking-[-0.22px] leading-[13.2px] whitespace-nowrap">
+            2025
+          </div>
+
+          <div className="absolute w-[57px] top-0.5 left-3 [font-family:'Antonio',Helvetica] font-normal text-black text-[11px] tracking-[-0.22px] leading-[13.2px] whitespace-nowrap">
+            Sabine Hansen
+          </div>
+        </footer>
       </div>
     </div>
   );

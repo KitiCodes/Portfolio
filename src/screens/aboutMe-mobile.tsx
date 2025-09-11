@@ -1,56 +1,186 @@
-import SiteHeaderMobile from "../components/SiteHeaderMobile";
-import um0 from "../assets/optimized/sm/UM0.webp";
-import um1 from "../assets/optimized/sm/UM1.webp";
-import um2 from "../assets/optimized/sm/UM2.webp";
-import um3 from "../assets/optimized/sm/UM3.webp";
-import um4 from "../assets/optimized/sm/UM4.webp";
-import um5 from "../assets/optimized/sm/UM5.webp";
-import um6 from "../assets/optimized/sm/UM6.webp";
-import um7 from "../assets/optimized/sm/UM7.webp";
-import um8 from "../assets/optimized/sm/UM8.webp";
+import { MenuIcon } from "lucide-react";
+import { Button } from "../components/ui/button";
+import { Card, CardContent } from "../components/ui/card";
+
+// Optimized WebP imports (small variants for mobile)
+import UMtopImg from "../assets/optimized/sm/UM0.webp";
+import UMb1Img from "../assets/optimized/sm/UM1.webp";
+import UMb2Img from "../assets/optimized/sm/UM2.webp";
+import UMb3Img from "../assets/optimized/sm/UM3.webp";
+import UMb4Img from "../assets/optimized/sm/UM4.webp";
+import UMb5Img from "../assets/optimized/sm/UM5.webp";
+import UMb6Img from "../assets/optimized/sm/UM6.webp";
+import UMb7Img from "../assets/optimized/sm/UM7.webp";
 
 export const AboutMeMobile = (): JSX.Element => {
+  const galleryImages = [
+    {
+      src: UMb1Img,
+      alt: "Img",
+      className: "w-[82px] h-[123px] top-[885px] left-3.5 object-cover",
+    },
+    {
+      src: UMb2Img,
+      alt: "Img",
+      className: "w-[184px] h-[123px] top-[885px] left-[105px] object-cover",
+    },
+    {
+      src: UMb3Img,
+      alt: "Img",
+      className: "w-[78px] h-[123px] top-[885px] left-[298px] object-cover",
+    },
+    {
+      src: UMb4Img,
+      alt: "Img",
+      className: "w-[84px] h-[123px] top-[1020px] left-3.5 object-cover",
+    },
+    {
+      src: UMb5Img,
+      alt: "Img",
+      className: "w-[82px] h-[123px] top-[1020px] left-[110px] object-cover",
+    },
+    {
+      src: UMb6Img,
+      alt: "Img",
+      className: "w-[82px] h-[123px] top-[1020px] left-[203px] object-cover",
+    },
+    {
+      src: UMb7Img,
+      alt: "Img",
+      className: "w-20 h-[123px] top-[1020px] left-[296px] object-cover",
+    },
+  ];
+
+  const footerLinks = [
+    { text: "Sabine Hansen", className: "w-[57px] top-0.5 left-3" },
+    { text: "2025", className: "w-[18px] top-0.5 left-[93px]" },
+    { text: "Impressum", className: "w-11 top-0.5 left-[155px]" },
+    { text: "Datenschutz", className: "w-12 top-0.5 left-[243px]" },
+  ];
+
   return (
-    <div className="w-96 h-[1581px] relative bg-stone-300 overflow-hidden">
-      <img className="w-48 h-64 left-[10px] top-[83px] absolute" src={um0} alt="Portrait Sabine Hansen" />
-      <div className="w-40 h-72 left-[218px] top-[79px] absolute justify-start text-black text-base font-thin font-['Antonio'] leading-normal">
-        Ich bin Sabine Hansen – geboren und aufgewachsen im hohen Norden, zwischen Nord- und Ostsee. Heute lebe ich in Schwentinental, in der Nähe von Kiel.
-        <br />
-        <br />
-        Kreativität und die Liebe zu Kunst und Literatur begleiten mich schon mein ganzes Leben.
-      </div>
-      <div className="w-80 h-96 left-[28px] top-[370px] absolute text-center justify-start text-black text-base font-thin font-['Antonio'] leading-normal">
-        Nach vielen Jahren im sozialen Bereich habe ich 2019 meine Leidenschaft für die Acrylmalerei entdeckt. Seither bilde ich mich kontinuierlich weiter, unter anderem an Malschulen in Schleswig-Holstein und Hamburg.
-        <br />
-        <br />
-        Mein Schwerpunkt liegt heute auf der abstrakten Acrylmalerei. Ich experimentiere gern mit verschiedenen Materialien und Techniken – immer auf der Suche nach neuen Ausdrucksformen und spannenden Oberflächen.
-        <br />
-        <br />
-        Malen ist für mich in erster Linie Ausdruck und Verarbeitung von Emotionen, Erinnerungen, Bildern oder Ereignissen. Meine Inspiration finde ich in der Natur, in der Kunst und in meinem eigenen Innenleben.
-        <br />
-        <br />
-        Kraftvolle, aber auch zarte Farben finden sich ebenso wie feine und grobe Strukturen wieder. Ich arbeite meist auf großen Formaten – sie geben mir die Freiheit, mit großer Geste und vollem Einsatz zu arbeiten.
-      </div>
-      <SiteHeaderMobile />
-      <img className="w-20 h-32 left-[14px] top-[885px] absolute" src={um1} alt="Arbeit 1" />
-      <img className="w-44 h-32 left-[105px] top-[885px] absolute" src={um2} alt="Arbeit 2" />
-      <img className="w-20 h-32 left-[298px] top-[885px] absolute" src={um3} alt="Arbeit 3" />
-      <img className="w-20 h-32 left-[14px] top-[1020px] absolute" src={um4} alt="Arbeit 4" />
-      <img className="w-20 h-32 left-[109.50px] top-[1020px] absolute" src={um5} alt="Arbeit 5" />
-      <img className="w-20 h-32 left-[203px] top-[1020px] absolute" src={um6} alt="Arbeit 6" />
-      <img className="w-20 h-32 left-[296.50px] top-[1020px] absolute" src={um7} alt="Arbeit 7" />
-      <div className="w-96 h-80 left-0 top-[1223px] absolute">
-        <div className="w-96 h-80 left-0 top-0 absolute">
-          <div className="left-[73px] top-0 absolute text-center justify-start"><span className="text-black text-4xl font-normal font-['Antonio'] leading-10">Sabine Hansen<br/></span><span className="text-black text-2xl font-normal font-['Antonio'] leading-7">Schwentinental, Deutschland<br/></span><span className="text-black text-2xl font-normal font-['Antonio'] underline leading-7">kontakt@sabinehansen.art</span></div>
+    <div className="bg-[#d3ccc3] grid justify-items-center [align-items:start] w-screen">
+      <div className="bg-[#d3ccc3] overflow-hidden w-[390px] h-[1581px] relative">
+        <img
+          className="absolute w-[199px] h-[257px] top-[83px] left-2.5"
+          alt="Img"
+          src={UMtopImg}
+        />
+
+        <div className="absolute w-[162px] top-[78px] left-[218px] [font-family:'Antonio',Helvetica] font-thin text-black text-base tracking-[0] leading-6">
+          Ich bin Sabine Hansen – geboren und aufgewachsen im hohen Norden,
+          zwischen Nord- und Ostsee. Heute lebe ich in Schwentinental, in der
+          Nähe von Kiel. <br />
+          <br />
+          Kreativität und die Liebe zu Kunst und Literatur begleiten mich schon
+          mein ganzes Leben.
         </div>
-        <img className="w-11 h-14 left-[171.66px] top-[166px] absolute" src={um8} alt="Logo" />
-      </div>
-      <div className="w-96 h-5 left-0 top-[1551px] absolute">
-        <div className="w-11 h-3 left-[155px] top-[2.79px] absolute justify-start text-black text-xs font-normal font-['Antonio'] leading-3">Impressum </div>
-        <div className="w-12 h-3 left-[243px] top-[2.79px] absolute justify-start text-black text-xs font-normal font-['Antonio'] leading-3">Datenschutz</div>
-        <img className="w-4 h-3.5 left-[72px] top-[2px] absolute" src={um8} alt="icon" />
-        <div className="w-4 h-3 left-[93px] top-[2.79px] absolute justify-start text-black text-xs font-normal font-['Antonio'] leading-3">2025</div>
-        <div className="w-14 h-3 left-[12px] top-[2.79px] absolute justify-start text-black text-xs font-normal font-['Antonio'] leading-3">Sabine Hansen          </div>
+
+        <div className="absolute w-[333px] top-[369px] left-7 [font-family:'Antonio',Helvetica] font-thin text-black text-base text-center tracking-[0] leading-6">
+          Nach vielen Jahren im sozialen Bereich habe ich 2019 meine
+          Leidenschaft für die Acrylmalerei entdeckt. Seither bilde ich mich
+          kontinuierlich weiter, unter anderem an Malschulen in
+          Schleswig-Holstein und Hamburg.
+          <br />
+          <br />
+          Mein Schwerpunkt liegt heute auf der abstrakten Acrylmalerei. Ich
+          experimentiere gern mit verschiedenen Materialien und Techniken –
+          immer auf der Suche nach neuen Ausdrucksformen und spannenden
+          Oberflächen.
+          <br />
+          <br />
+          Malen ist für mich in erster Linie Ausdruck und Verarbeitung von
+          Emotionen, Erinnerungen, Bildern oder Ereignissen. Meine Inspiration
+          finde ich in der Natur, in der Kunst und in meinem eigenen Innenleben.
+          <br />
+          <br />
+          Kraftvolle, aber auch zarte Farben finden sich ebenso wie feine und
+          grobe Strukturen wieder. Ich arbeite meist auf großen Formaten – sie
+          geben mir die Freiheit, mit großer Geste und vollem Einsatz zu
+          arbeiten.
+        </div>
+
+        <header className="absolute w-[390px] h-[53px] top-[13px] left-0 bg-[#af8f5b]">
+          <div className="relative w-[356px] h-12 -top-px left-[7px]">
+            <div className="absolute w-[342px] top-0 left-0 [font-family:'Antonio',Helvetica] font-normal text-[#fffdfd] text-[40px] tracking-[-0.80px] leading-[48.0px]">
+              Sabine Hansen
+            </div>
+
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute w-[27px] h-5 top-[19px] left-[329px] p-0 h-auto"
+            >
+              <MenuIcon className="w-[27px] h-5 text-[#fffdfd]" />
+            </Button>
+          </div>
+        </header>
+
+        {galleryImages.map((image, index) => (
+          <img
+            key={`gallery-${index}`}
+            className={`absolute ${image.className}`}
+            alt={image.alt}
+            src={image.src}
+          />
+        ))}
+
+        <Card className="absolute w-[390px] h-[313px] top-[1223px] left-0 bg-transparent border-none shadow-none">
+          <CardContent className="relative h-[313px] p-0">
+            <div className="absolute w-[390px] h-[313px] top-0 left-0">
+              <div className="flex flex-col items-start gap-2.5 relative w-[245px] h-[121px] -top-px left-[73px]">
+                <div className="relative self-stretch [font-family:'Antonio',Helvetica] font-normal text-black text-4xl text-center tracking-[-0.72px] leading-[43.2px]">
+                  <span className="tracking-[-0.26px]">
+                    Sabine Hansen
+                    <br />
+                  </span>
+                </div>
+
+                <div className="relative self-stretch [font-family:'Antonio',Helvetica] font-normal text-black text-4xl text-center tracking-[-0.72px] leading-[43.2px]">
+                  <span className="text-2xl tracking-[-0.12px] leading-[28.8px]">
+                    Schwentinental, Deutschland
+                    <br />
+                  </span>
+                </div>
+
+                <div className="relative self-stretch [font-family:'Antonio',Helvetica] font-normal text-black text-4xl text-center tracking-[-0.72px] leading-[43.2px]">
+                  <a
+                    href="mailto:kontakt@sabinehansen.art"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <span className="text-2xl tracking-[-0.12px] leading-[28.8px] underline">
+                      kontakt@sabinehansen.art
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <img
+              className="absolute w-[46px] h-[53px] top-[166px] left-[172px]"
+              alt="Instagram"
+              src="/instagram.png"
+            />
+          </CardContent>
+        </Card>
+
+        <footer className="absolute w-[432px] h-[19px] top-[1551px] left-0">
+          {footerLinks.map((link, index) => (
+            <div
+              key={`footer-link-${index}`}
+              className={`absolute ${link.className} [font-family:'Antonio',Helvetica] font-normal text-black text-[11px] tracking-[-0.22px] leading-[13.2px] whitespace-nowrap`}
+            >
+              {link.text}
+            </div>
+          ))}
+
+          <img
+            className="absolute w-[18px] h-[15px] top-0.5 left-[72px]"
+            alt="Copyright"
+            src="/copyright.png"
+          />
+        </footer>
       </div>
     </div>
   );

@@ -1,128 +1,161 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import SiteHeaderMobile from "../components/SiteHeaderMobile";
-import { ContactSection } from "../components/ContactSection";
-import { FooterBar } from "../components/FooterBar";
+import { Button } from "../components/ui/button";
+import { Card, CardContent } from "../components/ui/card";
 
-// Use optimized small WebP artworks for page rendering (sm folder)
-const Ausstellung3Img = new URL("../assets/optimized/sm/Ausstellung-Offenes Atelier.webp", import.meta.url).href;
-const Ausstellung2Img = new URL("../assets/optimized/sm/Ausstellung-Giesecke.webp", import.meta.url).href;
-const Ausstellung1Img = new URL("../assets/optimized/sm/Ausstellung-Aumann.webp", import.meta.url).href;
-// Large variants for lightbox
-const Ausstellung3Lg = new URL("../assets/optimized/lg/Ausstellung-Offenes Atelier.webp", import.meta.url).href;
-const Ausstellung2Lg = new URL("../assets/optimized/lg/Ausstellung-Giesecke.webp", import.meta.url).href;
-const Ausstellung1Lg = new URL("../assets/optimized/lg/Ausstellung-Aumann.webp", import.meta.url).href;
-
-const imgs = [
-  { small: Ausstellung3Img, large: Ausstellung3Lg, alt: 'Offenes Atelier' },
-  { small: Ausstellung2Img, large: Ausstellung2Lg, alt: 'Licht und Kunst' },
-  { small: Ausstellung1Img, large: Ausstellung1Lg, alt: 'Aumann Authentics' }
-];
+// Optimized WebP imports (small variants for mobile)
+import AusstellungOffenes from "../assets/optimized/sm/Ausstellung-Offenes Atelier.webp";
+import AusstellungGiesecke from "../assets/optimized/sm/Ausstellung-Giesecke.webp";
+import AusstellungAumann from "../assets/optimized/sm/Ausstellung-Aumann.webp";
 
 export const ExhebitionsMobile = (): JSX.Element => {
-  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const touchStartX = useRef<number | null>(null);
-  const closeBtnRef = useRef<HTMLButtonElement | null>(null);
+  const exhibitions = [
+    {
+      id: 1,
+      title: "Offenes Atelier",
+      date: "6. und 7. Dezember 2024",
+      location: "Giesecke Licht + Design\nin Schwentinental",
+      image: AusstellungOffenes,
+      imageClasses: "w-[218px] h-[145px] top-[78px] left-1",
+      textClasses: "top-[132px] left-[249px]",
+    },
+    {
+      id: 2,
+      title: 'Ausstellung\n"Licht und Kunst - Kunst und Licht"',
+      date: "seit September 2024",
+      location: "Giesecke Licht + Design\nin Schwentinental",
+      image: AusstellungGiesecke,
+      imageClasses: "w-[203px] h-[135px] top-[235px] left-[187px]",
+      textClasses: "top-[285px] left-[5px] text-right",
+    },
+    {
+      id: 3,
+      title: "Ausstellung",
+      date: "seit August 2024",
+      location: "Aumann Authentics, Kiel",
+      image: AusstellungAumann,
+      imageClasses: "w-[238px] h-[168px] top-[404px] left-[11px]",
+      textClasses: "top-[461px] left-[260px]",
+    },
+  ];
 
-  const openPreview = useCallback((index: number) => {
-    setCurrentIndex(index);
-    setIsPreviewOpen(true);
-  }, []);
-  const closePreview = useCallback(() => setIsPreviewOpen(false), []);
-  const showPrev = useCallback(() => setCurrentIndex((i) => (i - 1 + imgs.length) % imgs.length), []);
-  const showNext = useCallback(() => setCurrentIndex((i) => (i + 1) % imgs.length), []);
-
-  useEffect(() => {
-    if (!isPreviewOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closePreview();
-      if (e.key === 'ArrowLeft') showPrev();
-      if (e.key === 'ArrowRight') showNext();
-    };
-    document.addEventListener('keydown', onKey);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-
-    // focus close button for accessibility
-    if (closeBtnRef.current) closeBtnRef.current.focus();
-
-    return () => {
-      document.removeEventListener('keydown', onKey);
-      document.body.style.overflow = prev;
-    };
-  }, [isPreviewOpen, closePreview, showPrev, showNext]);
-
-  const onTouchStart = (e: React.TouchEvent) => { touchStartX.current = e.touches[0].clientX; };
-  const onTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX.current == null) return;
-    const dx = e.changedTouches[0].clientX - touchStartX.current;
-    if (dx > 50) showPrev();
-    if (dx < -50) showNext();
-    touchStartX.current = null;
-  };
+  const footerLinks = [
+    { text: "Sabine Hansen", classes: "w-[57px] left-3" },
+    { text: "2025", classes: "w-[18px] left-[93px]" },
+    { text: "Impressum", classes: "w-11 left-[155px]" },
+    { text: "Datenschutz", classes: "w-12 left-[243px]" },
+  ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      {/* Language bar (top, non-sticky) */}
-      <div className="w-full">
-        <div className="container mx-auto relative h-7 px-4">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 [font-family:'Antonio',Helvetica] text-[16px] font-thin leading-none text-black">
-            <a href="#de" className="hover:underline">de</a>
-            <span className="px-1">|</span>
-            <a href="#en" className="hover:underline">en</a>
+    <div className="bg-[#d3ccc3] grid justify-items-center [align-items:start] w-screen">
+      <div className="bg-[#d3ccc3] overflow-hidden w-[390px] h-[967px] relative">
+        {exhibitions.map((exhibition) => (
+          <div key={exhibition.id}>
+            <div
+              className={`absolute ${exhibition.textClasses} [font-family:'Antonio',Helvetica] font-normal text-black text-sm tracking-[-0.28px] leading-[16.8px]`}
+            >
+              <span className="tracking-[-0.04px]">
+                {exhibition.title}
+                <br />
+              </span>
+              <span className="font-thin tracking-[-0.04px]">
+                {exhibition.date}
+                <br />
+                {exhibition.location}
+              </span>
+            </div>
+            <img
+              className={`absolute ${exhibition.imageClasses} object-cover`}
+              alt="Exhibition image"
+              src={exhibition.image}
+            />
           </div>
-        </div>
-      </div>
+        ))}
 
-      {/* Sticky Navigation Bar */}
-      <SiteHeaderMobile />
-
-      <main className="container mx-auto px-4 py-6">
-        <div className="grid grid-cols-1 gap-6">
-          {imgs.map((i, idx) => (
-            <article key={i.alt}>
-              <img src={i.small} alt={i.alt} className="w-full h-auto object-cover rounded cursor-pointer" loading="lazy" onClick={() => openPreview(idx)} />
-              <div className="mt-3 [font-family:'Antonio',Helvetica] text-black text-base">
-                {idx === 0 && (
-                  <>
-                    <div className="font-normal">Offenes Atelier</div>
-                    <div className="font-thin">6. und 7. Dezember 2024<br/>Giesecke Licht + Design, Schwentinental</div>
-                  </>
-                )}
-                {idx === 1 && (
-                  <>
-                    <div className="font-normal">Ausstellung „Licht und Kunst - Kunst und Licht”</div>
-                    <div className="font-thin">seit September 2024<br/>Giesecke Licht + Design, Schwentinental</div>
-                  </>
-                )}
-                {idx === 2 && (
-                  <>
-                    <div className="font-normal">Ausstellung</div>
-                    <div className="font-thin">seit August 2024<br/>Aumann Authentics, Kiel</div>
-                  </>
-                )}
+        <header className="absolute w-[390px] h-[53px] top-[13px] left-0 bg-[#af8f5b]">
+          <div className="relative w-[356px] h-12 -top-px left-[7px]">
+            <div className="absolute w-[342px] top-0 left-0 [font-family:'Antonio',Helvetica] font-normal text-[#fffdfd] text-[40px] tracking-[-0.80px] leading-[48.0px]">
+              Sabine Hansen
+            </div>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute top-[19px] left-[329px] w-[27px] h-5 p-0 hover:bg-transparent"
+            >
+              <div className="relative w-[27px] h-5">
+                <img
+                  className="top-[-3px] absolute w-[27px] h-[3px] left-0"
+                  alt="MenuIcon line"
+                  src="/line-2.svg"
+                />
+                <img
+                  className="top-[17px] absolute w-[27px] h-[3px] left-0"
+                  alt="MenuIcon line"
+                  src="/line-2.svg"
+                />
+                <img
+                  className="top-[7px] absolute w-[27px] h-[3px] left-0"
+                  alt="MenuIcon line"
+                  src="/line-2.svg"
+                />
               </div>
-            </article>
-          ))}
-        </div>
-
-        <ContactSection className="mt-8" />
-        <FooterBar className="mt-6" />
-      </main>
-
-      {/* Lightbox preview */}
-      {isPreviewOpen && (
-        <div role="dialog" aria-modal="true" className="fixed inset-0 z-[100] bg-[#D3CCC3] flex items-center justify-center px-4" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} onClick={(e) => { if (e.target === e.currentTarget) closePreview(); }}>
-          <button ref={closeBtnRef} aria-label="Close preview" onClick={closePreview} className="absolute top-4 right-4 w-12 h-12 flex items-center justify-center text-3xl text-black">×</button>
-          <button aria-label="Previous image" onClick={showPrev} className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center text-2xl text-black">{'<'}</button>
-          <button aria-label="Next image" onClick={showNext} className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center text-2xl text-black">{'>'}</button>
-
-          <div className="max-w-full max-h-full flex flex-col items-center justify-center">
-            <img src={imgs[currentIndex].large} alt={imgs[currentIndex].alt} className="max-w-[92vw] max-h-[82vh] object-contain" />
-            <div className="mt-3 text-center [font-family:'Antonio',Helvetica] text-black text-lg">{imgs[currentIndex].alt}</div>
+            </Button>
           </div>
-        </div>
-      )}
+        </header>
+
+        <footer className="absolute w-[432px] h-[313px] top-[654px] left-0">
+          <Card className="absolute w-[390px] h-[313px] top-0 left-0 bg-transparent border-0 shadow-none">
+            <CardContent className="relative h-[313px] p-0">
+              <div className="absolute w-[390px] h-[313px] top-0 left-0">
+                <div className="flex flex-col items-start gap-2.5 relative w-[245px] h-[121px] -top-px left-[73px]">
+                  <div className="relative self-stretch [font-family:'Antonio',Helvetica] font-normal text-black text-4xl text-center tracking-[-0.72px] leading-[43.2px]">
+                    <span className="tracking-[-0.26px]">
+                      Sabine Hansen
+                      <br />
+                    </span>
+                  </div>
+                  <div className="relative self-stretch [font-family:'Antonio',Helvetica] font-normal text-black text-4xl text-center tracking-[-0.72px] leading-[43.2px]">
+                    <span className="text-2xl tracking-[-0.12px] leading-[28.8px]">
+                      Schwentinental, Deutschland
+                      <br />
+                    </span>
+                  </div>
+                  <div className="relative self-stretch [font-family:'Antonio',Helvetica] font-normal text-black text-4xl text-center tracking-[-0.72px] leading-[43.2px]">
+                    <a
+                      href="mailto:kontakt@sabinehansen.art"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      <span className="text-2xl tracking-[-0.12px] leading-[28.8px] underline">
+                        kontakt@sabinehansen.art
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <img
+                className="absolute w-[46px] h-[53px] top-[166px] left-[172px]"
+                alt="Instagram"
+                src="/instagram.png"
+              />
+            </CardContent>
+          </Card>
+
+          <div className="absolute w-[432px] h-[19px] top-[287px] left-0">
+            {footerLinks.map((link, index) => (
+              <div
+                key={index}
+                className={`absolute ${link.classes} top-0.5 [font-family:'Antonio',Helvetica] font-normal text-black text-[11px] tracking-[-0.22px] leading-[13.2px] whitespace-nowrap`}
+              >
+                {link.text}
+              </div>
+            ))}
+            <img
+              className="absolute w-[18px] h-[15px] top-0.5 left-[72px]"
+              alt="Copyright"
+              src="/copyright.png"
+            />
+          </div>
+        </footer>
+      </div>
     </div>
   );
 };

@@ -1,7 +1,6 @@
-import { MenuIcon } from "lucide-react";
-import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { FooterBarMobile } from "../components/FooterBarMobile";
+import { MobileNavbar } from "../components/MobileNavbar";
 
 // Optimized WebP imports (small variants for mobile)
 import UMtopImg from "../assets/optimized/sm/UM0.webp";
@@ -94,21 +93,8 @@ export const AboutMeMobile = (): JSX.Element => {
           arbeiten.
         </div>
 
-        <header className="absolute w-[390px] h-[53px] top-[13px] left-0 bg-[#af8f5b]">
-          <div className="relative w-[356px] h-12 -top-px left-[7px]">
-            <div className="absolute w-[342px] top-0 left-0 [font-family:'Antonio',Helvetica] font-normal text-[#fffdfd] text-[40px] tracking-[-0.80px] leading-[48.0px]">
-              Sabine Hansen
-            </div>
-
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute w-[27px] h-5 top-[19px] left-[329px] p-0 h-auto"
-            >
-              <MenuIcon className="w-[27px] h-5 text-[#fffdfd]" />
-            </Button>
-          </div>
-        </header>
+        {/* Use unified MobileNavbar component */}
+        <MobileNavbar />
 
         {galleryImages.map((image, index) => (
           <img

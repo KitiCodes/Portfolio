@@ -1,6 +1,6 @@
-import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { FooterBarMobile } from "../components/FooterBarMobile";
+import { MobileNavbar } from "../components/MobileNavbar";
 
 // Optimized WebP imports (small variants for mobile)
 import AusstellungOffenes from "../assets/optimized/sm/Ausstellung-Offenes Atelier.webp";
@@ -64,36 +64,8 @@ export const ExhebitionsMobile = (): JSX.Element => {
           </div>
         ))}
 
-        <header className="absolute w-[390px] h-[53px] top-[13px] left-0 bg-[#af8f5b]">
-          <div className="relative w-[356px] h-12 -top-px left-[7px]">
-            <div className="absolute w-[342px] top-0 left-0 [font-family:'Antonio',Helvetica] font-normal text-[#fffdfd] text-[40px] tracking-[-0.80px] leading-[48.0px]">
-              Sabine Hansen
-            </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute top-[19px] left-[329px] w-[27px] h-5 p-0 hover:bg-transparent"
-            >
-              <div className="relative w-[27px] h-5">
-                <img
-                  className="top-[-3px] absolute w-[27px] h-[3px] left-0"
-                  alt="MenuIcon line"
-                  src="/line-2.svg"
-                />
-                <img
-                  className="top-[17px] absolute w-[27px] h-[3px] left-0"
-                  alt="MenuIcon line"
-                  src="/line-2.svg"
-                />
-                <img
-                  className="top-[7px] absolute w-[27px] h-[3px] left-0"
-                  alt="MenuIcon line"
-                  src="/line-2.svg"
-                />
-              </div>
-            </Button>
-          </div>
-        </header>
+        {/* Use unified MobileNavbar component */}
+        <MobileNavbar />
 
         <footer className="absolute w-[432px] h-[313px] top-[654px] left-0">
           <Card className="absolute w-[390px] h-[313px] top-0 left-0 bg-transparent border-0 shadow-none">

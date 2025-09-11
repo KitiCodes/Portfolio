@@ -1,6 +1,6 @@
 import { InstagramIcon } from "lucide-react";
-import { Button } from "../components/ui/button-mobile";
 import { FooterBarMobile } from "../components/FooterBarMobile";
+import { MobileNavbar } from "../components/MobileNavbar";
 
 // Optimized WebP import (small variant for mobile)
 import kontaktImg from "../assets/optimized/sm/Kontakt.webp";
@@ -37,36 +37,8 @@ export const ContactMobile = (): JSX.Element => {
           src={kontaktImg}
         />
 
-        <header className="absolute w-[390px] h-[53px] top-[13px] left-0 bg-[#af8f5b]">
-          <div className="relative w-[356px] h-12 -top-px left-[7px]">
-            <div className="absolute w-[342px] top-0 left-0 [font-family:'Antonio',Helvetica] font-normal text-[#fffdfd] text-[40px] tracking-[-0.80px] leading-[48.0px]">
-              Sabine Hansen
-            </div>
-
-            <Button
-              variant="ghost"
-              className="absolute w-[27px] h-5 top-[19px] left-[329px] p-0 h-auto"
-            >
-              <div className="relative w-[27px] h-5">
-                <img
-                  className="top-[-3px] absolute w-[27px] h-[3px] left-0"
-                  alt="Line"
-                  src="/line-2.svg"
-                />
-                <img
-                  className="top-[17px] absolute w-[27px] h-[3px] left-0"
-                  alt="Line"
-                  src="/line-2.svg"
-                />
-                <img
-                  className="top-[7px] absolute w-[27px] h-[3px] left-0"
-                  alt="Line"
-                  src="/line-2.svg"
-                />
-              </div>
-            </Button>
-          </div>
-        </header>
+        {/* Use unified MobileNavbar component */}
+        <MobileNavbar />
 
         {/* Use FooterBarMobile component with mobile-appropriate styling */}
         <FooterBarMobile className="absolute top-[513px] left-3" />

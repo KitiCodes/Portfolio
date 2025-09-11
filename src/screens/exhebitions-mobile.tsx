@@ -98,8 +98,9 @@ export const ExhebitionsMobile = (): JSX.Element => {
 
       {/* container: stacking area (for absolutely-positioned exhibition assets) + normal flow below */}
       <div className="bg-[#d4cdc4] w-[390px] relative">
+        {/* consistent gap below header for all mobile pages */}
         {/* Stacking area: keep relative so child images/text can still be absolute if needed */}
-        <div ref={stackingRef} className="relative w-full" style={{ minHeight: stackHeight }}>
+        <div ref={stackingRef} className="relative w-full pt-6" style={{ minHeight: stackHeight }}>
           {exhibitions.map((exhibition) => (
             <div key={exhibition.id}>
               <div

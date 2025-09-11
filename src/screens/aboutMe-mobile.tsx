@@ -101,7 +101,8 @@ export const AboutMeMobile = (): JSX.Element => {
       <SiteHeaderMobile />
 
       <div className="bg-[#d4cdc4] w-[390px] relative">
-        <div ref={stackingRef} className="relative w-full" style={{ minHeight: stackHeight }}>
+        {/* consistent gap below header for all mobile pages */}
+        <div ref={stackingRef} className="relative w-full pt-6" style={{ minHeight: stackHeight }}>
           <img
             className="absolute w-[199px] h-[257px] top-[83px] left-2.5"
             alt="Img"

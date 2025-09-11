@@ -40,7 +40,8 @@ export const ContactMobile = (): JSX.Element => {
   }, []);
 
   return (
-    <div className="bg-[#d4cdc4] grid justify-items-center [align-items:start] w-screen">
+    // make the page at least full viewport height so short content pushes footer to bottom
+    <div className="bg-[#d4cdc4] grid justify-items-center [align-items:start] w-screen min-h-screen">
       {/* Language bar (centered) */}
       <div className="w-full">
         <div className="mx-auto relative h-7 px-4" style={{ maxWidth: 1200 }}>
@@ -55,8 +56,10 @@ export const ContactMobile = (): JSX.Element => {
       {/* Sticky mobile header */}
       <SiteHeaderMobile />
 
-      <div className="bg-[#d4cdc4] w-[390px] relative">
-        <div ref={stackingRef} className="relative w-full" style={{ minHeight: stackHeight }}>
+      {/* make the content column grow so footer is pushed to the bottom when space allows */}
+      <div className="bg-[#d4cdc4] w-[390px] relative flex flex-col">
+        {/* consistent gap below header for all mobile pages */}
+        <div ref={stackingRef} className="relative w-full flex-1 pt-6" style={{ minHeight: stackHeight }}>
           <div className="absolute w-[167px] top-[139px] left-[11px] [font-family:'Antonio',Helvetica] font-normal text-black text-base text-center tracking-[-0.32px] leading-6">
             <span className="tracking-[-0.05px]">
               Bei Interesse an meinen Bildern freue ich mich über eine E-Mail:

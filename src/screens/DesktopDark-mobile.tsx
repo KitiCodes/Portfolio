@@ -232,6 +232,39 @@ export const DesktopDarkMobile = (): JSX.Element => {
 	const closeBtnRef = useRef<HTMLButtonElement | null>(null);
 	const touchStartX = useRef<number | null>(null);
 
+	// stacking area measurement like other mobile pages
+	const stackingRef = useRef<HTMLDivElement | null>(null);
+	const [stackHeight, setStackHeight] = useState<number>(3200);
+
+	useEffect(() => {
+		const el = stackingRef.current;
+		if (!el) return;
+		const update = () => {
+			const parentRect = el.getBoundingClientRect();
+			// include all descendants so absolutely-positioned nodes are counted
+			const descendants = Array.from(el.querySelectorAll('*')) as HTMLElement[];
+			let max = 0;
+			descendants.forEach((ch) => {
+				const rect = ch.getBoundingClientRect();
+				const bottom = rect.bottom - parentRect.top;
+				if (bottom > max) max = bottom;
+			});
+			const value = Math.max(800, Math.ceil(max + 24));
+			setStackHeight(value);
+		};
+		const RO = new (window as any).ResizeObserver(update);
+		RO.observe(el);
+		const imgs = el.querySelectorAll('img');
+		imgs.forEach((i) => i.addEventListener('load', update));
+		window.addEventListener('resize', update);
+		setTimeout(update, 50);
+		return () => {
+			RO.disconnect();
+			imgs.forEach((i) => i.removeEventListener('load', update));
+			window.removeEventListener('resize', update);
+		};
+	}, []);
+
 	const openPreview = useCallback((index: number) => {
 		setCurrentIndex(index);
 		setIsPreviewOpen(true);
@@ -307,38 +340,44 @@ export const DesktopDarkMobile = (): JSX.Element => {
 			{/* Sticky mobile header replaces MobileNavbar */}
 			<SiteHeaderMobile />
 
+			{/* consistent gap below header for all mobile pages */}
 			<div className="bg-[#d4cdc4] w-[390px] relative">
-				{artworks.map((artwork, idx) => (
-					<div key={artwork.id}>
-						<img
-							className={artwork.imageClasses + " cursor-pointer"}
-							alt={artwork.alt || "Element web"}
-							src={artwork.image}
-							loading="lazy"
-							onClick={() => openPreview(idx)}
-						/>
-						{artwork.title && (
-							<div className={artwork.textClasses}>
-								<span className="tracking-[-0.05px]">
-									{artwork.title}
-									<br />
-								</span>
-								<span className="font-thin tracking-[-0.05px]">
-									{artwork.year}
-									<br />
-									{artwork.dimensions}
-									<br />
-								</span>
+				<div ref={stackingRef} className="relative w-full pt-2" style={{ minHeight: stackHeight }}>
+					{/* Shift the whole artworks stack up slightly to reduce the initial top gap */}
+					<div className="relative -translate-y-12">
+						{artworks.map((artwork, idx) => (
+							<div key={artwork.id}>
+								<img
+									className={artwork.imageClasses + " cursor-pointer"}
+									alt={artwork.alt || "Element web"}
+									src={artwork.image}
+									loading="lazy"
+									onClick={() => openPreview(idx)}
+								/>
+								{artwork.title && (
+									<div className={artwork.textClasses}>
+										<span className="tracking-[-0.05px]">
+											{artwork.title}
+											<br />
+										</span>
+										<span className="font-thin tracking-[-0.05px]">
+											{artwork.year}
+											<br />
+											{artwork.dimensions}
+											<br />
+										</span>
+									</div>
+								)}
 							</div>
-						)}
+						))}
 					</div>
-				))}
+				</div>
 
-				{/* Contact block unified component */}
-				<ContactSectionMobile className="absolute top-[3442px] left-0" />
-
-				{/* FooterBarMobile component with mobile-appropriate styling */}
-				<FooterBarMobile className="absolute top-[3763px] left-3" />
+				{/* Contact block unified component in normal flow */}
+				<div className="w-full flex flex-col items-start">
+					<ContactSectionMobile className="mt-6 w-full" />
+					<FooterBarMobile className="mt-4 pl-3" />
+				</div>
 			</div>
 
 			{/* Lightbox preview overlay */}

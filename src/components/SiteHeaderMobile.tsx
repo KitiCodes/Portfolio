@@ -57,11 +57,9 @@ export default function SiteHeaderMobile(): JSX.Element {
   }, [open]);
 
   return (
-    // Make header fixed so it reliably sticks to the viewport top even if an ancestor
-    // creates a new stacking/scrolling context. Add a spacer div after the header
-    // to preserve the original document flow so pages don't need manual adjustments.
+    // Use sticky so header remains in normal flow and expands the layout when nav opens.
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#af8f5b] shadow w-full">
+      <header className="sticky top-0 left-0 right-0 z-50 bg-[#af8f5b] shadow w-full">
         <div className="w-full flex h-14 items-center justify-between px-4">
           <h1 className="[font-family:'Antonio',Helvetica] text-white text-2xl leading-none">
             <Link to="/" className="hover:opacity-90" aria-label="Zur Startseite">Sabine Hansen</Link>
@@ -91,8 +89,7 @@ export default function SiteHeaderMobile(): JSX.Element {
           </div>
         </nav>
       </header>
-      {/* spacer to preserve layout (header height) */}
-      <div className="h-14" aria-hidden="true" />
+      {/* spacer removed: with sticky header, layout flows naturally and expands when menu opens */}
     </>
   );
 }

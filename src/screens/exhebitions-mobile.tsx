@@ -1,6 +1,6 @@
 import { Card, CardContent } from "../components/ui/card";
 import { FooterBarMobile } from "../components/FooterBarMobile";
-import { MobileNavbar } from "../components/MobileNavbar";
+import SiteHeaderMobile from "../components/SiteHeaderMobile";
 
 // Optimized WebP imports (small variants for mobile)
 import AusstellungOffenes from "../assets/optimized/sm/Ausstellung-Offenes Atelier.webp";
@@ -40,6 +40,20 @@ export const ExhebitionsMobile = (): JSX.Element => {
 
   return (
     <div className="bg-[#d3ccc3] grid justify-items-center [align-items:start] w-screen">
+      {/* Language bar (centered) */}
+      <div className="w-full">
+        <div className="mx-auto relative h-7 px-4" style={{ maxWidth: 1200 }}>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 [font-family:'Antonio',Helvetica] text-[16px] font-thin leading-none text-black">
+            <a href="#de" className="hover:underline">de</a>
+            <span className="px-1">|</span>
+            <a href="#en" className="hover:underline">en</a>
+          </div>
+        </div>
+      </div>
+
+      {/* Sticky mobile header */}
+      <SiteHeaderMobile />
+
       <div className="bg-[#d3ccc3] overflow-hidden w-[390px] h-[967px] relative">
         {exhibitions.map((exhibition) => (
           <div key={exhibition.id}>
@@ -64,8 +78,6 @@ export const ExhebitionsMobile = (): JSX.Element => {
           </div>
         ))}
 
-        {/* Use unified MobileNavbar component */}
-        <MobileNavbar />
 
         <footer className="absolute w-[432px] h-[313px] top-[654px] left-0">
           <Card className="absolute w-[390px] h-[313px] top-0 left-0 bg-transparent border-0 shadow-none">

@@ -1,6 +1,6 @@
 import { Card, CardContent } from "../components/ui/card";
 import { FooterBarMobile } from "../components/FooterBarMobile";
-import { MobileNavbar } from "../components/MobileNavbar";
+import SiteHeaderMobile from "../components/SiteHeaderMobile";
 
 // Optimized WebP imports (small variants for mobile)
 import UMtopImg from "../assets/optimized/sm/UM0.webp";
@@ -53,6 +53,20 @@ export const AboutMeMobile = (): JSX.Element => {
 
   return (
     <div className="bg-[#d3ccc3] grid justify-items-center [align-items:start] w-screen">
+      {/* Language bar (centered) */}
+      <div className="w-full">
+        <div className="mx-auto relative h-7 px-4" style={{ maxWidth: 1200 }}>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 [font-family:'Antonio',Helvetica] text-[16px] font-thin leading-none text-black">
+            <a href="#de" className="hover:underline">de</a>
+            <span className="px-1">|</span>
+            <a href="#en" className="hover:underline">en</a>
+          </div>
+        </div>
+      </div>
+
+      {/* Sticky mobile header */}
+      <SiteHeaderMobile />
+
       <div className="bg-[#d3ccc3] overflow-hidden w-[390px] h-[1581px] relative">
         <img
           className="absolute w-[199px] h-[257px] top-[83px] left-2.5"
@@ -92,9 +106,6 @@ export const AboutMeMobile = (): JSX.Element => {
           geben mir die Freiheit, mit großer Geste und vollem Einsatz zu
           arbeiten.
         </div>
-
-        {/* Use unified MobileNavbar component */}
-        <MobileNavbar />
 
         {galleryImages.map((image, index) => (
           <img

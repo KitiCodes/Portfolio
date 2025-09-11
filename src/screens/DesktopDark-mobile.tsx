@@ -227,8 +227,10 @@ export const DesktopDarkMobile = (): JSX.Element => {
 	// Lightbox state and helpers
 	const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 	const [currentIndex, setCurrentIndex] = useState(0);
-	const touchStartX = useRef<number | null>(null);
+
+	// refs used by lightbox: close button & touch start X for swipe
 	const closeBtnRef = useRef<HTMLButtonElement | null>(null);
+	const touchStartX = useRef<number | null>(null);
 
 	const openPreview = useCallback((index: number) => {
 		setCurrentIndex(index);
@@ -257,9 +259,6 @@ export const DesktopDarkMobile = (): JSX.Element => {
 		document.addEventListener("keydown", onKey);
 		const prev = document.body.style.overflow;
 		document.body.style.overflow = "hidden";
-
-		// focus close button for accessibility
-		if (closeBtnRef.current) closeBtnRef.current.focus();
 
 		return () => {
 			document.removeEventListener("keydown", onKey);
@@ -308,7 +307,7 @@ export const DesktopDarkMobile = (): JSX.Element => {
 			{/* Sticky mobile header replaces MobileNavbar */}
 			<SiteHeaderMobile />
 
-			<div className="bg-[#d4cdc4] overflow-hidden w-[390px] h-[3790px] relative">
+			<div className="bg-[#d4cdc4] w-[390px] relative">
 				{artworks.map((artwork, idx) => (
 					<div key={artwork.id}>
 						<img
@@ -347,7 +346,7 @@ export const DesktopDarkMobile = (): JSX.Element => {
 				<div
 					role="dialog"
 					aria-modal="true"
-					className="fixed inset-0 z-[100] bg-[#d4cdc4] flex items-center justify-center px-4"
+					className="fixed inset-0 z-[100] bg-[#d4cdc4] flex items-center justify-center"
 					onTouchStart={onTouchStart}
 					onTouchEnd={onTouchEnd}
 					onClick={(e) => {
@@ -362,7 +361,7 @@ export const DesktopDarkMobile = (): JSX.Element => {
 					<button aria-label="Previous image" onClick={showPrev} className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center text-2xl text-black">{'<'}</button>
 					<button aria-label="Next image" onClick={showNext} className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center text-2xl text-black">{'>'}</button>
 
-					<div className="max-w-full max-h-full flex flex-col items-center justify-center">
+					<div className="relative w-full h-full flex items-center justify-center">
 						{(() => {
 							const cur = artworks[currentIndex] as any;
 							const groupIdxs = cur.groupId ? groups.get(cur.groupId) : null;
@@ -374,7 +373,7 @@ export const DesktopDarkMobile = (): JSX.Element => {
 									<div className="flex flex-col items-center gap-4">
 										<div className="flex gap-2 items-center justify-center">
 											{group.map((a) => (
-												<img key={a.id} src={a.large} alt={a.alt || a.title || 'Artwork'} className="max-w-[40vw] max-h-[60vh] object-contain" />
+												<img key={a.id} src={a.large} alt={a.alt || a.title || 'Artwork'} className="max-w-[40vw] max-h-[60vh] object-contain mx-auto" />
 											))}
 										</div>
 										<div className="text-center [font-family:'Antonio',Helvetica] text-black text-lg">{(main.title || main.alt) ?? ""}</div>
@@ -384,7 +383,7 @@ export const DesktopDarkMobile = (): JSX.Element => {
 
 							return (
 								<div className="flex flex-col items-center">
-									<img src={cur.large} alt={cur.alt || cur.title || 'Artwork'} className="max-w-[92vw] max-h-[82vh] object-contain" />
+									<img src={cur.large} alt={cur.alt || cur.title || 'Artwork'} className="max-w-[92vw] max-h-[82vh] object-contain mx-auto" />
 									<div className="mt-3 text-center [font-family:'Antonio',Helvetica] text-black text-lg">{(cur.title || cur.alt) ?? ""}</div>
 								</div>
 							);

@@ -1,6 +1,7 @@
 import { FooterBarMobile } from "../components/FooterBarMobile";
 import SiteHeaderMobile from "../components/SiteHeaderMobile";
 import ContactSectionMobile from "../components/ContactSectionMobile";
+import { useEffect, useRef, useState } from "react";
 
 // Optimized WebP imports (small variants for mobile)
 import AusstellungOffenes from "../assets/optimized/sm/Ausstellung-Offenes Atelier.webp";
@@ -8,6 +9,47 @@ import AusstellungGiesecke from "../assets/optimized/sm/Ausstellung-Giesecke.web
 import AusstellungAumann from "../assets/optimized/sm/Ausstellung-Aumann.webp";
 
 export const ExhebitionsMobile = (): JSX.Element => {
+  const stackingRef = useRef<HTMLDivElement | null>(null);
+  const [stackHeight, setStackHeight] = useState<number>(1100);
+
+  useEffect(() => {
+    const el = stackingRef.current;
+    if (!el) return;
+
+    const update = () => {
+      const parentRect = el.getBoundingClientRect();
+      // include all descendants so absolutely positioned elements are counted
+      const descendants = Array.from(el.querySelectorAll('*')) as HTMLElement[];
+      let max = 0;
+      descendants.forEach((ch) => {
+        const rect = ch.getBoundingClientRect();
+        const bottom = rect.bottom - parentRect.top;
+        if (bottom > max) max = bottom;
+      });
+      // add some spacing buffer
+      const value = Math.max(600, Math.ceil(max + 24));
+      setStackHeight(value);
+    };
+
+    // ResizeObserver to track layout changes
+    const ro = new (window as any).ResizeObserver(update);
+    ro.observe(el);
+
+    // update on image load inside the stacking area
+    const imgs = el.querySelectorAll('img');
+    imgs.forEach((i) => i.addEventListener('load', update));
+
+    window.addEventListener('resize', update);
+    // initial measurement (give browser a tick)
+    setTimeout(update, 50);
+
+    return () => {
+      ro.disconnect();
+      imgs.forEach((i) => i.removeEventListener('load', update));
+      window.removeEventListener('resize', update);
+    };
+  }, []);
+
   const exhibitions = [
     {
       id: 1,
@@ -54,35 +96,39 @@ export const ExhebitionsMobile = (): JSX.Element => {
       {/* Sticky mobile header */}
       <SiteHeaderMobile />
 
-      <div className="bg-[#d4cdc4] overflow-hidden w-[390px] h-[967px] relative">
-        {exhibitions.map((exhibition) => (
-          <div key={exhibition.id}>
-            <div
-              className={`absolute ${exhibition.textClasses} [font-family:'Antonio',Helvetica] font-normal text-black text-sm tracking-[-0.28px] leading-[16.8px]`}
-            >
-              <span className="tracking-[-0.04px]">
-                {exhibition.title}
-                <br />
-              </span>
-              <span className="font-thin tracking-[-0.04px]">
-                {exhibition.date}
-                <br />
-                {exhibition.location}
-              </span>
+      {/* container: stacking area (for absolutely-positioned exhibition assets) + normal flow below */}
+      <div className="bg-[#d4cdc4] w-[390px] relative">
+        {/* Stacking area: keep relative so child images/text can still be absolute if needed */}
+        <div ref={stackingRef} className="relative w-full" style={{ minHeight: stackHeight }}>
+          {exhibitions.map((exhibition) => (
+            <div key={exhibition.id}>
+              <div
+                className={`absolute ${exhibition.textClasses} [font-family:'Antonio',Helvetica] font-normal text-black text-sm tracking-[-0.28px] leading-[16.8px]`}
+              >
+                <span className="tracking-[-0.04px]">
+                  {exhibition.title}
+                  <br />
+                </span>
+                <span className="font-thin tracking-[-0.04px]">
+                  {exhibition.date}
+                  <br />
+                  {exhibition.location}
+                </span>
+              </div>
+              <img
+                className={`absolute ${exhibition.imageClasses} object-cover`}
+                alt="Exhibition image"
+                src={exhibition.image}
+              />
             </div>
-            <img
-              className={`absolute ${exhibition.imageClasses} object-cover`}
-              alt="Exhibition image"
-              src={exhibition.image}
-            />
-          </div>
-        ))}
+          ))}
+        </div>
 
-        {/* Unified contact block at previous position (654px from top) */}
-        <ContactSectionMobile className="absolute top-[654px] left-0" />
-
-        {/* FooterBarMobile positioned equivalent to former relative 287px inside footer => 654 + 287 = 941 */}
-        <FooterBarMobile className="absolute top-[941px] left-3" />
+        {/* Contact and footer are now regular flow children and will appear below the stacking area */}
+        <div className="w-full flex flex-col items-center">
+          <ContactSectionMobile className="mt-6 w-full" />
+          <FooterBarMobile className="mt-4" />
+        </div>
       </div>
     </div>
   );

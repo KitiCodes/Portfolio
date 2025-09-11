@@ -52,7 +52,7 @@ export const AboutMeMobile = (): JSX.Element => {
   ];
 
   return (
-    <div className="bg-[#d3ccc3] grid justify-items-center [align-items:start] w-screen">
+    <div className="bg-[#d4cdc4] grid justify-items-center [align-items:start] w-screen">
       {/* Language bar (centered) */}
       <div className="w-full">
         <div className="mx-auto relative h-7 px-4" style={{ maxWidth: 1200 }}>
@@ -67,7 +67,7 @@ export const AboutMeMobile = (): JSX.Element => {
       {/* Sticky mobile header */}
       <SiteHeaderMobile />
 
-      <div className="bg-[#d3ccc3] overflow-hidden w-[390px] h-[1581px] relative">
+      <div className="bg-[#d4cdc4] overflow-hidden w-[390px] h-[1581px] relative">
         <img
           className="absolute w-[199px] h-[257px] top-[83px] left-2.5"
           alt="Img"

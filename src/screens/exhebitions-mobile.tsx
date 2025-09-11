@@ -39,7 +39,7 @@ export const ExhebitionsMobile = (): JSX.Element => {
   ];
 
   return (
-    <div className="bg-[#d3ccc3] grid justify-items-center [align-items:start] w-screen">
+    <div className="bg-[#d4cdc4] grid justify-items-center [align-items:start] w-screen">
       {/* Language bar (centered) */}
       <div className="w-full">
         <div className="mx-auto relative h-7 px-4" style={{ maxWidth: 1200 }}>
@@ -54,7 +54,7 @@ export const ExhebitionsMobile = (): JSX.Element => {
       {/* Sticky mobile header */}
       <SiteHeaderMobile />
 
-      <div className="bg-[#d3ccc3] overflow-hidden w-[390px] h-[967px] relative">
+      <div className="bg-[#d4cdc4] overflow-hidden w-[390px] h-[967px] relative">
         {exhibitions.map((exhibition) => (
           <div key={exhibition.id}>
             <div

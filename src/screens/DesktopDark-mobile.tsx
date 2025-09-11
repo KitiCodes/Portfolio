@@ -293,7 +293,7 @@ export const DesktopDarkMobile = (): JSX.Element => {
 	}, []);
 
 	return (
-		<div className="bg-[#d3ccc3] grid justify-items-center [align-items:start] w-screen">
+		<div className="bg-[#d4cdc4] grid justify-items-center [align-items:start] w-screen">
 			{/* Language bar (centered) */}
 			<div className="w-full">
 				<div className="mx-auto relative h-7 px-4" style={{ maxWidth: 1200 }}>
@@ -308,7 +308,7 @@ export const DesktopDarkMobile = (): JSX.Element => {
 			{/* Sticky mobile header replaces MobileNavbar */}
 			<SiteHeaderMobile />
 
-			<div className="bg-[#d3ccc3] overflow-hidden w-[390px] h-[3790px] relative">
+			<div className="bg-[#d4cdc4] overflow-hidden w-[390px] h-[3790px] relative">
 				{artworks.map((artwork, idx) => (
 					<div key={artwork.id}>
 						<img
@@ -347,7 +347,7 @@ export const DesktopDarkMobile = (): JSX.Element => {
 				<div
 					role="dialog"
 					aria-modal="true"
-					className="fixed inset-0 z-[100] bg-[#D3CCC3] flex items-center justify-center px-4"
+					className="fixed inset-0 z-[100] bg-[#d4cdc4] flex items-center justify-center px-4"
 					onTouchStart={onTouchStart}
 					onTouchEnd={onTouchEnd}
 					onClick={(e) => {

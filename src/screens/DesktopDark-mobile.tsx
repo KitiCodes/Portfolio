@@ -404,7 +404,7 @@ export const DesktopDarkMobile = (): JSX.Element => {
 					</button>
 
 					{/* Main content (image[s] + caption) */}
-					<div className="relative w-full h-full flex items-center justify-center px-3 pb-20">
+					<div className="relative w-full h-full flex items-center justify-center px-3 pb-12">
 						{(() => {
 							const cur = artworks[currentIndex] as any;
 							const groupIdxs = cur.groupId ? groups.get(cur.groupId) : null;
@@ -419,7 +419,12 @@ export const DesktopDarkMobile = (): JSX.Element => {
 												<img key={a.id} src={a.large} alt={a.alt || a.title || 'Artwork'} className="max-w-[40vw] max-h-[60vh] object-contain mx-auto" />
 											))}
 										</div>
-										<div className="text-center [font-family:'Antonio',Helvetica] text-black text-lg">{(main.title || main.alt) ?? ""}</div>
+										{/* Caption row with inline arrows and title */}
+										<div className="flex items-center justify-center gap-4 [font-family:'Antonio',Helvetica] text-black text-lg">
+											<button aria-label="Previous image" onClick={showPrev} className="text-inherit leading-none select-none bg-transparent border-0 p-0 m-0 appearance-none">‹</button>
+											<span className="text-center">{(main.title || main.alt) ?? ""}</span>
+											<button aria-label="Next image" onClick={showNext} className="text-inherit leading-none select-none bg-transparent border-0 p-0 m-0 appearance-none">›</button>
+										</div>
 									</div>
 								);
 							}
@@ -427,29 +432,18 @@ export const DesktopDarkMobile = (): JSX.Element => {
 							return (
 								<div className="flex flex-col items-center">
 									<img src={cur.large} alt={cur.alt || cur.title || 'Artwork'} className="max-w-[92vw] max-h-[72vh] object-contain mx-auto" />
-									<div className="mt-3 text-center [font-family:'Antonio',Helvetica] text-black text-lg">{(cur.title || cur.alt) ?? ""}</div>
+									{/* Caption row with inline arrows and title */}
+									<div className="mt-3 flex items-center justify-center gap-4 [font-family:'Antonio',Helvetica] text-black text-lg">
+										<button aria-label="Previous image" onClick={showPrev} className="text-inherit leading-none select-none bg-transparent border-0 p-0 m-0 appearance-none">‹</button>
+										<span className="text-center">{(cur.title || cur.alt) ?? ""}</span>
+										<button aria-label="Next image" onClick={showNext} className="text-inherit leading-none select-none bg-transparent border-0 p-0 m-0 appearance-none">›</button>
+									</div>
 								</div>
 							);
 						})()}
 					</div>
 
-					{/* Bottom control bar with arrows */}
-					<div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center gap-8 bg-white/70 rounded-full px-6 py-2 shadow">
-						<button
-							aria-label="Previous image"
-							onClick={showPrev}
-							className="text-2xl text-black"
-						>
-							‹
-						</button>
-						<button
-							aria-label="Next image"
-							onClick={showNext}
-							className="text-2xl text-black"
-						>
-							›
-						</button>
-					</div>
+					{/* Bottom control bar removed; arrows are inline with title */}
 				</div>
 			)}
 		</div>

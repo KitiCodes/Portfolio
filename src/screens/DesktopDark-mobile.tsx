@@ -393,14 +393,18 @@ export const DesktopDarkMobile = (): JSX.Element => {
 						if (e.target === e.currentTarget) closePreview();
 					}}
 				>
-					<button ref={closeBtnRef} aria-label="Close preview" onClick={closePreview} className="absolute top-4 right-4 w-12 h-12 flex items-center justify-center text-3xl text-black">
+					{/* Close button pinned to top-right, on top of content */}
+					<button
+						ref={closeBtnRef}
+						aria-label="Close preview"
+						onClick={closePreview}
+						className="absolute top-4 right-4 w-12 h-12 flex items-center justify-center text-3xl text-black z-20"
+					>
 						×
 					</button>
 
-					<button aria-label="Previous image" onClick={showPrev} className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center text-2xl text-black">{'<'}</button>
-					<button aria-label="Next image" onClick={showNext} className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center text-2xl text-black">{'>'}</button>
-
-					<div className="relative w-full h-full flex items-center justify-center">
+					{/* Main content (image[s] + caption) */}
+					<div className="relative w-full h-full flex items-center justify-center px-3 pb-20">
 						{(() => {
 							const cur = artworks[currentIndex] as any;
 							const groupIdxs = cur.groupId ? groups.get(cur.groupId) : null;
@@ -422,11 +426,29 @@ export const DesktopDarkMobile = (): JSX.Element => {
 
 							return (
 								<div className="flex flex-col items-center">
-									<img src={cur.large} alt={cur.alt || cur.title || 'Artwork'} className="max-w-[92vw] max-h-[82vh] object-contain mx-auto" />
+									<img src={cur.large} alt={cur.alt || cur.title || 'Artwork'} className="max-w-[92vw] max-h-[72vh] object-contain mx-auto" />
 									<div className="mt-3 text-center [font-family:'Antonio',Helvetica] text-black text-lg">{(cur.title || cur.alt) ?? ""}</div>
 								</div>
 							);
 						})()}
+					</div>
+
+					{/* Bottom control bar with arrows */}
+					<div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center gap-8 bg-white/70 rounded-full px-6 py-2 shadow">
+						<button
+							aria-label="Previous image"
+							onClick={showPrev}
+							className="text-2xl text-black"
+						>
+							‹
+						</button>
+						<button
+							aria-label="Next image"
+							onClick={showNext}
+							className="text-2xl text-black"
+						>
+							›
+						</button>
 					</div>
 				</div>
 			)}

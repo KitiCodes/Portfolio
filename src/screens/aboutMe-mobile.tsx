@@ -151,9 +151,9 @@ export const AboutMeMobile = (): JSX.Element => {
           ))}
         </div>
 
-        <div className="w-full flex flex-col items-center">
+        <div className="w-full flex flex-col items-start">
           <ContactSectionMobile className="mt-6 w-full" />
-          <FooterBarMobile className="mt-4" />
+          <FooterBarMobile className="mt-4 pl-3" />
         </div>
       </div>
     </div>

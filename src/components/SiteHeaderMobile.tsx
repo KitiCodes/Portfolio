@@ -57,35 +57,42 @@ export default function SiteHeaderMobile(): JSX.Element {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 bg-[#af8f5b] shadow w-full">
-      <div className="w-full flex h-14 items-center justify-between px-4">
-        <h1 className="[font-family:'Antonio',Helvetica] text-white text-2xl leading-none">
-          <Link to="/" className="hover:opacity-90" aria-label="Zur Startseite">Sabine Hansen</Link>
-        </h1>
-        <button
-          aria-expanded={open}
-          aria-label={open ? "Schließe Navigation" : "Öffne Navigation"}
-          className="text-white text-2xl p-2"
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? '✕' : '☰'}
-        </button>
-      </div>
-
-      {/* Sliding nav when open */}
-      <nav ref={navRef} className={`transition-max-h duration-300 overflow-hidden bg-[#af8f5b] ${open ? 'max-h-64' : 'max-h-0'}`} aria-hidden={!open}>
-        <div className="w-full px-4 py-3 flex flex-col gap-2">
-          <NavLink to="/exhibitions" onClick={() => setOpen(false)} className={({ isActive }) => (isActive ? 'text-[#854686]' : 'text-white')}>
-            Ausstellungen
-          </NavLink>
-          <NavLink to="/about-me" onClick={() => setOpen(false)} className={({ isActive }) => (isActive ? 'text-[#854686]' : 'text-white')}>
-            Über mich
-          </NavLink>
-          <NavLink to="/contact" onClick={() => setOpen(false)} className={({ isActive }) => (isActive ? 'text-[#854686]' : 'text-white')}>
-            Kontakt
-          </NavLink>
+    // Make header fixed so it reliably sticks to the viewport top even if an ancestor
+    // creates a new stacking/scrolling context. Add a spacer div after the header
+    // to preserve the original document flow so pages don't need manual adjustments.
+    <>
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#af8f5b] shadow w-full">
+        <div className="w-full flex h-14 items-center justify-between px-4">
+          <h1 className="[font-family:'Antonio',Helvetica] text-white text-2xl leading-none">
+            <Link to="/" className="hover:opacity-90" aria-label="Zur Startseite">Sabine Hansen</Link>
+          </h1>
+          <button
+            aria-expanded={open}
+            aria-label={open ? "Schließe Navigation" : "Öffne Navigation"}
+            className="text-white text-2xl p-2"
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? '✕' : '☰'}
+          </button>
         </div>
-      </nav>
-    </header>
+
+        {/* Sliding nav when open */}
+        <nav ref={navRef} className={`transition-max-h duration-300 overflow-hidden bg-[#af8f5b] ${open ? 'max-h-64' : 'max-h-0'}`} aria-hidden={!open}>
+          <div className="w-full px-4 py-3 flex flex-col gap-2">
+            <NavLink to="/exhibitions" onClick={() => setOpen(false)} className={({ isActive }) => (isActive ? 'text-[#854686]' : 'text-white')}>
+              Ausstellungen
+            </NavLink>
+            <NavLink to="/about-me" onClick={() => setOpen(false)} className={({ isActive }) => (isActive ? 'text-[#854686]' : 'text-white')}>
+              Über mich
+            </NavLink>
+            <NavLink to="/contact" onClick={() => setOpen(false)} className={({ isActive }) => (isActive ? 'text-[#854686]' : 'text-white')}>
+              Kontakt
+            </NavLink>
+          </div>
+        </nav>
+      </header>
+      {/* spacer to preserve layout (header height) */}
+      <div className="h-14" aria-hidden="true" />
+    </>
   );
 }

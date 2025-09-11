@@ -86,8 +86,8 @@ export const ContactMobile = (): JSX.Element => {
           />
         </div>
 
-        <div className="w-full flex flex-col items-center">
-          <FooterBarMobile className="mt-4" />
+        <div className="w-full flex flex-col items-start">
+          <FooterBarMobile className="mt-4 pl-3" />
         </div>
       </div>
     </div>

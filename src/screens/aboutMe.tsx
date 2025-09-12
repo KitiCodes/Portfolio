@@ -1,16 +1,15 @@
-import { SiteHeader } from "../components/SiteHeader";
 import { Link, NavLink } from "react-router-dom";
 import { ContactSection } from "../components/ContactSection";
 import { FooterBar } from "../components/FooterBar";
-import UMtopImg from "../assets/UM0.jpeg";
-import UMb1Img from "../assets/UM1.jpg";
-import UMb2Img from "../assets/UM2.jpg";
-import UMb3Img from "../assets/UM3.jpg";
-import UMb4Img from "../assets/UM4.jpg";
-import UMb5Img from "../assets/UM5.jpg";
-import UMb6Img from "../assets/UM6.jpg";
-import UMb7Img from "../assets/UM7.jpg";
-import UMb8Img from "../assets/UM8.jpg";
+import UMtopImg from "../assets/optimized/sm/UM0.webp";
+import UMb1Img from "../assets/optimized/sm/UM1.webp";
+import UMb2Img from "../assets/optimized/sm/UM2.webp";
+import UMb3Img from "../assets/optimized/sm/UM3.webp";
+import UMb4Img from "../assets/optimized/sm/UM4.webp";
+import UMb5Img from "../assets/optimized/sm/UM5.webp";
+import UMb6Img from "../assets/optimized/sm/UM6.webp";
+import UMb7Img from "../assets/optimized/sm/UM7.webp";
+import UMb8Img from "../assets/optimized/sm/UM8.webp";
 
 export const AboutMe = (): JSX.Element => (
 			<div className="min-h-screen bg-background text-foreground">
@@ -33,15 +32,15 @@ export const AboutMe = (): JSX.Element => (
 							</Link>
 						</h1>
 						<nav className="flex items-center gap-[72px] [font-family:'Antonio',Helvetica]">
-							<NavLink to="/ausstellungen" className={({ isActive }) => ["text-[16px] font-thin px-0", "hover:text-[#854686] hover:bg-transparent", isActive ? "text-[#854686]" : "text-white"].join(" ")}>Ausstellungen</NavLink>
-							<NavLink to="/ueber" className={({ isActive }) => ["text-[16px] font-thin px-0", "hover:text-[#854686] hover:bg-transparent", isActive ? "text-[#854686]" : "text-white"].join(" ")}>Über mich</NavLink>
-							<NavLink to="/kontakt" className={({ isActive }) => ["text-[16px] font-thin px-0", "hover:text-[#854686] hover:bg-transparent", isActive ? "text-[#854686]" : "text-white"].join(" ")}>Kontakt</NavLink>
+							<NavLink to="/exhibitions" className={({ isActive }) => ["text-[16px] font-thin px-0", "hover:text-[#854686] hover:bg-transparent", isActive ? "text-[#854686]" : "text-white"].join(" ")}>Ausstellungen</NavLink>
+							<NavLink to="/about-me" className={({ isActive }) => ["text-[16px] font-thin px-0", "hover:text-[#854686] hover:bg-transparent", isActive ? "text-[#854686]" : "text-white"].join(" ")}>Über mich</NavLink>
+							<NavLink to="/contact" className={({ isActive }) => ["text-[16px] font-thin px-0", "hover:text-[#854686] hover:bg-transparent", isActive ? "text-[#854686]" : "text-white"].join(" ")}>Kontakt</NavLink>
 						</nav>
 					</div>
 				</header>
 				{/* Main content */}
 				<main className="w-full">
-					<div className="w-[1440px] h-[2822px] relative bg-stone-300 overflow-hidden" style={{ marginTop: -124 }}>
+					<div className="w-[1440px] h-[2822px] relative bg-background overflow-hidden" style={{ marginTop: -124 }}>
 						<FooterBar className="absolute" style={{ width: 430, top: 2767, left: 20 }} />
 						<img className="w-96 h-[524px] left-[56px] top-[200px] absolute object-cover" src={UMtopImg} alt="Über mich – Portrait" loading="lazy" />
 						<div className="w-[806px] h-72 left-[523px] top-[409px] absolute text-center justify-start text-black text-4xl font-thin font-['Antonio'] leading-[54px]">

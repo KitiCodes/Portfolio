@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 const navigationItems = [
-  { label: "Ausstellungen", href: "/ausstellungen" },
-  { label: "Über mich", href: "/ueber" },
-  { label: "Kontakt", href: "/kontakt" },
+  { label: "Ausstellungen", href: "/exhibitions" },
+  { label: "Über mich", href: "/about-me" },
+  { label: "Kontakt", href: "/contact" },
 ];
 
 export const SiteHeader = (): JSX.Element => {

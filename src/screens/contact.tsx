@@ -1,7 +1,6 @@
-import { SiteHeader } from "../components/SiteHeader";
 import { FooterBar } from "../components/FooterBar";
 import { ContactSection } from "../components/ContactSection";
-import kontaktImg from "../assets/Kontakt.jpg"; 
+import kontaktImg from "../assets/optimized/sm/Kontakt.webp";
 import { Link, NavLink } from "react-router-dom";
 
 export const Contact = (): JSX.Element => (
@@ -25,15 +24,15 @@ export const Contact = (): JSX.Element => (
 					</Link>
 				</h1>
 				<nav className="flex items-center gap-[72px] [font-family:'Antonio',Helvetica]">
-					<NavLink to="/ausstellungen" className={({ isActive }) => ["text-[16px] font-thin px-0", "hover:text-[#854686] hover:bg-transparent", isActive ? "text-[#854686]" : "text-white"].join(" ")}>Ausstellungen</NavLink>
-					<NavLink to="/ueber" className={({ isActive }) => ["text-[16px] font-thin px-0", "hover:text-[#854686] hover:bg-transparent", isActive ? "text-[#854686]" : "text-white"].join(" ")}>Über mich</NavLink>
-					<NavLink to="/kontakt" className={({ isActive }) => ["text-[16px] font-thin px-0", "hover:text-[#854686] hover:bg-transparent", isActive ? "text-[#854686]" : "text-white"].join(" ")}>Kontakt</NavLink>
+					<NavLink to="/exhibitions" className={({ isActive }) => ["text-[16px] font-thin px-0", "hover:text-[#854686] hover:bg-transparent", isActive ? "text-[#854686]" : "text-white"].join(" ")}>Ausstellungen</NavLink>
+					<NavLink to="/about-me" className={({ isActive }) => ["text-[16px] font-thin px-0", "hover:text-[#854686] hover:bg-transparent", isActive ? "text-[#854686]" : "text-white"].join(" ")}>Über mich</NavLink>
+					<NavLink to="/contact" className={({ isActive }) => ["text-[16px] font-thin px-0", "hover:text-[#854686] hover:bg-transparent", isActive ? "text-[#854686]" : "text-white"].join(" ")}>Kontakt</NavLink>
 				</nav>
 			</div>
 		</header>
 		{/* Main content */}
 		<main className="w-full">
-			<div className="w-[1440px] h-[1458px] relative bg-stone-300 overflow-hidden" style={{ marginTop: -124 }}>
+			<div className="w-[1440px] h-[1458px] relative bg-background overflow-hidden" style={{ marginTop: -124 }}>
 				<div className="w-[508px] h-96 left-[149px] top-[269px] absolute text-center justify-start">
 					<span className="text-black text-4xl font-normal font-['Antonio'] leading-[60px]">
 						Bei Interesse an meinen Bildern freue ich mich über eine E-Mail:

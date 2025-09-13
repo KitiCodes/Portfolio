@@ -5,10 +5,9 @@ const Ausstellung3Img = new URL("../assets/optimized/sm/Ausstellung-Offenes Atel
 const Ausstellung2Img = new URL("../assets/optimized/sm/Ausstellung-Giesecke.webp", import.meta.url).href;
 const Ausstellung1Img = new URL("../assets/optimized/sm/Ausstellung-Aumann.webp", import.meta.url).href;
 // Navigation provided by SiteHeader
-import { SiteHeader } from "../components/SiteHeader";
+// header is provided globally
 import { useEffect, useState, useRef } from "react";
 import { FooterBarMobile } from "../components/FooterBarMobile";
-import SiteHeaderMobile from "../components/SiteHeaderMobile";
 import ContactSectionMobile from "../components/ContactSectionMobile";
 
 export function Exhebitions(): JSX.Element {
@@ -88,7 +87,7 @@ export function Exhebitions(): JSX.Element {
 
 		return (
 			<div className="bg-[#d4cdc4] grid justify-items-center [align-items:start] w-screen min-h-screen">
-				<SiteHeaderMobile />
+				{/* header is rendered globally */}
 
 				<div className="bg-[#d4cdc4] w-[390px] relative">
 					<div ref={stackingRef} className="relative w-full pt-6" style={{ minHeight: stackHeight }}>
@@ -115,7 +114,7 @@ export function Exhebitions(): JSX.Element {
 	return (
 		<div className="min-h-screen bg-background text-foreground flex flex-col">
 			{/* TopLanguageBar provided globally */}
-			<SiteHeader />
+			{/* header is rendered globally */}
 			{/* Main content */}
 			<main className="flex-1 w-full">
 				<div className="w-full max-w-[1440px] relative bg-background overflow-hidden mx-auto" style={{ marginTop: 0, paddingTop: 0 }}>

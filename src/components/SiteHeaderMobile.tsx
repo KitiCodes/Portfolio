@@ -79,7 +79,7 @@ export default function SiteHeaderMobile(): JSX.Element {
   return (
     // Use sticky so header remains in normal flow and expands the layout when nav opens.
       <>
-  <header className="sticky top-0 left-0 right-0 z-50 bg-[#af8f5b] shadow w-full">
+  <header className="fixed top-0 left-0 right-0 z-50 bg-[#af8f5b] shadow w-full">
   <div className="w-full flex sm:h-14 h-12 items-center justify-between px-4">
           <h1 className="[font-family:'Antonio',Helvetica] text-white text-2xl">
             <Link to="/" className="hover:opacity-90" aria-label="Zur Startseite">Sabine Hansen</Link>
@@ -100,7 +100,8 @@ export default function SiteHeaderMobile(): JSX.Element {
           <MobileNavigation isOpen={open} onClose={() => setOpen(false)} inline={true} refNav={navRef} />
         )}
   </header>
-  {/* no spacer: header is sticky and in-flow */}
+  {/* reserve space for fixed mobile header */}
+  <div className="block sm:hidden h-12 w-full" aria-hidden="true" />
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { StrictMode, useEffect, useState } from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HomePage } from "./screens/HomePage";
@@ -10,6 +10,7 @@ import { Imprint } from "./screens/imprint";
 import { ScrollToTop } from "./components/ScrollToTop";
 import { TopLanguageBar } from "./components/TopLanguageBar";
 import { LanguageProvider } from "./lib/LanguageContext";
+import { SiteHeader } from "./components/SiteHeader";
 
 // desktop-only routes (mobile variants removed)
 
@@ -17,7 +18,10 @@ createRoot(document.getElementById("app") as HTMLElement).render(
   <StrictMode>
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <LanguageProvider>
-        <TopLanguageBar />
+  <TopLanguageBar />
+  {/* spacer for fixed language bar height */}
+  <div className="hidden md:block h-[41px] w-full" aria-hidden="true" />
+  <SiteHeader />
         <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />

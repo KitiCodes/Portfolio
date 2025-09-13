@@ -6,12 +6,21 @@ import SiteHeaderMobile from "./SiteHeaderMobile";
 export const SiteHeader = (): JSX.Element => {
   const { t } = useLanguage();
   const [isMobile, setIsMobile] = useState(() => (typeof window !== "undefined" ? window.innerWidth <= 768 : false));
+  const [atTop, setAtTop] = useState(true);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     const onResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const onScroll = () => setAtTop(window.scrollY <= 0);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
   const navigationItems = [
     { label: t("Ausstellungen", "Exhibitions"), href: "/exhibitions" },
@@ -26,8 +35,11 @@ export const SiteHeader = (): JSX.Element => {
 
   return (
     <div className="w-full">
-      {/* Desktop Navigation Bar: sticky at top. The TopLanguageBar above provides initial 41px space when at page top. */}
-      <header className="sticky top-0 left-0 right-0 z-40 bg-[#af8f5b] shadow">
+      {/* Desktop Navigation Bar: fixed, sits below 41px language bar at page top; then snaps to top on scroll. */}
+      <header
+        className="fixed left-0 right-0 z-50 bg-[#af8f5b] shadow"
+        style={{ top: atTop ? 41 : 0 }}
+      >
         <div ref={headerContainerRef} className="container mx-auto flex h-24 items-center justify-between px-6">
           <h1 className="[font-family:'Antonio',Helvetica] text-white text-5xl md:text-6xl tracking-[-0.02em] leading-none">
             <Link to="/" className="hover:opacity-90" aria-label="Zur Startseite">
@@ -54,7 +66,8 @@ export const SiteHeader = (): JSX.Element => {
           </nav>
         </div>
   </header>
-  {/* spacer removed: sticky header already occupies space */}
+  {/* spacer to preserve layout (header height) so content isn't overlapped by fixed header */}
+  <div aria-hidden="true" className="hidden md:block h-24 w-full" />
     </div>
   );
 };

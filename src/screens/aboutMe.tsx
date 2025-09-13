@@ -4,7 +4,6 @@ import { ContactSection } from "../components/ContactSection";
 import { FooterBar } from "../components/FooterBar";
 import { useEffect, useState, useRef } from "react";
 import { FooterBarMobile } from "../components/FooterBarMobile";
-import SiteHeaderMobile from "../components/SiteHeaderMobile";
 import ContactSectionMobile from "../components/ContactSectionMobile";
 import UMtopImg from "../assets/optimized/sm/UM0.webp";
 import UMb1Img from "../assets/optimized/sm/UM1.webp";
@@ -71,7 +70,7 @@ export function AboutMe(): JSX.Element {
 
 		return (
 			<div className="bg-[#d4cdc4] grid justify-items-center [align-items:start] w-screen">
-				<SiteHeaderMobile />
+				{/* header is rendered globally */}
 
 				<div className="bg-[#d4cdc4] w-[390px] relative">
 					<div ref={stackingRef} className="relative w-full pt-0" style={{ minHeight: stackHeight }}>
@@ -127,7 +126,7 @@ export function AboutMe(): JSX.Element {
 	// Desktop markup preserved below
 	return (
 		<div className="min-h-screen bg-background text-foreground flex flex-col">
-			<SiteHeader />
+			{/* header is rendered globally */}
 			{/* Main content */}
 			<main className="flex-1 w-full">
 				<div className="w-full max-w-[1440px] relative bg-background overflow-hidden mx-auto" style={{ marginTop: 0, paddingTop: 0 }}>

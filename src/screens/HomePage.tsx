@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState, useMemo, type TouchEvent } fr
 import { SiteHeader } from "../components/SiteHeader";
 import { ContactSection } from "../components/ContactSection";
 import { FooterBar } from "../components/FooterBar";
-import SiteHeaderMobile from "../components/SiteHeaderMobile";
 import ContactSectionMobile from "../components/ContactSectionMobile";
 import { FooterBarMobile } from "../components/FooterBarMobile";
 
@@ -178,7 +177,6 @@ export function HomePage(): JSX.Element {
 
     return (
       <div className="bg-[#d4cdc4] grid justify-items-center [align-items:start] w-screen overflow-x-hidden">
-        <SiteHeaderMobile />
         <div className="bg-[#d4cdc4] w-[390px] relative overflow-x-hidden">
           <div ref={stackingRef} className="relative w-full pt-2" style={{ minHeight: stackHeight }}>
             <div className="relative">
@@ -341,8 +339,6 @@ export function HomePage(): JSX.Element {
   return (
     <main>
       {/* TopLanguageBar provided globally; SiteHeader will be sticky below it */}
-
-  <SiteHeader />
 
   <div className="relative w-full max-w-[1440px] mx-auto" style={{ height: 7700, marginTop: 0, paddingTop: 0 }} aria-label="Galerie">
         {artworks.map((artwork, idx) => (

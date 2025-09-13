@@ -68,9 +68,9 @@ export function Exhebitions(): JSX.Element {
 			},
 			{
 				id: 2,
-				title: 'Ausstellung\n"Licht und Kunst - Kunst und Licht"',
+				title: 'Ausstellung "Licht und Kunst -\nKunst und Licht"',
 				date: "seit September 2024",
-				location: "Giesecke Licht + Design\nin Schwentinental",
+				location: "Giesecke Licht + Design\nSchwentinental",
 				image: Ausstellung2Img,
 				imageClasses: "w-[203px] h-[135px] top-[235px] left-[187px]",
 				textClasses: "top-[285px] left-[5px] text-right",
@@ -118,14 +118,14 @@ export function Exhebitions(): JSX.Element {
 			<SiteHeader />
 			{/* Main content */}
 			<main className="flex-1 w-full">
-				<div className="w-full max-w-[1440px] relative bg-background overflow-hidden mx-auto" style={{ marginTop: 0, paddingTop: 96 }}>
+				<div className="w-full max-w-[1440px] relative bg-background overflow-hidden mx-auto" style={{ marginTop: 0, paddingTop: 0 }}>
 					<div className="w-full lg:w-80 h-24 lg:left-[968px] lg:top-[1217px] lg:absolute justify-start mx-auto lg:mx-0">
 						<span className="text-black text-base font-normal font-['Antonio'] leading-tight">Ausstellung<br /></span>
 						<span className="text-black text-base font-thin font-['Antonio'] leading-tight">seit Augsut 2024<br />Aumann Authentics, Kiel<br /></span>
 					</div>
 					<div className="w-full lg:w-80 h-24 lg:left-[368px] lg:top-[709px] lg:absolute text-right justify-start mx-auto lg:mx-0">
-						<span className="text-black text-base font-normal font-['Antonio'] leading-tight">Ausstellung “Licht und Kunst - Kunst und Licht”<br /></span>
-						<span className="text-black text-base font-thin font-['Antonio'] leading-tight">seit September 2024<br />Giesecke Licht + Design, Schwentinental<br /></span>
+						<span className="text-black text-base font-normal font-['Antonio'] leading-tight">Ausstellung “Licht und Kunst -<br />Kunst und Licht”<br /></span>
+						<span className="text-black text-base font-thin font-['Antonio'] leading-tight">seit September 2024<br />Giesecke Licht + Design<br />Schwentinental<br /></span>
 					</div>
 					<div className="w-full lg:w-80 h-24 lg:left-[701px] lg:top-[238px] lg:absolute justify-start mx-auto lg:mx-0">
 						<span className="text-black text-base font-normal font-['Antonio'] leading-tight">Offenes Atelier<br /></span>

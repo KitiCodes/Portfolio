@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+//
 import { SiteHeader } from "../components/SiteHeader";
 import { ContactSection } from "../components/ContactSection";
 import { FooterBar } from "../components/FooterBar";
@@ -74,7 +74,7 @@ export function AboutMe(): JSX.Element {
 				<SiteHeaderMobile />
 
 				<div className="bg-[#d4cdc4] w-[390px] relative">
-					<div ref={stackingRef} className="relative w-full pt-6" style={{ minHeight: stackHeight }}>
+					<div ref={stackingRef} className="relative w-full pt-0" style={{ minHeight: stackHeight }}>
 						<img className="absolute w-[199px] h-[257px] top-[83px] left-2.5" alt="Img" src={UMtopImg} />
 
 						<div className="absolute w-[162px] top-[78px] left-[218px] [font-family:'Antonio',Helvetica] font-thin text-black text-base text-left tracking-[0] leading-6">
@@ -86,7 +86,7 @@ export function AboutMe(): JSX.Element {
 							mein ganzes Leben.
 						</div>
 
-						<div className="absolute w-[333px] top-[369px] left-7 [font-family:'Antonio',Helvetica] font-thin text-black text-base text-left tracking-[0] leading-6">
+						<div className="absolute w-[333px] top-[369px] left-[11px] [font-family:'Antonio',Helvetica] font-thin text-black text-base text-left tracking-[0] leading-6">
 							Nach vielen Jahren im sozialen Bereich habe ich 2019 meine
 							Leidenschaft fr die Acrylmalerei entdeckt. Seither bilde ich mich
 							kontinuierlich weiter, unter anderem an Malschulen in
@@ -130,7 +130,7 @@ export function AboutMe(): JSX.Element {
 			<SiteHeader />
 			{/* Main content */}
 			<main className="flex-1 w-full">
-				<div className="w-full max-w-[1440px] relative bg-background overflow-hidden mx-auto" style={{ marginTop: 0, paddingTop: 96 }}>
+				<div className="w-full max-w-[1440px] relative bg-background overflow-hidden mx-auto" style={{ marginTop: 0, paddingTop: 0 }}>
 					<div className="w-full flex justify-start py-6 mt-auto">
 						<div style={{ width: 430 }}>
 							<FooterBar />

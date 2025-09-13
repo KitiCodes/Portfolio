@@ -180,22 +180,22 @@ export function HomePage(): JSX.Element {
       <div className="bg-[#d4cdc4] grid justify-items-center [align-items:start] w-screen overflow-x-hidden">
         <SiteHeaderMobile />
         <div className="bg-[#d4cdc4] w-[390px] relative overflow-x-hidden">
-          <div ref={stackingRef} className="relative w-full pt-6" style={{ minHeight: stackHeight }}>
+          <div ref={stackingRef} className="relative w-full pt-2" style={{ minHeight: stackHeight }}>
             <div className="relative">
               {/* Mobile layout: explicit absolute classes taken from the original mobile markup */}
               {(
                 [
-                  { id: 1, imageClass: "absolute w-[278px] h-[236px] top-[99px] left-[13px] object-cover cursor-pointer", textClass: "absolute top-32 left-[311px] w-[79px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px] text-left" },
+                  { id: 1, imageClass: "absolute w-[278px] h-[236px] top-[75px] left-[13px] object-cover cursor-pointer", textClass: "absolute top-[95px] left-[311px] w-[79px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px] text-left" },
                   { id: 2, imageClass: "absolute w-[247px] h-[244px] top-[353px] left-[137px] object-cover cursor-pointer", textClass: "absolute w-14 top-[497px] left-[68px] [font-family:'Antonio',Helvetica] font-normal text-black text-base text-right tracking-[-0.32px] leading-[19.2px]" },
                   { id: 3, imageClass: "absolute w-[315px] h-[157px] top-[609px] left-0 object-cover cursor-pointer", textClass: "absolute w-[66px] top-[654px] left-[324px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]" },
-                  { id: 4, imageClass: "absolute w-[313px] h-[306px] top-[801px] left-[11px] object-cover cursor-pointer", textClass: "absolute w-[67px] top-[986px] left-[323px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]" },
+                  { id: 4, imageClass: "absolute w-[313px] h-[306px] top-[801px] left-[11px] object-cover cursor-pointer", textClass: "absolute w-[90px] top-[1115px] left-[323px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]" },
                   { id: 5, imageClass: "absolute w-[302px] h-80 top-[1127px] left-[82px] object-cover cursor-pointer", textClass: "absolute w-14 top-[1210px] left-[11px] [font-family:'Antonio',Helvetica] font-normal text-black text-base text-right tracking-[-0.32px] leading-[19.2px]" },
-                  { id: 6, imageClass: "absolute w-[135px] h-[272px] top-[1473px] left-[11px] object-cover cursor-pointer", textClass: "absolute w-[69px] top-[1648px] left-[301px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]" },
-                  { id: 7, imageClass: "absolute w-[138px] h-[272px] top-[1473px] left-[154px] object-cover cursor-pointer", textClass: null },
+                  { id: 6, imageClass: "absolute w-[135px] h-[272px] top-[1473px] left-[11px] object-contain cursor-pointer", textClass: "absolute w-[90px] top-[1648px] left-[301px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]" },
+                  { id: 7, imageClass: "absolute w-[138px] h-[272px] top-[1473px] left-[154px] object-contain cursor-pointer", textClass: null },
                   { id: 8, imageClass: "absolute w-[290px] h-[194px] top-[1753px] left-[100px] object-cover cursor-pointer", textClass: "absolute w-[85px] top-[1780px] left-[11px] [font-family:'Antonio',Helvetica] font-normal text-black text-base text-right tracking-[-0.32px] leading-[19.2px]" },
                   { id: 9, imageClass: "absolute w-[254px] h-[252px] top-[1961px] left-[5px] object-cover cursor-pointer", textClass: "absolute w-[108px] top-[2095px] left-[271px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]" },
-                  { id: 10, imageClass: "absolute w-[131px] h-[261px] top-[2243px] left-[254px] object-cover cursor-pointer", textClass: "absolute top-[2379px] left-[19px] [font-family:'Antonio',Helvetica] font-normal text-black text-base text-right tracking-[-0.32px] leading-[19.2px]" },
-                  { id: 11, imageClass: "absolute w-[130px] h-[261px] top-[2243px] left-[121px] object-cover cursor-pointer", textClass: null },
+                  { id: 10, imageClass: "absolute w-[131px] h-[261px] top-[2243px] left-[254px] object-contain cursor-pointer", textClass: "absolute top-[2379px] left-[19px] [font-family:'Antonio',Helvetica] font-normal text-black text-base text-right tracking-[-0.32px] leading-[19.2px]" },
+                  { id: 11, imageClass: "absolute w-[130px] h-[261px] top-[2243px] left-[121px] object-contain cursor-pointer", textClass: null },
                   { id: 12, imageClass: "absolute w-[276px] h-[276px] top-[2530px] left-0 object-cover cursor-pointer", textClass: "absolute top-[2617px] left-[295px] w-[95px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]" },
                   { id: 13, imageClass: "absolute w-[286px] h-[190px] top-[2814px] left-[88px] object-cover cursor-pointer", textClass: "absolute w-[69px] top-[2832px] left-[11px] [font-family:'Antonio',Helvetica] font-normal text-black text-base text-right tracking-[-0.32px] leading-[19.2px]" },
                   { id: 14, imageClass: "absolute w-[281px] h-[283px] top-[3034px] left-[11px] object-cover cursor-pointer", textClass: "absolute w-[69px] top-[3167px] left-[306px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]" }
@@ -236,7 +236,7 @@ export function HomePage(): JSX.Element {
                     return (
                       <div className="flex flex-col items-center gap-4">
                         <div className="flex gap-2 items-center justify-center">
-                          {group.map((a) => (
+                            {group.map((a) => (
                             <img key={a.id} src={(a as any).largeSrc ?? (a as any).large} alt={a.alt || a.title || 'Artwork'} className="h-[60vh] w-auto object-contain mx-auto" />
                           ))}
                         </div>
@@ -344,7 +344,7 @@ export function HomePage(): JSX.Element {
 
   <SiteHeader />
 
-  <div className="relative w-full max-w-[1440px] mx-auto" style={{ height: 7700, marginTop: 0, paddingTop: 96 }} aria-label="Galerie">
+  <div className="relative w-full max-w-[1440px] mx-auto" style={{ height: 7700, marginTop: 0, paddingTop: 0 }} aria-label="Galerie">
         {artworks.map((artwork, idx) => (
           <figure key={artwork.id} className="relative w-full lg:absolute lg:overflow-visible" style={{ ...(typeof window === 'undefined' ? {} : {}), ...(artwork.img ? {} : {}) }}>
             {/* On large screens we position the artwork absolutely using inline style via lg media query in CSS is not available here; use Tailwind helpers above */}
@@ -359,7 +359,7 @@ export function HomePage(): JSX.Element {
         ))}
 
         {/* Captions (title, year, dimensions) — restore multi-line details */}
-        {artworks.map((artwork) =>
+  {artworks.map((artwork) =>
           artwork.caption ? (
             <div
               key={`cap-${artwork.id}`}

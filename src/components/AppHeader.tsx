@@ -9,7 +9,7 @@ const navigationItems = [
 export const AppHeader = (): JSX.Element => {
   return (
     <>
-      <header className="sticky top-0 left-0 right-0 z-50 bg-[#af8f5b] shadow">
+  <header className="sticky top-0 left-0 right-0 z-50 bg-[#af8f5b] shadow">
         <div className="container mx-auto flex h-24 items-center justify-between px-6">
           <h1 className="[font-family:'Antonio',Helvetica] tracking-[-0.02em] leading-none">
             <Link to="/" className="text-white text-5xl md:text-6xl hover:opacity-90" aria-label="Zur Startseite">
@@ -35,8 +35,7 @@ export const AppHeader = (): JSX.Element => {
           </nav>
         </div>
       </header>
-  {/* preserve desktop layout only; keep spacer to reserve header height */}
-  <div aria-hidden="true" className="h-24 w-full" />
+  {/* spacer removed: header is sticky and occupies layout */}
     </>
   );
 };

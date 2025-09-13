@@ -79,15 +79,15 @@ export default function SiteHeaderMobile(): JSX.Element {
   return (
     // Use sticky so header remains in normal flow and expands the layout when nav opens.
       <>
-    <header className="sticky top-0 left-0 right-0 z-50 bg-[#af8f5b] shadow w-full">
-    <div className="w-full flex sm:h-14 h-12 items-center justify-between px-4">
+  <header className="sticky top-0 left-0 right-0 z-50 bg-[#af8f5b] shadow w-full">
+  <div className="w-full flex sm:h-14 h-12 items-center justify-between px-4">
           <h1 className="[font-family:'Antonio',Helvetica] text-white text-2xl">
             <Link to="/" className="hover:opacity-90" aria-label="Zur Startseite">Sabine Hansen</Link>
           </h1>
           <button
             aria-expanded={open}
             aria-label={open ? "Schließe Navigation" : "Öffne Navigation"}
-            className="text-white text-2xl h-full flex items-center justify-center px-2 leading-none"
+      className="text-white text-2xl h-10 w-10 flex items-center justify-center px-0 leading-none m-0"
             onClick={() => setOpen((v) => !v)}
             ref={btnRef}
           >
@@ -100,8 +100,7 @@ export default function SiteHeaderMobile(): JSX.Element {
           <MobileNavigation isOpen={open} onClose={() => setOpen(false)} inline={true} refNav={navRef} />
         )}
   </header>
-  {/* spacer: preserve header height so content is pushed below header on all screen sizes */}
-  <div aria-hidden="true" className="h-12 sm:h-14 w-full" />
+  {/* no spacer: header is sticky and in-flow */}
     </>
   );
 }

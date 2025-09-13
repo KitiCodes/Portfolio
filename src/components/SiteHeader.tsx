@@ -26,8 +26,8 @@ export const SiteHeader = (): JSX.Element => {
 
   return (
     <div className="w-full">
-      {/* Navigation Bar: sticky under the top language bar (41px) */}
-      <header className="sticky top-[41px] left-0 right-0 z-40 bg-[#af8f5b] shadow">
+      {/* Desktop Navigation Bar: sticky at top. The TopLanguageBar above provides initial 41px space when at page top. */}
+      <header className="sticky top-0 left-0 right-0 z-40 bg-[#af8f5b] shadow">
         <div ref={headerContainerRef} className="container mx-auto flex h-24 items-center justify-between px-6">
           <h1 className="[font-family:'Antonio',Helvetica] text-white text-5xl md:text-6xl tracking-[-0.02em] leading-none">
             <Link to="/" className="hover:opacity-90" aria-label="Zur Startseite">
@@ -54,8 +54,7 @@ export const SiteHeader = (): JSX.Element => {
           </nav>
         </div>
   </header>
-  {/* spacer to preserve layout (header height) - only for md+ */}
-  <div aria-hidden="true" className="hidden md:block h-24 w-full" />
+  {/* spacer removed: sticky header already occupies space */}
     </div>
   );
 };

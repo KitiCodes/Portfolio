@@ -126,12 +126,12 @@ export function AboutMe(): JSX.Element {
 
 	// Desktop markup preserved below
 	return (
-		<div className="min-h-screen bg-background text-foreground">
+		<div className="min-h-screen bg-background text-foreground flex flex-col">
 			<SiteHeader />
 			{/* Main content */}
-			<main className="w-full">
+			<main className="flex-1 w-full">
 				<div className="w-full max-w-[1440px] relative bg-background overflow-hidden mx-auto" style={{ marginTop: 0, paddingTop: 96 }}>
-					<div className="w-full flex justify-start py-6">
+					<div className="w-full flex justify-start py-6 mt-auto">
 						<div style={{ width: 430 }}>
 							<FooterBar />
 						</div>

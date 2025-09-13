@@ -7,7 +7,7 @@ import ContactSectionMobile from "../components/ContactSectionMobile";
 
 export function PrivacyPolicy(): JSX.Element {
   return (
-    <main>
+    <div className="min-h-screen bg-background text-foreground flex flex-col">
       {/* Responsive header: SiteHeaderMobile for mobile, SiteHeader for desktop */}
       <div className="block md:hidden">
         <SiteHeaderMobile />
@@ -17,7 +17,7 @@ export function PrivacyPolicy(): JSX.Element {
       </div>
 
       {/* Main content area */}
-      <div className="bg-background w-full">
+      <main className="flex-1 bg-background w-full">
         <div className="px-6 py-12 max-w-4xl mx-auto">
           <h1 className="text-black text-3xl md:text-4xl font-normal [font-family:'Antonio',Helvetica] mb-6">Datenschutzerklärung</h1>
           <p className="text-black text-lg font-thin [font-family:'Antonio',Helvetica] mb-4">
@@ -95,7 +95,7 @@ export function PrivacyPolicy(): JSX.Element {
           </div>
         </div>
 
-        <div className="w-full flex justify-start py-6">
+        <div className="w-full flex justify-start py-6 mt-auto">
           <div className="md:w-[430px] w-full px-6">
             <div className="hidden md:block">
               <FooterBar />
@@ -105,8 +105,8 @@ export function PrivacyPolicy(): JSX.Element {
             </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
   );
 }
 

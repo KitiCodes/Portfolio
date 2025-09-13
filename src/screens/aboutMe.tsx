@@ -125,7 +125,7 @@ export function AboutMe(): JSX.Element {
 			{/* header is rendered globally */}
 			{/* Main content */}
 			<main className="flex-1 w-full">
-				<div className="w-full max-w-[1440px] relative bg-background overflow-hidden mx-auto" style={{ marginTop: 0, paddingTop: 0 }}>
+				<div className="w-full max-w-[1440px] relative bg-background mx-auto lg:h-[2822px]" style={{ marginTop: 0, paddingTop: 0 }}>
 					<img className="w-96 h-[524px] object-cover lg:absolute lg:left-[56px] lg:top-[200px] mx-auto lg:mx-0" src={UMtopImg} alt="Über mich – Portrait" loading="lazy" />
 					<div className="w-full lg:w-[806px] h-72 lg:left-[523px] lg:top-[409px] lg:absolute text-center justify-start text-black text-4xl font-thin font-['Antonio'] leading-[54px] mx-auto lg:mx-0">
 						Ich bin Sabine Hansen – geboren und aufgewachsen im hohen Norden, zwischen Nord- und Ostsee. Heute lebe ich in Schwentinental, in der Nähe von Kiel.
@@ -147,18 +147,18 @@ export function AboutMe(): JSX.Element {
 					</div>
 					<ContactSection className="lg:absolute relative lg:w-[560px] w-full lg:top-[2225px] lg:left-[440px] mx-auto lg:mx-0" />
 					{/* Bottom image strip with equal spacing */}
-					<div className="w-full lg:absolute lg:left-[28px] lg:top-[1800px] lg:w-[1384px] px-4 lg:px-0">
-						<div className="flex flex-wrap items-end justify-between gap-6">
-							<img className="w-36 h-56 object-cover" src={UMb1Img} loading="lazy" />
-							<img className="w-36 h-56 object-cover" src={UMb2Img} loading="lazy" />
-							<img className="w-36 h-56 object-cover" src={UMb3Img} loading="lazy" />
-							<img className="w-80 h-56 object-cover" src={UMb4Img} loading="lazy" />
-							<img className="w-36 h-56 object-cover" src={UMb5Img} loading="lazy" />
-							<img className="w-36 h-56 object-cover" src={UMb6Img} loading="lazy" />
-							<img className="w-36 h-56 object-cover" src={UMb7Img} loading="lazy" />
-							<img className="w-36 h-56 object-cover" src={UMb8Img} loading="lazy" />
+						<div className="w-full lg:absolute lg:left-[28px] lg:top-[1800px] lg:w-[1384px] px-4 lg:px-0">
+							<div className="flex items-end justify-start gap-2 flex-nowrap overflow-x-auto">
+								<img className="w-36 h-56 object-cover shrink-0" src={UMb1Img} alt="Atelier – Detail 1" loading="lazy" />
+								<img className="w-36 h-56 object-cover shrink-0" src={UMb2Img} alt="Atelier – Detail 2" loading="lazy" />
+								<img className="w-36 h-56 object-cover shrink-0" src={UMb3Img} alt="Atelier – Detail 3" loading="lazy" />
+								<img className="w-80 h-56 object-cover shrink-0" src={UMb4Img} alt="Malerei – Großformat" loading="lazy" />
+								<img className="w-36 h-56 object-cover shrink-0" src={UMb5Img} alt="Atelier – Detail 4" loading="lazy" />
+								<img className="w-36 h-56 object-cover shrink-0" src={UMb6Img} alt="Atelier – Detail 5" loading="lazy" />
+								<img className="w-36 h-56 object-cover shrink-0" src={UMb7Img} alt="Atelier – Detail 6" loading="lazy" />
+								<img className="w-36 h-56 object-cover shrink-0" src={UMb8Img} alt="Atelier – Detail 7" loading="lazy" />
+							</div>
 						</div>
-					</div>
 				</div>
 			</main>
 		</div>

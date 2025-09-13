@@ -55,7 +55,7 @@ const artworks: Artwork[] = [
   { id: 4, smallSrc: smZaghaft, largeSrc: lgZaghaft, alt: "Zaghaft beginnt etwas Neues", title: "Zaghaft beginnt etwas Neues", year: "2021", dimensions: "70 x 70 cm", img: { w: 511, h: 499, top: 1839, left: 13 }, caption: { w: 196, top: 1918, left: 566 } },
   { id: 5, smallSrc: smPower, largeSrc: lgPower, alt: "power", title: "power", year: "2021", dimensions: "70 x 70 cm", img: { w: 566, h: 600, top: 2010, left: 843 }, caption: { w: 196, top: 2435, left: 639, align: "right" } },
   { id: 6, smallSrc: smTanzendeA, largeSrc: lgTanzendeA, alt: "Tanzende", title: "Tanzende", year: "2024", dimensions: "je 80 x 40 cm", groupId: "tanzende", img: { w: 297, h: 600, top: 2610, left: 120 }, caption: { w: 196, top: 2840, left: 861 } },
-    { id: 7, smallSrc: smTanzendeB, largeSrc: lgTanzendeB, alt: "Tanzende b", title: "", year: "", dimensions: "", groupId: "tanzende", img: { w: 297, h: 600, top: 2610, left: 417 } },
+  { id: 7, smallSrc: smTanzendeB, largeSrc: lgTanzendeB, alt: "Tanzende b", title: "", year: "", dimensions: "", groupId: "tanzende", img: { w: 297, h: 600, top: 2610, left: 417 } },
   { id: 8, smallSrc: smSonnenblumen, largeSrc: lgSonnenblumen, alt: "Sonnenblumen", title: "Sonnenblumen", year: "2021", dimensions: "100 x 80 cm", img: { w: 797, h: 524, top: 3283, left: 608 }, caption: { w: 196, top: 3420, left: 350, align: "right" } },
   { id: 9, smallSrc: smKuechenphilosophie, largeSrc: lgKuechenphilosophie, alt: "Küchenphilosophie", title: "Küchenphilosophie", year: "2022", dimensions: "100 x 100 cm", img: { w: 497, h: 494, top: 3646, left: 68 }, caption: { w: 196, top: 3942, left: 575 } },
   { id: 10, smallSrc: smOhneTitelA, largeSrc: lgOhneTitelA, alt: "ohne Titel", title: "ohne Titel", year: "2024", dimensions: "je 80 x 40 cm", groupId: "ohne-titel-diptych", img: { w: 301, h: 600, top: 4170, left: 1089 }, caption: { w: 196, top: 4299, left: 467, align: "right" } },
@@ -183,7 +183,7 @@ export function HomePage(): JSX.Element {
                   { id: 1, imageClass: "absolute w-[278px] h-[236px] top-[75px] left-[13px] object-cover cursor-pointer", textClass: "absolute top-[95px] left-[311px] w-[79px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px] text-left" },
                   { id: 2, imageClass: "absolute w-[247px] h-[244px] top-[353px] left-[137px] object-cover cursor-pointer", textClass: "absolute w-14 top-[497px] left-[68px] [font-family:'Antonio',Helvetica] font-normal text-black text-base text-right tracking-[-0.32px] leading-[19.2px]" },
                   { id: 3, imageClass: "absolute w-[315px] h-[157px] top-[609px] left-0 object-cover cursor-pointer", textClass: "absolute w-[66px] top-[654px] left-[324px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]" },
-                  { id: 4, imageClass: "absolute w-[313px] h-[306px] top-[801px] left-[11px] object-cover cursor-pointer", textClass: "absolute w-[90px] top-[1115px] left-[323px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]" },
+                  { id: 4, imageClass: "absolute w-[313px] h-[306px] top-[801px] left-[0px] object-cover cursor-pointer", textClass: "absolute w-[250px] top-[780px] left-[125px] [font-family:'Antonio',Helvetica] font-normal text-black text-right tracking-[-0.32px] leading-[19.2px]" },
                   { id: 5, imageClass: "absolute w-[302px] h-80 top-[1127px] left-[82px] object-cover cursor-pointer", textClass: "absolute w-14 top-[1210px] left-[11px] [font-family:'Antonio',Helvetica] font-normal text-black text-base text-right tracking-[-0.32px] leading-[19.2px]" },
                   { id: 6, imageClass: "absolute w-[135px] h-[272px] top-[1473px] left-[11px] object-contain cursor-pointer", textClass: "absolute w-[90px] top-[1648px] left-[301px] [font-family:'Antonio',Helvetica] font-normal text-black text-base tracking-[-0.32px] leading-[19.2px]" },
                   { id: 7, imageClass: "absolute w-[138px] h-[272px] top-[1473px] left-[154px] object-contain cursor-pointer", textClass: null },
@@ -200,9 +200,9 @@ export function HomePage(): JSX.Element {
                 const art = artworks[artIndex];
                 return (
                   <div key={item.id}>
-                    <img className={item.imageClass} alt={art.alt} src={art.smallSrc} loading="lazy" onClick={() => openPreviewMobile(artIndex)} />
+                    <img className={`${item.imageClass} z-10`} alt={art.alt} src={art.smallSrc} loading="lazy" onClick={() => openPreviewMobile(artIndex)} />
                     {item.textClass && art.title && (
-                      <div className={item.textClass}>
+                      <div className={`${item.textClass} z-20`}>
                         <span className="tracking-[-0.05px]">{art.title}<br /></span>
                         <span className="font-thin tracking-[-0.05px]">{art.year}<br />{art.dimensions}<br /></span>
                       </div>

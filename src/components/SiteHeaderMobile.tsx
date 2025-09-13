@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { MobileNavigation } from "./MobileNavigation";
 
 export default function SiteHeaderMobile(): JSX.Element {
   const [open, setOpen] = useState(false);
   const navRef = useRef<HTMLElement | null>(null);
+  const btnRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     const nav = navRef.current;
@@ -40,7 +42,23 @@ export default function SiteHeaderMobile(): JSX.Element {
     if (open) {
       const prevOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
-      document.addEventListener('keydown', onKey);
+  document.addEventListener('keydown', onKey);
+      // Close on click outside
+      const onClick = (e: MouseEvent) => {
+        const target = e.target as Node | null;
+        // if click is inside nav, do nothing
+        if (target && nav.contains(target)) return;
+        // if click is the toggle button or inside the header, ignore (user toggled)
+        if (btnRef.current && target && btnRef.current.contains(target)) return;
+        const header = nav.closest('header');
+        if (header && target && header.contains(target)) return;
+        setOpen(false);
+      };
+      document.addEventListener('click', onClick);
+
+      // Close on scroll
+      const onScroll = () => setOpen(false);
+      window.addEventListener('scroll', onScroll);
 
       // Focus first link when opened
       const focusable = getFocusable();
@@ -49,6 +67,8 @@ export default function SiteHeaderMobile(): JSX.Element {
       return () => {
         document.removeEventListener('keydown', onKey);
         document.body.style.overflow = prevOverflow;
+        document.removeEventListener('click', onClick);
+        window.removeEventListener('scroll', onScroll);
       };
     }
 
@@ -58,46 +78,30 @@ export default function SiteHeaderMobile(): JSX.Element {
 
   return (
     // Use sticky so header remains in normal flow and expands the layout when nav opens.
-    <>
-      <header className="sticky top-0 left-0 right-0 z-50 bg-[#af8f5b] shadow w-full">
-        <div className="w-full flex h-14 items-center justify-between px-4">
-          <h1 className="[font-family:'Antonio',Helvetica] text-white text-2xl leading-none">
+      <>
+    <header className="sticky top-0 left-0 right-0 z-50 bg-[#af8f5b] shadow w-full">
+    <div className="w-full flex sm:h-14 h-12 items-center justify-between px-4">
+          <h1 className="[font-family:'Antonio',Helvetica] text-white text-2xl">
             <Link to="/" className="hover:opacity-90" aria-label="Zur Startseite">Sabine Hansen</Link>
           </h1>
           <button
             aria-expanded={open}
             aria-label={open ? "Schließe Navigation" : "Öffne Navigation"}
-            className="text-white text-2xl p-2"
+            className="text-white text-2xl h-full flex items-center justify-center px-2 leading-none"
             onClick={() => setOpen((v) => !v)}
+            ref={btnRef}
           >
             {open ? '✕' : '☰'}
           </button>
         </div>
 
-        {/* Sliding nav when open */}
-        <nav ref={navRef} className={`transition-max-h duration-300 overflow-hidden bg-[#af8f5b] ${open ? 'max-h-80' : 'max-h-0'}`} aria-hidden={!open}>
-          <div className="w-full px-4 py-3 flex flex-col gap-2">
-            <NavLink to="/exhibitions" onClick={() => setOpen(false)} className={({ isActive }) => (isActive ? 'text-[#854686]' : 'text-white')}>
-              Ausstellungen
-            </NavLink>
-            <NavLink to="/about-me" onClick={() => setOpen(false)} className={({ isActive }) => (isActive ? 'text-[#854686]' : 'text-white')}>
-              Über mich
-            </NavLink>
-            <NavLink to="/contact" onClick={() => setOpen(false)} className={({ isActive }) => (isActive ? 'text-[#854686]' : 'text-white')}>
-              Kontakt
-            </NavLink>
-
-            {/* separator */}
-            <div className="h-px bg-white/30 my-2" role="separator" />
-            {/* Language selector moved here */}
-            <div className="flex items-center gap-2 text-white text-sm [font-family:'Antonio',Helvetica]">
-              <a href="#de" className="hover:underline">de</a>
-              <span className="opacity-80">|</span>
-              <a href="#en" className="hover:underline">en</a>
-            </div>
-          </div>
-        </nav>
-      </header>
+  {/* Sliding nav (rendered only when open) */}
+        {open && (
+          <MobileNavigation isOpen={open} onClose={() => setOpen(false)} inline={true} refNav={navRef} />
+        )}
+  </header>
+  {/* spacer: preserve header height so content is pushed below header on all screen sizes */}
+  <div aria-hidden="true" className="h-12 sm:h-14 w-full" />
     </>
   );
 }

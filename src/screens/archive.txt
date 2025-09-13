@@ -1,0 +1,28 @@
+here are the bugs that need to be fixed:
+the pages have two versions one for desktop and one for mobile. the position of the images and texts are important so do not change the layout but try to make the project responsive
+run the project and make a screenshot after every bug fix and see if the bug is fixed before going to the next bug.
+in scripts/screenshots you find tools for screenshot
+make sure after resolving each bug , the previous bugs are still solved
+
+desktop:
+    all pages: create new page linked with Impressum in the footer with the URL path imprint
+    all pages: when hovering over Datenschutz or Impressum in the footer use the purple signature color
+    privacy policy: The footer is not at the same place like all the other footers. fix it.
+    all pages: reduce the heigth between the header and the first image/text to the heigth of the header
+    all pages: when being at the top of a page, there should be 41 px of space above the header. when starting to scroll, the header should scroll to the top of the visible page and stay there.
+    homepage/lightroom: align the right arrow vertically with the exit button
+    all pages: all text in the header should be vertically in the middle of the header. Sabine Hansen seems to be off.
+
+mobile:
+    all pages: the burger menu icon is still not vertically aligned! fix it!
+    privacy policy: the header should be the same header as the other mobile pages (with burger menu)
+    homepage/lightroom: the double pictures Tanzende and ohne Titel are overflowing the frame. they should have the same spaces left and right like the other pictures.
+    homepage/ligthroom: I can still scroll the background homepage while being in lightroom mode. that should not be possible! there shouldn't be an option to scroll top to bottom in lightroom!
+    all pages: the header is not sticky but it should be! when scrolling down, the header should always stay at the top of the visible page.
+    all pages: the burger menu icon is not clickable. i can't reach the menu which should be fixed!
+    about me: the left aligned text should be vertically aligned with the left end of the big top picture
+    homepage: the picture Zaghaft beginnt etwas Neues should not overlap with the description text
+    exhibitions: for the second description (Ausstellung "Licht und Kunst - Kunst und Licht") add breaks here: 
+        Ausstellung "Licht und Kunst - break
+        Giesecke Licht + Design break
+    all pages: reduce the heigth between the header and the first image/text to the heigth of the header

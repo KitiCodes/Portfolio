@@ -28,9 +28,9 @@ export function ContactSectionMobile({
       style={style}
       {...rest}
     >
-      <div className="flex flex-col items-center gap-2.5 w-[245px]">
+      <div className="flex flex-col items-center gap-2 w-[245px]">
         {showName && (
-          <div className="w-full [font-family:'Antonio',Helvetica] font-normal text-black text-4xl text-center tracking-[-0.72px] leading-[43.2px]">
+          <div className="w-full [font-family:'Antonio',Helvetica] font-normal text-black text-3xl text-center tracking-[-0.48px] leading-[34px]">
             <span className="tracking-[-0.26px]">
               Sabine Hansen
               <br />
@@ -39,22 +39,22 @@ export function ContactSectionMobile({
         )}
 
         {showLocation && (
-          <div className="w-full [font-family:'Antonio',Helvetica] font-normal text-black text-4xl text-center tracking-[-0.72px] leading-[43.2px]">
-            <span className="text-2xl tracking-[-0.12px] leading-[28.8px]">
+          <div className="w-full [font-family:'Antonio',Helvetica] font-normal text-black text-xl text-center tracking-[-0.12px] leading-[24px]">
+            <span>
               Schwentinental, Deutschland
               <br />
             </span>
           </div>
         )}
 
-        <div className="w-full [font-family:'Antonio',Helvetica] font-normal text-black text-4xl text-center tracking-[-0.72px] leading-[43.2px]">
+        <div className="w-full [font-family:'Antonio',Helvetica] font-normal text-black text-lg text-center tracking-[-0.08px] leading-[22px]">
           <a
             href="mailto:kontakt@sabinehansen.art"
             rel="noopener noreferrer"
             target="_blank"
             className="no-underline text-black hover:text-[#854686] transition-colors"
           >
-            <span className="text-2xl tracking-[-0.12px] leading-[28.8px] underline">
+            <span className="underline">
               kontakt@sabinehansen.art
             </span>
           </a>
@@ -62,7 +62,7 @@ export function ContactSectionMobile({
       </div>
 
       {/* Instagram icon below the text, not on top */}
-      <div className="flex justify-center mt-8">
+  <div className="flex justify-center mt-6">
         <a
           href="https://www.instagram.com/sabinehansen.art/"
           target="_blank"
@@ -73,8 +73,8 @@ export function ContactSectionMobile({
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="46"
-            height="53"
+    width="36"
+    height="36"
             viewBox="0 0 24 24"
             role="img"
           >

@@ -1,50 +1,33 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-
-const navigationItems = [
-  { label: "Ausstellungen", href: "/exhibitions" },
-  { label: "Über mich", href: "/about-me" },
-  { label: "Kontakt", href: "/contact" },
-];
+import { useLanguage } from "../lib/LanguageContext";
+import SiteHeaderMobile from "./SiteHeaderMobile";
 
 export const SiteHeader = (): JSX.Element => {
-  const kontaktRef = useRef<HTMLAnchorElement | null>(null);
-  const headerContainerRef = useRef<HTMLDivElement | null>(null);
-  const [langLeft, setLangLeft] = useState<number>(0);
+  const { t } = useLanguage();
+  const [isMobile, setIsMobile] = useState(() => (typeof window !== "undefined" ? window.innerWidth <= 768 : false));
 
   useEffect(() => {
-    const update = () => {
-      const kontakt = kontaktRef.current;
-      const container = headerContainerRef.current;
-      if (!kontakt || !container) return;
-      const kRect = kontakt.getBoundingClientRect();
-      const cRect = container.getBoundingClientRect();
-      const center = kRect.left - cRect.left + kRect.width / 2;
-      setLangLeft(center);
-    };
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
+    if (typeof window === "undefined") return;
+    const onResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
+  const navigationItems = [
+    { label: t("Ausstellungen", "Exhibitions"), href: "/exhibitions" },
+    { label: t("Über mich", "About me"), href: "/about-me" },
+    { label: t("Kontakt", "Contact"), href: "/contact" },
+  ];
+
+  const kontaktRef = useRef<HTMLAnchorElement | null>(null);
+  const headerContainerRef = useRef<HTMLDivElement | null>(null);
+
+  if (isMobile) return <SiteHeaderMobile />;
 
   return (
     <div className="w-full">
-      {/* Language bar (top, non-sticky) */}
-      <div className="w-full">
-        <div className="container mx-auto relative h-7 px-4">
-          <div
-            className="absolute top-1/2 -translate-y-1/2 [font-family:'Antonio',Helvetica] text-[16px] font-thin leading-none text-black"
-            style={{ left: langLeft, transform: "translate(-50%, -50%)" }}
-          >
-            <a href="#de" className="hover:underline">de</a>
-            <span className="px-1">|</span>
-            <a href="#en" className="hover:underline">en</a>
-          </div>
-        </div>
-      </div>
-
-      {/* Sticky Navigation Bar */}
-      <header className="sticky top-0 z-50 bg-[#af8f5b] shadow">
+      {/* Navigation Bar: sticky under the top language bar (41px) */}
+      <header className="sticky top-[41px] left-0 right-0 z-40 bg-[#af8f5b] shadow">
         <div ref={headerContainerRef} className="container mx-auto flex h-24 items-center justify-between px-6">
           <h1 className="[font-family:'Antonio',Helvetica] text-white text-5xl md:text-6xl tracking-[-0.02em] leading-none">
             <Link to="/" className="hover:opacity-90" aria-label="Zur Startseite">
@@ -70,7 +53,9 @@ export const SiteHeader = (): JSX.Element => {
             ))}
           </nav>
         </div>
-      </header>
+  </header>
+  {/* spacer to preserve layout (header height) - only for md+ */}
+  <div aria-hidden="true" className="hidden md:block h-24 w-full" />
     </div>
   );
 };

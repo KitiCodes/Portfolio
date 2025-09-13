@@ -1,14 +1,64 @@
 import { X } from "lucide-react";
 import { Button } from "./ui/button-mobile";
+import { useLanguage } from "../lib/LanguageContext";
+import { NavLink } from "react-router-dom";
+import React from "react";
 
 interface MobileNavigationProps {
   isOpen: boolean;
   onClose: () => void;
+  /** Render inline (under header) rather than fixed overlay */
+  inline?: boolean;
+  /** Optional ref from parent to attach to nav element for focus trapping */
+  refNav?: React.RefObject<HTMLElement> | null;
 }
 
-export const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps): JSX.Element => {
+export const MobileNavigation = ({ isOpen, onClose, inline = false, refNav = null }: MobileNavigationProps): JSX.Element => {
   if (!isOpen) return <></>;
 
+  const NavContent = (
+    <>
+      <div className="w-full px-4 py-3 flex flex-col gap-2">
+        <NavLink to="/exhibitions" onClick={onClose} className={({ isActive }) => (isActive ? 'text-[#854686]' : 'text-white')}>
+          Ausstellungen
+        </NavLink>
+        <NavLink to="/about-me" onClick={onClose} className={({ isActive }) => (isActive ? 'text-[#854686]' : 'text-white')}>
+          Über mich
+        </NavLink>
+        <NavLink to="/contact" onClick={onClose} className={({ isActive }) => (isActive ? 'text-[#854686]' : 'text-white')}>
+          Kontakt
+        </NavLink>
+
+        {/* separator */}
+        <div className="h-px bg-white/30 my-2" role="separator" />
+
+        {/* Language selector */}
+        <div className="flex items-center gap-2 text-white text-sm [font-family:'Antonio',Helvetica]">
+          {(() => {
+            const { lang, setLang } = useLanguage();
+            return (
+              <>
+                <button onClick={() => { setLang('de'); onClose(); }} className={`hover:underline px-2 ${lang === 'de' ? 'underline' : ''}`}>de</button>
+                <span className="opacity-80">|</span>
+                <button onClick={() => { setLang('en'); onClose(); }} className={`hover:underline px-2 ${lang === 'en' ? 'underline' : ''}`}>en</button>
+              </>
+            );
+          })()}
+        </div>
+      </div>
+    </>
+  );
+
+  if (inline) {
+    // render the same markup used previously by SiteHeaderMobile so visual stays identical
+    return (
+      <nav ref={refNav ?? undefined} aria-hidden={isOpen ? 'false' : 'true'} className={`duration-300 bg-[#af8f5b]`}>
+        {NavContent}
+      </nav>
+    );
+  }
+
+  // default: fixed overlay drawer
   return (
     <div className="fixed inset-0 z-50 bg-black bg-opacity-50">
       <div className="absolute top-0 right-0 w-[280px] h-full bg-[#af8f5b] shadow-lg">
@@ -27,48 +77,9 @@ export const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps): JS
           </Button>
         </div>
 
-        {/* Navigation Links */}
         <nav className="flex flex-col p-4">
-          <a
-            href="/"
-            className="block py-3 px-2 text-white text-lg [font-family:'Antonio',Helvetica] font-normal hover:bg-[#854686] hover:text-white rounded transition-colors"
-            onClick={onClose}
-          >
-            Home
-          </a>
-          <a
-            href="/exhibitions"
-            className="block py-3 px-2 text-white text-lg [font-family:'Antonio',Helvetica] font-normal hover:bg-[#854686] hover:text-white rounded transition-colors"
-            onClick={onClose}
-          >
-            Ausstellungen
-          </a>
-          <a
-            href="/about-me"
-            className="block py-3 px-2 text-white text-lg [font-family:'Antonio',Helvetica] font-normal hover:bg-[#854686] hover:text-white rounded transition-colors"
-            onClick={onClose}
-          >
-            Über mich
-          </a>
-          <a
-            href="/contact"
-            className="block py-3 px-2 text-white text-lg [font-family:'Antonio',Helvetica] font-normal hover:bg-[#854686] hover:text-white rounded transition-colors"
-            onClick={onClose}
-          >
-            Kontakt
-          </a>
+          {NavContent}
         </nav>
-
-        {/* Language switcher */}
-        <div className="absolute bottom-4 left-4 right-4">
-          <div className="border-t border-[#854686] pt-4">
-            <div className="text-white text-sm [font-family:'Antonio',Helvetica] font-normal text-center">
-              <a href="#de" className="hover:underline">de</a>
-              <span className="px-2">|</span>
-              <a href="#en" className="hover:underline">en</a>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

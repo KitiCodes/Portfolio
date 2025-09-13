@@ -4,63 +4,150 @@ import { FooterBar } from "../components/FooterBar";
 const Ausstellung3Img = new URL("../assets/optimized/sm/Ausstellung-Offenes Atelier.webp", import.meta.url).href;
 const Ausstellung2Img = new URL("../assets/optimized/sm/Ausstellung-Giesecke.webp", import.meta.url).href;
 const Ausstellung1Img = new URL("../assets/optimized/sm/Ausstellung-Aumann.webp", import.meta.url).href;
-import { Link, NavLink } from "react-router-dom";
+// Navigation provided by SiteHeader
+import { SiteHeader } from "../components/SiteHeader";
+import { useEffect, useState, useRef } from "react";
+import { FooterBarMobile } from "../components/FooterBarMobile";
+import SiteHeaderMobile from "../components/SiteHeaderMobile";
+import ContactSectionMobile from "../components/ContactSectionMobile";
 
-export const Exhebitions = (): JSX.Element => (
-			<div className="min-h-screen bg-background text-foreground">
-				{/* Language bar (top, non-sticky) */}
-				<div className="w-full">
-					<div className="container mx-auto relative h-7 px-4">
-						<div className="absolute top-1/2 -translate-y-1/2 [font-family:'Antonio',Helvetica] text-[16px] font-thin leading-none text-black" style={{ left: '50%', transform: 'translate(-50%, -50%)' }}>
-							<a href="#de" className="hover:underline">de</a>
-							<span className="px-1">|</span>
-							<a href="#en" className="hover:underline">en</a>
+export function Exhebitions(): JSX.Element {
+	const [isMobile, setIsMobile] = useState(() => (typeof window !== "undefined" ? window.innerWidth <= 768 : false));
+
+	useEffect(() => {
+		if (typeof window === "undefined") return;
+		const onResize = () => setIsMobile(window.innerWidth <= 768);
+		window.addEventListener("resize", onResize);
+		return () => window.removeEventListener("resize", onResize);
+	}, []);
+
+	if (isMobile) {
+		const stackingRef = useRef<HTMLDivElement | null>(null);
+		const [stackHeight, setStackHeight] = useState<number>(1100);
+
+		useEffect(() => {
+			const el = stackingRef.current;
+			if (!el) return;
+
+			const update = () => {
+				const parentRect = el.getBoundingClientRect();
+				const descendants = Array.from(el.querySelectorAll('*')) as HTMLElement[];
+				let max = 0;
+				descendants.forEach((ch) => {
+					const rect = ch.getBoundingClientRect();
+					const bottom = rect.bottom - parentRect.top;
+					if (bottom > max) max = bottom;
+				});
+				const value = Math.max(600, Math.ceil(max + 24));
+				setStackHeight(value);
+			};
+
+			const ro = new (window as any).ResizeObserver(update);
+			ro.observe(el);
+			const imgs = el.querySelectorAll('img');
+			imgs.forEach((i) => i.addEventListener('load', update));
+			window.addEventListener('resize', update);
+			setTimeout(update, 50);
+
+			return () => {
+				ro.disconnect();
+				imgs.forEach((i) => i.removeEventListener('load', update));
+				window.removeEventListener('resize', update);
+			};
+		}, []);
+
+		const exhibitions = [
+			{
+				id: 1,
+				title: "Offenes Atelier",
+				date: "6. und 7. Dezember 2024",
+				location: "Giesecke Licht + Design\nin Schwentinental",
+				image: Ausstellung3Img,
+				imageClasses: "w-[218px] h-[145px] top-[78px] left-1",
+				textClasses: "top-[132px] left-[249px]",
+			},
+			{
+				id: 2,
+				title: 'Ausstellung\n"Licht und Kunst - Kunst und Licht"',
+				date: "seit September 2024",
+				location: "Giesecke Licht + Design\nin Schwentinental",
+				image: Ausstellung2Img,
+				imageClasses: "w-[203px] h-[135px] top-[235px] left-[187px]",
+				textClasses: "top-[285px] left-[5px] text-right",
+			},
+			{
+				id: 3,
+				title: "Ausstellung",
+				date: "seit August 2024",
+				location: "Aumann Authentics, Kiel",
+				image: Ausstellung1Img,
+				imageClasses: "w-[238px] h-[168px] top-[404px] left-[11px]",
+				textClasses: "top-[461px] left-[260px]",
+			},
+		];
+
+		return (
+			<div className="bg-[#d4cdc4] grid justify-items-center [align-items:start] w-screen">
+				<SiteHeaderMobile />
+
+				<div className="bg-[#d4cdc4] w-[390px] relative">
+					<div ref={stackingRef} className="relative w-full pt-6" style={{ minHeight: stackHeight }}>
+						{exhibitions.map((exhibition) => (
+							<div key={exhibition.id}>
+								<div className={`absolute ${exhibition.textClasses} [font-family:'Antonio',Helvetica] font-normal text-black text-sm tracking-[-0.28px] leading-[16.8px]`}>
+									<span className="tracking-[-0.04px]">{exhibition.title}<br /></span>
+									<span className="font-thin tracking-[-0.04px]">{exhibition.date}<br />{exhibition.location}</span>
+								</div>
+								<img className={`absolute ${exhibition.imageClasses} object-cover`} alt="Exhibition image" src={exhibition.image} />
+							</div>
+						))}
+					</div>
+
+					<div className="w-full flex flex-col items-start">
+						<ContactSectionMobile className="mt-6 w-full" />
+						<FooterBarMobile className="mt-4 pl-3" />
+					</div>
+				</div>
+			</div>
+		);
+	}
+
+	return (
+		<div className="min-h-screen bg-background text-foreground">
+			{/* TopLanguageBar provided globally */}
+			<SiteHeader />
+			{/* Main content */}
+			<main className="w-full">
+				<div className="w-full max-w-[1440px] relative bg-background overflow-hidden mx-auto" style={{ marginTop: 0, paddingTop: 96 }}>
+					<div className="w-full lg:w-80 h-24 lg:left-[968px] lg:top-[1217px] lg:absolute justify-start mx-auto lg:mx-0">
+						<span className="text-black text-base font-normal font-['Antonio'] leading-tight">Ausstellung<br /></span>
+						<span className="text-black text-base font-thin font-['Antonio'] leading-tight">seit Augsut 2024<br />Aumann Authentics, Kiel<br /></span>
+					</div>
+					<div className="w-full lg:w-80 h-24 lg:left-[368px] lg:top-[709px] lg:absolute text-right justify-start mx-auto lg:mx-0">
+						<span className="text-black text-base font-normal font-['Antonio'] leading-tight">Ausstellung “Licht und Kunst - Kunst und Licht”<br /></span>
+						<span className="text-black text-base font-thin font-['Antonio'] leading-tight">seit September 2024<br />Giesecke Licht + Design, Schwentinental<br /></span>
+					</div>
+					<div className="w-full lg:w-80 h-24 lg:left-[701px] lg:top-[238px] lg:absolute justify-start mx-auto lg:mx-0">
+						<span className="text-black text-base font-normal font-['Antonio'] leading-tight">Offenes Atelier<br /></span>
+						<span className="text-black text-base font-thin font-['Antonio'] leading-tight">6. und 7. Dezember 2024<br />Giesecke Licht + Design, Schwentinental<br /></span>
+					</div>
+					<ContactSection
+						className="lg:absolute relative lg:w-[560px] w-full lg:top-[1660px] lg:left-[440px] mx-auto lg:mx-0"
+					/>
+					<img 
+						className="w-full lg:w-[579px] h-auto lg:h-96 lg:left-[18px] lg:top-[203px] lg:absolute object-cover mx-auto lg:mx-0" 
+						src={Ausstellung3Img}
+						loading="lazy"
+					/>
+					<img className="w-full lg:w-[650px] h-auto lg:h-96 lg:left-[736px] lg:top-[492px] lg:absolute object-cover mx-auto lg:mx-0" src={Ausstellung2Img} loading="lazy" />
+					<img className="w-full lg:w-[745px] h-auto lg:h-[527px] lg:left-[123px] lg:top-[953px] lg:absolute object-cover mx-auto lg:mx-0" src={Ausstellung1Img} loading="lazy" />
+					<div className="w-full flex justify-start py-6">
+						<div style={{ width: 430 }}>
+							<FooterBar />
 						</div>
 					</div>
 				</div>
-				{/* Sticky Navigation Bar */}
-				<header className="sticky top-0 z-50 bg-[#af8f5b] shadow">
-					<div className="container mx-auto flex h-24 items-center justify-between px-6">
-						<h1 className="[font-family:'Antonio',Helvetica] text-white text-5xl md:text-6xl tracking-[-0.02em] leading-none">
-							<Link to="/" className="hover:opacity-90" aria-label="Zur Startseite">
-								Sabine Hansen
-							</Link>
-						</h1>
-						<nav className="flex items-center gap-[72px] [font-family:'Antonio',Helvetica]">
-							<NavLink to="/exhibitions" className={({ isActive }) => ["text-[16px] font-thin px-0", "hover:text-[#854686] hover:bg-transparent", isActive ? "text-[#854686]" : "text-white"].join(" ")}>Ausstellungen</NavLink>
-							<NavLink to="/about-me" className={({ isActive }) => ["text-[16px] font-thin px-0", "hover:text-[#854686] hover:bg-transparent", isActive ? "text-[#854686]" : "text-white"].join(" ")}>Über mich</NavLink>
-							<NavLink to="/contact" className={({ isActive }) => ["text-[16px] font-thin px-0", "hover:text-[#854686] hover:bg-transparent", isActive ? "text-[#854686]" : "text-white"].join(" ")}>Kontakt</NavLink>
-						</nav>
-					</div>
-				</header>
-				{/* Main content */}
-				<main className="w-full">
-					<div className="w-[1440px] h-[2118px] relative bg-background overflow-hidden" style={{ marginTop: -124 }}>
-						<div className="w-80 h-24 left-[968px] top-[1217px] absolute justify-start">
-							<span className="text-black text-base font-normal font-['Antonio'] leading-tight">Ausstellung<br /></span>
-							<span className="text-black text-base font-thin font-['Antonio'] leading-tight">seit Augsut 2024<br />Aumann Authentics, Kiel<br /></span>
-						</div>
-						<div className="w-80 h-24 left-[368px] top-[709px] absolute text-right justify-start">
-							<span className="text-black text-base font-normal font-['Antonio'] leading-tight">Ausstellung “Licht und Kunst - Kunst und Licht”<br /></span>
-							<span className="text-black text-base font-thin font-['Antonio'] leading-tight">seit September 2024<br />Giesecke Licht + Design, Schwentinental<br /></span>
-						</div>
-						<div className="w-80 h-24 left-[701px] top-[238px] absolute justify-start">
-							<span className="text-black text-base font-normal font-['Antonio'] leading-tight">Offenes Atelier<br /></span>
-							<span className="text-black text-base font-thin font-['Antonio'] leading-tight">6. und 7. Dezember 2024<br />Giesecke Licht + Design, Schwentinental<br /></span>
-						</div>
-						<ContactSection
-							className="absolute"
-							style={{ width: 560, top: 1660, left: 440 }}
-						/>
-						<img 
-							className="w-[579px] h-96 left-[18px] top-[203px] absolute object-cover" 
-							src={Ausstellung3Img}
-							loading="lazy"
-						/>
-						<img className="w-[650px] h-96 left-[736px] top-[492px] absolute object-cover" src={Ausstellung2Img} loading="lazy" />
-						<img className="w-[745px] h-[527px] left-[123px] top-[953px] absolute object-cover" src={Ausstellung1Img} loading="lazy" />
-						<FooterBar className="absolute" style={{ width: 430, top: 2057, left: 20 }} />
-					</div>
-				</main>
-			</div>
-);
+			</main>
+		</div>
+	);
+}

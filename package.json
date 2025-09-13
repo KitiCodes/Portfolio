@@ -9,6 +9,7 @@
   },
   "scripts": {
     "dev": "vite --host",
+    "screenshot": "node scripts/screenshot.cjs",
     "build": "vite build",
     "heroku-postbuild": "npm run build",
     "start": "node server.js",
@@ -35,6 +36,7 @@
     "esbuild": "0.24.0",
     "globals": "15.12.0",
     "image-size": "^1.1.1",
+    "puppeteer": "^21.3.8",
     "tailwindcss": "3.4.16",
     "vite": "6.0.4"
   },

@@ -1,4 +1,5 @@
 import type { CSSProperties, HTMLAttributes } from "react";
+import { Link } from "react-router-dom";
 
 type FooterBarMobileProps = HTMLAttributes<HTMLElement> & {
   style?: CSSProperties;
@@ -17,8 +18,8 @@ export const FooterBarMobile = ({ className, style, ...rest }: FooterBarMobilePr
     >
       <span>Sabine Hansen</span>
       <span>© {year}</span>
-      <a href="#impressum" className="hover:underline">Impressum</a>
-      <a href="#datenschutz" className="hover:underline">Datenschutz</a>
+  <Link to="/imprint" className="hover:text-[#854686]">Impressum</Link>
+  <Link to="/privacy-policy" className="hover:text-[#854686]">Datenschutz</Link>
     </footer>
   );
 };

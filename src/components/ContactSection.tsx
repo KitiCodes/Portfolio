@@ -11,16 +11,16 @@ export const ContactSection = ({ className, style, showName = true, showLocation
 			<section className={className} style={style} {...rest}>
 				<div className="flex flex-col items-center gap-2.5 w-full text-center">
 				{showName && (
-					<div className="[font-family:'Antonio',Helvetica] font-normal text-black text-5xl tracking-[-0.96px] leading-[57.6px]">
+					<div className="[font-family:'Antonio',Helvetica] font-normal text-black text-3xl md:text-5xl tracking-[-0.96px] leading-[57.6px]">
 						<span className="tracking-[-0.46px]">Sabine Hansen</span>
 					</div>
 				)}
 				{showLocation && (
-					<div className="[font-family:'Antonio',Helvetica] font-normal text-black text-4xl tracking-[-0.26px] leading-[43.2px]">
+					<div className="[font-family:'Antonio',Helvetica] font-normal text-black text-2xl md:text-4xl tracking-[-0.26px] leading-[43.2px]">
 						Schwentinental, Deutschland
 					</div>
 				)}
-				<div className="[font-family:'Antonio',Helvetica] font-normal text-black text-4xl tracking-[-0.26px] leading-[43.2px]">
+				<div className="[font-family:'Antonio',Helvetica] font-normal text-black text-2xl md:text-4xl tracking-[-0.26px] leading-[43.2px]">
 					<a
 						href="mailto:kontakt@sabinehansen.art"
 						className="no-underline text-black hover:text-[#854686] transition-colors"

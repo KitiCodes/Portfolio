@@ -12,6 +12,7 @@ import { TopLanguageBar } from "./components/TopLanguageBar";
 import { LanguageProvider } from "./lib/LanguageContext";
 import { SiteHeader } from "./components/SiteHeader";
 import { FooterBar } from "./components/FooterBar";
+import PageTopSpacer from "./components/PageTopSpacer";
 
 // desktop-only routes (mobile variants removed)
 
@@ -20,9 +21,8 @@ createRoot(document.getElementById("app") as HTMLElement).render(
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <LanguageProvider>
   <TopLanguageBar />
-  {/* spacer for fixed language bar height */}
-  <div className="hidden md:block h-[41px] w-full" aria-hidden="true" />
   <SiteHeader />
+  <PageTopSpacer />
         <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />

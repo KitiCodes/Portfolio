@@ -173,7 +173,7 @@ export function HomePage(): JSX.Element {
     }, []);
 
     return (
-      <div className="bg-[#d4cdc4] grid justify-items-center [align-items:start] w-screen overflow-x-hidden">
+  <div className="bg-[#d4cdc4] grid justify-items-center [align-items:start] w-screen overflow-x-hidden pt-5">
         <div className="bg-[#d4cdc4] w-[390px] relative overflow-x-hidden">
           <div ref={stackingRef} className="relative w-full pt-2" style={{ minHeight: stackHeight }}>
             <div className="relative">

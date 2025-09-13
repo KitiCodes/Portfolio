@@ -84,7 +84,7 @@ export function Exhebitions(): JSX.Element {
 		];
 
 		return (
-			<div className="bg-[#d4cdc4] grid justify-items-center [align-items:start] w-screen min-h-screen">
+			<div className="bg-[#d4cdc4] grid justify-items-center [align-items:start] w-screen min-h-screen pt-5">
 				{/* header is rendered globally */}
 
 				<div className="bg-[#d4cdc4] w-[390px] relative">

@@ -100,8 +100,6 @@ export default function SiteHeaderMobile(): JSX.Element {
           <MobileNavigation isOpen={open} onClose={() => setOpen(false)} inline={true} refNav={navRef} />
         )}
   </header>
-  {/* reserve space for fixed mobile header */}
-  <div className="block sm:hidden h-12 w-full" aria-hidden="true" />
     </>
   );
 }

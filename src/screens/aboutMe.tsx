@@ -69,7 +69,7 @@ export function AboutMe(): JSX.Element {
 			<div className="bg-[#d4cdc4] grid justify-items-center [align-items:start] w-screen">
 				{/* header is rendered globally */}
 
-				<div className="bg-[#d4cdc4] w-[390px] relative">
+				<div className="bg-[#d4cdc4] w-[390px] relative pt-5">
 					<div ref={stackingRef} className="relative w-full pt-0" style={{ minHeight: stackHeight }}>
 						<img className="absolute w-[199px] h-[257px] top-[83px] left-2.5" alt="Img" src={UMtopImg} />
 

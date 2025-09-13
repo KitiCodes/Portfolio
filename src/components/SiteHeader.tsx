@@ -66,8 +66,6 @@ export const SiteHeader = (): JSX.Element => {
           </nav>
         </div>
   </header>
-  {/* spacer to preserve layout (header height) so content isn't overlapped by fixed header */}
-  <div aria-hidden="true" className="hidden md:block h-24 w-full" />
     </div>
   );
 };

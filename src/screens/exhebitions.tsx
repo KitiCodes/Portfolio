@@ -1,5 +1,4 @@
 import { ContactSection } from "../components/ContactSection";
-import { FooterBar } from "../components/FooterBar";
 // Use optimized small WebP artworks for page rendering (sm folder)
 const Ausstellung3Img = new URL("../assets/optimized/sm/Ausstellung-Offenes Atelier.webp", import.meta.url).href;
 const Ausstellung2Img = new URL("../assets/optimized/sm/Ausstellung-Giesecke.webp", import.meta.url).href;
@@ -7,7 +6,6 @@ const Ausstellung1Img = new URL("../assets/optimized/sm/Ausstellung-Aumann.webp"
 // Navigation provided by SiteHeader
 // header is provided globally
 import { useEffect, useState, useRef } from "react";
-import { FooterBarMobile } from "../components/FooterBarMobile";
 import ContactSectionMobile from "../components/ContactSectionMobile";
 
 export function Exhebitions(): JSX.Element {
@@ -86,7 +84,7 @@ export function Exhebitions(): JSX.Element {
 		];
 
 		return (
-			<div className="bg-[#d4cdc4] grid justify-items-center [align-items:start] w-screen min-h-screen">
+			<div className="bg-[#d4cdc4] grid justify-items-center [align-items:start] w-screen min-h-screen pt-5">
 				{/* header is rendered globally */}
 
 				<div className="bg-[#d4cdc4] w-[390px] relative">
@@ -104,7 +102,6 @@ export function Exhebitions(): JSX.Element {
 
 					<div className="w-full flex flex-col items-start">
 						<ContactSectionMobile className="mt-6 w-full" />
-						<FooterBarMobile className="mt-4 pl-3" />
 					</div>
 				</div>
 			</div>
@@ -117,10 +114,11 @@ export function Exhebitions(): JSX.Element {
 			{/* header is rendered globally */}
 			{/* Main content */}
 			<main className="flex-1 w-full">
-				<div className="w-full max-w-[1440px] relative bg-background overflow-hidden mx-auto" style={{ marginTop: 0, paddingTop: 0 }}>
+				{/* IMPORTANT: Give the relative container a fixed height on desktop so absolute children are visible */}
+				<div className="w-full max-w-[1440px] lg:h-[2118px] relative bg-background overflow-hidden mx-auto" style={{ marginTop: 0, paddingTop: 0 }}>
 					<div className="w-full lg:w-80 h-24 lg:left-[968px] lg:top-[1217px] lg:absolute justify-start mx-auto lg:mx-0">
 						<span className="text-black text-base font-normal font-['Antonio'] leading-tight">Ausstellung<br /></span>
-						<span className="text-black text-base font-thin font-['Antonio'] leading-tight">seit Augsut 2024<br />Aumann Authentics, Kiel<br /></span>
+						<span className="text-black text-base font-thin font-['Antonio'] leading-tight">seit August 2024<br />Aumann Authentics, Kiel<br /></span>
 					</div>
 					<div className="w-full lg:w-80 h-24 lg:left-[368px] lg:top-[709px] lg:absolute text-right justify-start mx-auto lg:mx-0">
 						<span className="text-black text-base font-normal font-['Antonio'] leading-tight">Ausstellung “Licht und Kunst -<br />Kunst und Licht”<br /></span>
@@ -140,11 +138,7 @@ export function Exhebitions(): JSX.Element {
 					/>
 					<img className="w-full lg:w-[650px] h-auto lg:h-96 lg:left-[736px] lg:top-[492px] lg:absolute object-cover mx-auto lg:mx-0" src={Ausstellung2Img} loading="lazy" />
 					<img className="w-full lg:w-[745px] h-auto lg:h-[527px] lg:left-[123px] lg:top-[953px] lg:absolute object-cover mx-auto lg:mx-0" src={Ausstellung1Img} loading="lazy" />
-					<div className="w-full flex justify-start py-6 mt-auto">
-						<div style={{ width: 430 }}>
-							<FooterBar />
-						</div>
-					</div>
+					{/* Footer is now global */}
 				</div>
 			</main>
 		</div>

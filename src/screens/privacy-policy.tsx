@@ -1,6 +1,4 @@
 import { ContactSection } from "../components/ContactSection";
-import { FooterBar } from "../components/FooterBar";
-import { FooterBarMobile } from "../components/FooterBarMobile";
 import { SiteHeader } from "../components/SiteHeader";
 import SiteHeaderMobile from "../components/SiteHeaderMobile";
 import ContactSectionMobile from "../components/ContactSectionMobile";
@@ -95,16 +93,7 @@ export function PrivacyPolicy(): JSX.Element {
           </div>
         </div>
 
-        <div className="w-full flex justify-start py-6 mt-auto">
-          <div className="md:w-[430px] w-full px-6">
-            <div className="hidden md:block">
-              <FooterBar />
-            </div>
-            <div className="block md:hidden">
-              <FooterBarMobile />
-            </div>
-          </div>
-        </div>
+        {/* Footer is now global */}
       </main>
     </div>
   );

@@ -1,7 +1,5 @@
-import { FooterBar } from "../components/FooterBar";
 import SiteHeaderMobile from "../components/SiteHeaderMobile";
 import { SiteHeader } from "../components/SiteHeader";
-import { FooterBarMobile } from "../components/FooterBarMobile";
 
 export const Imprint = (): JSX.Element => (
   <div className="min-h-screen bg-background text-foreground flex flex-col">
@@ -20,16 +18,7 @@ export const Imprint = (): JSX.Element => (
         <p className="mt-4 text-lg font-thin [font-family:'Antonio',Helvetica]">Sabine Hansen<br />Schwentinental, Deutschland</p>
       </div>
 
-      <div className="w-full flex justify-center md:justify-start py-6 mt-auto">
-        <div className="md:w-[430px] w-full px-6">
-          <div className="hidden md:block">
-            <FooterBar />
-          </div>
-          <div className="block md:hidden">
-            <FooterBarMobile />
-          </div>
-        </div>
-      </div>
+      {/* Footer is now global */}
     </main>
   </div>
 );

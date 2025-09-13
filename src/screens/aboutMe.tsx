@@ -1,9 +1,6 @@
 //
-import { SiteHeader } from "../components/SiteHeader";
 import { ContactSection } from "../components/ContactSection";
-import { FooterBar } from "../components/FooterBar";
 import { useEffect, useState, useRef } from "react";
-import { FooterBarMobile } from "../components/FooterBarMobile";
 import ContactSectionMobile from "../components/ContactSectionMobile";
 import UMtopImg from "../assets/optimized/sm/UM0.webp";
 import UMb1Img from "../assets/optimized/sm/UM1.webp";
@@ -116,7 +113,6 @@ export function AboutMe(): JSX.Element {
 
 					<div className="w-full flex flex-col items-start">
 						<ContactSectionMobile className="mt-6 w-full" />
-						<FooterBarMobile className="mt-4 pl-3" />
 					</div>
 				</div>
 			</div>
@@ -130,11 +126,6 @@ export function AboutMe(): JSX.Element {
 			{/* Main content */}
 			<main className="flex-1 w-full">
 				<div className="w-full max-w-[1440px] relative bg-background overflow-hidden mx-auto" style={{ marginTop: 0, paddingTop: 0 }}>
-					<div className="w-full flex justify-start py-6 mt-auto">
-						<div style={{ width: 430 }}>
-							<FooterBar />
-						</div>
-					</div>
 					<img className="w-96 h-[524px] object-cover lg:absolute lg:left-[56px] lg:top-[200px] mx-auto lg:mx-0" src={UMtopImg} alt="Über mich – Portrait" loading="lazy" />
 					<div className="w-full lg:w-[806px] h-72 lg:left-[523px] lg:top-[409px] lg:absolute text-center justify-start text-black text-4xl font-thin font-['Antonio'] leading-[54px] mx-auto lg:mx-0">
 						Ich bin Sabine Hansen – geboren und aufgewachsen im hohen Norden, zwischen Nord- und Ostsee. Heute lebe ich in Schwentinental, in der Nähe von Kiel.

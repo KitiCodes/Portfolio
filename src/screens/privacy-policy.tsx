@@ -1,18 +1,7 @@
-import { ContactSection } from "../components/ContactSection";
-import { SiteHeader } from "../components/SiteHeader";
-import SiteHeaderMobile from "../components/SiteHeaderMobile";
-import ContactSectionMobile from "../components/ContactSectionMobile";
 
 export function PrivacyPolicy(): JSX.Element {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
-      {/* Responsive header: SiteHeaderMobile for mobile, SiteHeader for desktop */}
-      <div className="block md:hidden">
-        <SiteHeaderMobile />
-      </div>
-      <div className="hidden md:block">
-        <SiteHeader />
-      </div>
 
       {/* Main content area */}
       <main className="flex-1 bg-background w-full">
@@ -84,12 +73,6 @@ export function PrivacyPolicy(): JSX.Element {
         {/* Contact section placed in normal flow below the privacy text */}
         <div className="w-full flex justify-center py-12">
           <div className="w-full max-w-[560px] px-6">
-            <div className="hidden md:block">
-              <ContactSection showName={false} />
-            </div>
-            <div className="block md:hidden">
-              <ContactSectionMobile showName={false} />
-            </div>
           </div>
         </div>
 

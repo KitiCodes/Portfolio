@@ -132,9 +132,10 @@ export function HomePage(): JSX.Element {
       };
 
       // Prevent touch scrolling on mobile but allow pinch-to-zoom
-      const preventTouchMove = (e: TouchEvent) => {
+      const preventTouchMove = (e: Event) => {
+        const touchEvent = e as any;
         // Allow multi-touch gestures (pinch to zoom)
-        if (e.touches.length > 1) {
+        if (touchEvent.touches && touchEvent.touches.length > 1) {
           return; // Don't prevent multi-touch
         }
 
@@ -259,9 +260,9 @@ export function HomePage(): JSX.Element {
                     const main = group.find((a) => (a.title ?? "").trim().length > 0) ?? group[0];
                     return (
                       <div className="flex flex-col items-center gap-4">
-                        <div className="flex gap-2 items-center justify-center">
+                        <div className="flex gap-1 items-center justify-center w-full max-w-[95vw] overflow-hidden">
                             {group.map((a) => (
-                            <img key={a.id} src={(a as any).largeSrc ?? (a as any).large} alt={a.alt || a.title || 'Artwork'} className="h-[60vh] w-auto object-contain mx-auto" />
+                            <img key={a.id} src={(a as any).largeSrc ?? (a as any).large} alt={a.alt || a.title || 'Artwork'} className="flex-1 max-w-[45vw] h-auto max-h-[60vh] object-contain" />
                           ))}
                         </div>
                         <div className="relative w-full [font-family:'Antonio',Helvetica] text-black text-lg">

@@ -265,10 +265,11 @@ export function HomePage(): JSX.Element {
                             <img key={a.id} src={(a as any).largeSrc ?? (a as any).large} alt={a.alt || a.title || 'Artwork'} className="flex-1 max-w-[45vw] h-auto max-h-[60vh] object-contain" />
                           ))}
                         </div>
-                        <div className="relative w-full [font-family:'Antonio',Helvetica] text-black text-lg">
-                          <button aria-label="Previous image" onClick={showPrevMobile} className="absolute left-0 top-0 h-full px-3 flex items-center justify-center text-[32px] md:text-4xl text-inherit leading-none select-none bg-transparent border-0 p-0 m-0 appearance-none">‹</button>
-                          <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center">{(main.title || main.alt) ?? ""}</span>
-                          <button aria-label="Next image" onClick={showNextMobile} className="absolute right-0 top-0 h-full px-3 flex items-center justify-center text-[32px] md:text-4xl text-inherit leading-none select-none bg-transparent border-0 p-0 m-0 appearance-none">›</button>
+                        {/* Title/navigation bar: ensure height, one-line title, no overlap */}
+                        <div className="w-full mt-1 [font-family:'Antonio',Helvetica] text-black text-base grid grid-cols-[auto_1fr_auto] items-center gap-2">
+                          <button aria-label="Previous image" onClick={showPrevMobile} className="px-3 flex items-center justify-center text-[32px] leading-none select-none bg-transparent border-0 p-0 m-0 appearance-none">‹</button>
+                          <div className="text-center whitespace-nowrap overflow-hidden text-ellipsis px-1">{(main.title || main.alt) ?? ""}</div>
+                          <button aria-label="Next image" onClick={showNextMobile} className="px-3 flex items-center justify-center text-[32px] leading-none select-none bg-transparent border-0 p-0 m-0 appearance-none">›</button>
                         </div>
                       </div>
                     );
@@ -277,10 +278,11 @@ export function HomePage(): JSX.Element {
                   return (
                     <div className="flex flex-col items-center">
                       <img src={(cur as any).largeSrc ?? (cur as any).large} alt={cur.alt || cur.title || 'Artwork'} className="max-w-[92vw] max-h-[72vh] object-contain mx-auto" />
-                      <div className="mt-3 relative w-full [font-family:'Antonio',Helvetica] text-black text-lg">
-                        <button aria-label="Previous image" onClick={showPrevMobile} className="absolute left-0 top-0 h-full px-3 flex items-center justify-center text-[32px] md:text-4xl text-inherit leading-none select-none bg-transparent border-0 p-0 m-0 appearance-none">‹</button>
-                        <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center">{(cur.title || cur.alt) ?? ""}</span>
-                        <button aria-label="Next image" onClick={showNextMobile} className="absolute right-0 top-0 h-full px-3 flex items-center justify-center text-[32px] md:text-4xl text-inherit leading-none select-none bg-transparent border-0 p-0 m-0 appearance-none">›</button>
+                      {/* Title/navigation bar: ensure height, one-line title, no overlap */}
+                      <div className="mt-3 w-full [font-family:'Antonio',Helvetica] text-black text-base grid grid-cols-[auto_1fr_auto] items-center gap-2">
+                        <button aria-label="Previous image" onClick={showPrevMobile} className="px-3 flex items-center justify-center text-[32px] leading-none select-none bg-transparent border-0 p-0 m-0 appearance-none">‹</button>
+                        <div className="text-center whitespace-nowrap overflow-hidden text-ellipsis px-1">{(cur.title || cur.alt) ?? ""}</div>
+                        <button aria-label="Next image" onClick={showNextMobile} className="px-3 flex items-center justify-center text-[32px] leading-none select-none bg-transparent border-0 p-0 m-0 appearance-none">›</button>
                       </div>
                     </div>
                   );

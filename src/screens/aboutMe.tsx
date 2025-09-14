@@ -23,7 +23,7 @@ export function AboutMe(): JSX.Element {
 	}, []);
 
 	if (isMobile) {
-		// Inline mobile markup previously in aboutMe-mobile.tsx
+		// Inline mobile markup
 		const stackingRef = useRef<HTMLDivElement | null>(null);
 		const [stackHeight, setStackHeight] = useState<number>(1581);
 
@@ -74,35 +74,35 @@ export function AboutMe(): JSX.Element {
 						<img className="absolute w-[199px] h-[257px] top-[83px] left-2.5" alt="Img" src={UMtopImg} />
 
 						<div className="absolute w-[162px] top-[78px] left-[218px] [font-family:'Antonio',Helvetica] font-thin text-black text-base text-left tracking-[0] leading-6">
-							Ich bin Sabine Hansen  geboren und aufgewachsen im hohen Norden,
+							Ich bin Sabine Hansen – geboren und aufgewachsen im hohen Norden,
 							zwischen Nord- und Ostsee. Heute lebe ich in Schwentinental, in der
-							Nhe von Kiel. <br />
+							Nähe von Kiel. <br />
 							<br />
-							Kreativitt und die Liebe zu Kunst und Literatur begleiten mich schon
+							Kreativität und die Liebe zu Kunst und Literatur begleiten mich schon
 							mein ganzes Leben.
 						</div>
 
 						<div className="absolute w-[333px] top-[369px] left-[11px] [font-family:'Antonio',Helvetica] font-thin text-black text-base text-left tracking-[0] leading-6">
 							Nach vielen Jahren im sozialen Bereich habe ich 2019 meine
-							Leidenschaft fr die Acrylmalerei entdeckt. Seither bilde ich mich
+							Leidenschaft für die Acrylmalerei entdeckt. Seither bilde ich mich
 							kontinuierlich weiter, unter anderem an Malschulen in
 							Schleswig-Holstein und Hamburg.
 							<br />
 							<br />
 							Mein Schwerpunkt liegt heute auf der abstrakten Acrylmalerei. Ich
-							experimentiere gern mit verschiedenen Materialien und Techniken 
+							experimentiere gern mit verschiedenen Materialien und Techniken –
 							immer auf der Suche nach neuen Ausdrucksformen und spannenden
-							Oberflchen.
+							Oberflächen.
 							<br />
 							<br />
-							Malen ist fr mich in erster Linie Ausdruck und Verarbeitung von
+							Malen ist für mich in erster Linie Ausdruck und Verarbeitung von
 							Emotionen, Erinnerungen, Bildern oder Ereignissen. Meine Inspiration
 							finde ich in der Natur, in der Kunst und in meinem eigenen Innenleben.
 							<br />
 							<br />
 							Kraftvolle, aber auch zarte Farben finden sich ebenso wie feine und
-							grobe Strukturen wieder. Ich arbeite meist auf groen Formaten  sie
-							geben mir the Freiheit, mit groer Geste und vollem Einsatz zu
+							grobe Strukturen wieder. Ich arbeite meist auf großen Formaten – sie
+							geben mir the Freiheit, mit großer Geste und vollem Einsatz zu
 							arbeiten.
 						</div>
 

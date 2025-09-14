@@ -130,12 +130,42 @@ export function HomePage(): JSX.Element {
         if (e.key === "ArrowLeft") showPrevMobile();
         if (e.key === "ArrowRight") showNextMobile();
       };
+
+      // Prevent touch scrolling on mobile but allow pinch-to-zoom
+      const preventTouchMove = (e: TouchEvent) => {
+        // Allow multi-touch gestures (pinch to zoom)
+        if (e.touches.length > 1) {
+          return; // Don't prevent multi-touch
+        }
+
+        // Only prevent single-touch scrolling
+        e.preventDefault();
+      };
+
       document.addEventListener("keydown", onKey);
+      document.addEventListener("touchmove", preventTouchMove, { passive: false });
+
       const prev = document.body.style.overflow;
+      const prevPosition = document.body.style.position;
+      const prevTop = document.body.style.top;
+      const scrollY = window.scrollY;
+
+      // More aggressive scroll prevention for mobile
       document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = "100%";
+
       return () => {
         document.removeEventListener("keydown", onKey);
+        document.removeEventListener("touchmove", preventTouchMove);
+
+        // Restore previous styles and scroll position
         document.body.style.overflow = prev;
+        document.body.style.position = prevPosition;
+        document.body.style.top = prevTop;
+        document.body.style.width = "";
+        window.scrollTo(0, scrollY);
       };
     }, [isPreviewOpenMobile, closePreviewMobile, showPrevMobile, showNextMobile]);
 
@@ -218,9 +248,9 @@ export function HomePage(): JSX.Element {
           </div>
 
           {isPreviewOpenMobile && (
-            <div role="dialog" aria-modal="true" className="fixed inset-0 z-[100] bg-[#d4cdc4] flex items-center justify-center overflow-hidden" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} onClick={(e) => { if (e.target === e.currentTarget) closePreviewMobile(); }}>
+            <div role="dialog" aria-modal="true" className="fixed inset-0 z-[100] bg-[#d4cdc4] flex items-center justify-center" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} onClick={(e) => { if (e.target === e.currentTarget) closePreviewMobile(); }}>
               <button ref={closeBtnRef} aria-label="Close preview" onClick={closePreviewMobile} className="absolute top-4 right-4 w-12 h-12 flex items-center justify-center text-3xl text-black z-20">×</button>
-              <div className="relative w-full h-full flex items-center justify-center px-3 pb-12">
+              <div className="relative w-full h-full flex items-center justify-center px-3 pb-12 overflow-hidden">
                 {(() => {
                   const cur = artworks[currentIndexMobile] as any;
                   const groupIdxs = cur.groupId ? groups.get(cur.groupId) : null;
@@ -281,34 +311,24 @@ export function HomePage(): JSX.Element {
     setCurrentIndex((i) => (i + 1) % artworks.length);
   }, []);
 
-  // Lock background scroll when preview is open & add keyboard controls (restore previous behavior)
+  // Lock background scroll when preview is open & add keyboard controls
   useEffect(() => {
-    if (isPreviewOpen) {
-      const onKey = (e: KeyboardEvent) => {
-        if (e.key === "Escape") closePreview();
-        if (e.key === "ArrowLeft") showPrev();
-        if (e.key === "ArrowRight") showNext();
-      };
-      document.addEventListener("keydown", onKey);
-      const prevOverflow = document.body.style.overflow;
-      document.body.style.overflow = "hidden";
-      return () => {
-        document.removeEventListener("keydown", onKey);
-        document.body.style.overflow = prevOverflow;
-      };
-    }
-  }, [isPreviewOpen, closePreview, showPrev, showNext]);
+    if (!isPreviewOpen) return;
 
-  useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (!isPreviewOpen) return;
       if (e.key === "Escape") closePreview();
       if (e.key === "ArrowLeft") showPrev();
       if (e.key === "ArrowRight") showNext();
     };
-    // keep existing global listener removal behavior in case other code depends on it
+
     document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
   }, [isPreviewOpen, closePreview, showPrev, showNext]);
 
   // Header language bar is now handled globally; remove per-page calculations.

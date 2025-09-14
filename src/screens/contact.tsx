@@ -50,15 +50,30 @@ export function Contact(): JSX.Element {
 			<div className="bg-[#d4cdc4] grid justify-items-center [align-items:start] w-screen min-h-screen pt-5">
 				{/* header is rendered globally */}
 				<div className="bg-[#d4cdc4] w-[390px] relative flex flex-col">
-					<div ref={stackingRef} className="relative w-full flex-1 pt-0" style={{ minHeight: stackHeight }}>
-						<div className="absolute w-[167px] top-[18px] left-[11px] [font-family:'Antonio',Helvetica] font-normal text-black text-base text-center tracking-[-0.32px] leading-6">
-							<span className="tracking-[-0.05px]">Bei Interesse an meinen Bildern freue ich mich über eine E-Mail:</span>
-							<a href="mailto:kontakt@sabinehansen.art" rel="noopener noreferrer" target="_blank" className="block mt-3">
-								<span className="tracking-[-0.05px] underline">kontakt@sabinehansen.art</span>
-							</a>
+					{/* Top spacer to push content down from header */}
+					<div className="h-16"></div>
+
+					{/* Main content area using flex layout */}
+					<div ref={stackingRef} className="flex flex-col flex-1" style={{ minHeight: stackHeight }}>
+						{/* Horizontal layout for text and image */}
+						<div className="flex flex-row px-3 gap-2">
+							{/* Left side - Text content */}
+							<div className="w-[167px] flex-shrink-0">
+								<div className="[font-family:'Antonio',Helvetica] font-normal text-black text-base text-center tracking-[-0.32px] leading-6">
+									<span className="tracking-[-0.05px]">Bei Interesse an meinen Bildern freue ich mich über eine E-Mail:</span>
+									<a href="mailto:kontakt@sabinehansen.art" rel="noopener noreferrer" target="_blank" className="block mt-3">
+										<span className="tracking-[-0.05px] underline">kontakt@sabinehansen.art</span>
+									</a>
+								</div>
+							</div>
+
+							{/* Right side - Image */}
+							<div className="flex-1 flex justify-end">
+								<img className="w-[186px] h-[353px] object-cover" alt="Element" src={kontaktImgSm} />
+							</div>
 						</div>
-						<img className="absolute w-[186px] h-[353px] top-[6px] left-[196px]" alt="Element" src={kontaktImgSm} />
 					</div>
+
 					<div className="w-full flex flex-col items-start">
 						<ContactSectionMobile className="mt-6 w-full" />
 					</div>

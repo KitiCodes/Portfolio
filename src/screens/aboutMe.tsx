@@ -70,7 +70,7 @@ export function AboutMe(): JSX.Element {
 				{/* header is rendered globally */}
 
 				<div className="bg-[#d4cdc4] w-[390px] relative pt-5">
-					<div ref={stackingRef} className="relative w-full pt-0" style={{ minHeight: stackHeight }}>
+					<div ref={stackingRef} className="relative w-full pt-6" style={{ minHeight: stackHeight }}>
 						<img className="absolute w-[199px] h-[257px] top-[83px] left-2.5" alt="Img" src={UMtopImg} />
 
 						<div className="absolute w-[162px] top-[78px] left-[218px] [font-family:'Antonio',Helvetica] font-thin text-black text-base text-left tracking-[0] leading-6">

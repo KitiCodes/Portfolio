@@ -1,6 +1,6 @@
 import { X } from "lucide-react";
 import { Button } from "./ui/button-mobile";
-import { useLanguage } from "../lib/LanguageContext";
+// import { useLanguage } from "../lib/LanguageContext";
 import { NavLink } from "react-router-dom";
 import React from "react";
 
@@ -29,22 +29,22 @@ export const MobileNavigation = ({ isOpen, onClose, inline = false, refNav = nul
           Kontakt
         </NavLink>
 
-        {/* separator */}
-        <div className="h-px bg-white/30 my-2" role="separator" />
+        {/*/!* separator *!/*/}
+        {/*<div className="h-px bg-white/30 my-2" role="separator" />*/}
 
         {/* Language selector */}
-        <div className="flex items-center gap-2 text-white text-sm [font-family:'Antonio',Helvetica]">
-          {(() => {
-            const { lang, setLang } = useLanguage();
-            return (
-              <>
-                <button onClick={() => { setLang('de'); onClose(); }} className={`hover:underline px-2 ${lang === 'de' ? 'underline' : ''}`}>de</button>
-                <span className="opacity-80">|</span>
-                <button onClick={() => { setLang('en'); onClose(); }} className={`hover:underline px-2 ${lang === 'en' ? 'underline' : ''}`}>en</button>
-              </>
-            );
-          })()}
-        </div>
+        {/*<div className="flex items-center gap-2 text-white text-sm [font-family:'Antonio',Helvetica]">*/}
+        {/*  {(() => {*/}
+        {/*    const { lang, setLang } = useLanguage();*/}
+        {/*    return (*/}
+        {/*      <>*/}
+        {/*        <button onClick={() => { setLang('de'); onClose(); }} className={`hover:underline px-2 ${lang === 'de' ? 'underline' : ''}`}>de</button>*/}
+        {/*        <span className="opacity-80">|</span>*/}
+        {/*        <button onClick={() => { setLang('en'); onClose(); }} className={`hover:underline px-2 ${lang === 'en' ? 'underline' : ''}`}>en</button>*/}
+        {/*      </>*/}
+        {/*    );*/}
+        {/*  })()}*/}
+        {/*</div>*/}
       </div>
     </>
   );

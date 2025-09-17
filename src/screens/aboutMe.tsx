@@ -83,13 +83,12 @@ export function AboutMe(): JSX.Element {
 						</div>
 
 						<div className="absolute w-[333px] top-[369px] left-[11px] [font-family:'Antonio',Helvetica] font-thin text-black text-base text-left tracking-[0] leading-6">
-							Nach vielen Jahren im sozialen Bereich habe ich 2019 meine
-							Leidenschaft für die Acrylmalerei entdeckt. Seither bilde ich mich
-							kontinuierlich weiter, unter anderem an Malschulen in
-							Schleswig-Holstein und Hamburg.
+							2019 habe ich meine Leidenschaft für die Acrylmalerei entdeckt. Seither bilde ich mich
+                            kontinuierlich weiter, unter anderem bei Workshops, Atelierkursen und Malreisen in
+                            Schleswig-Holstein und Hamburg.
 							<br />
 							<br />
-							Mein Schwerpunkt liegt heute auf der abstrakten Acrylmalerei. Ich
+							Mein künstlerischer Fokus liegt heute auf der abstrakten Acrylmalerei. Ich
 							experimentiere gern mit verschiedenen Materialien und Techniken –
 							immer auf der Suche nach neuen Ausdrucksformen und spannenden
 							Oberflächen.
@@ -102,7 +101,7 @@ export function AboutMe(): JSX.Element {
 							<br />
 							Kraftvolle, aber auch zarte Farben finden sich ebenso wie feine und
 							grobe Strukturen wieder. Ich arbeite meist auf großen Formaten – sie
-							geben mir the Freiheit, mit großer Geste und vollem Einsatz zu
+							geben mir die Freiheit, mit großer Geste und vollem Einsatz zu
 							arbeiten.
 						</div>
 

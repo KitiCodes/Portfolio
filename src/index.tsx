@@ -11,6 +11,7 @@ import { ScrollToTop } from "./components/ScrollToTop";
 import { LanguageProvider } from "./lib/LanguageContext";
 import { SiteHeader } from "./components/SiteHeader";
 import { FooterBar } from "./components/FooterBar";
+import { Aktuelles } from "./screens/aktuelles";
 
 // desktop-only routes (mobile variants removed)
 
@@ -27,6 +28,10 @@ createRoot(document.getElementById("app") as HTMLElement).render(
         <Route path="/contact" element={<Contact />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/imprint" element={<Imprint />} />
+         <Route path="/exhibitions" element={<Exhebitions />} />
+                 <Route path="/aktuelles" element={<Aktuelles />} />
+
+
       </Routes>
       {/* Global footer: centered on mobile, shifted left on desktop using flex */}
       <div className="w-full py-6">

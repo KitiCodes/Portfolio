@@ -3,6 +3,8 @@ import {ContactSection} from "../components/ContactSection";
 import {useEffect, useState} from "react";
 import ContactSectionMobile from "../components/ContactSectionMobile";
 import CalendarBig from "../assets/optimized/lg/VERT_calendar_big.webp";
+import Map, { Marker } from 'react-map-gl/mapbox';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 interface Address {
     name: string;
@@ -10,6 +12,8 @@ interface Address {
     city: string;
     zipCode: string;
     googleMapsUrl: string;
+    lat?: number;
+    lng?: number;
 }
 
 const addresses: Address[] = [
@@ -19,6 +23,8 @@ const addresses: Address[] = [
         city: "Schwentinental-Raisdorf",
         zipCode: "24223",
         googleMapsUrl: "https://maps.google.com/?q=Giesecke+Licht+Design,Zum+See+1-3,24223+Schwentinental-Raisdorf",
+        lat: 54.283,
+        lng: 10.225,
     },
     {
         name: "auroraprint",
@@ -26,6 +32,8 @@ const addresses: Address[] = [
         city: "Kiel-Elmschenhagen",
         zipCode: "24146",
         googleMapsUrl: "https://maps.google.com/?q=auroraprint,Preetzer+Chaussee+144,24146+Kiel-Elmschenhagen",
+        lat: 54.290,
+        lng: 10.180,
     },
     {
         name: "Hafensinne",
@@ -33,6 +41,8 @@ const addresses: Address[] = [
         city: "Kiel (Exerzierplatz)",
         zipCode: "24103",
         googleMapsUrl: "https://maps.google.com/?q=Hafensinne,Kleiner+Kuhberg+36,24103+Kiel",
+        lat: 54.320,
+        lng: 10.130,
     },
     {
         name: "Mercedes-Autohaus Klenk",
@@ -40,6 +50,8 @@ const addresses: Address[] = [
         city: "Kiel",
         zipCode: "24107",
         googleMapsUrl: "https://maps.google.com/?q=Mercedes-Autohaus+Klenk,Suchskrug+6,24107+Kiel",
+        lat: 54.340,
+        lng: 10.080,
     },
     {
         name: "Buchhandlung am Markt",
@@ -47,6 +59,8 @@ const addresses: Address[] = [
         city: "Preetz",
         zipCode: "24211",
         googleMapsUrl: "https://maps.google.com/?q=Buchhandlung+am+Markt,Lange+Brückstr.+1a,24211+Preetz",
+        lat: 54.235,
+        lng: 10.285,
     },
     {
         name: "Sparkasse Lütjenburg",
@@ -54,6 +68,8 @@ const addresses: Address[] = [
         city: "Lütjenburg",
         zipCode: "24321",
         googleMapsUrl: "https://maps.google.com/?q=Sparkasse+Lütjenburg,Markt+15,24321+Lütjenburg",
+        lat: 54.295,
+        lng: 10.585,
     },
     {
         name: "KitiPrints",
@@ -128,6 +144,26 @@ export function Updates(): JSX.Element {
                         </div>
                     </div>
 
+                    {/* Map */}
+                    <div className="w-full h-[300px] mb-6 rounded-lg overflow-hidden border border-gray-200">
+                        <Map
+                            initialViewState={{
+                                longitude: 10.2,
+                                latitude: 54.3,
+                                zoom: 9
+                            }}
+                            style={{width: '100%', height: '100%'}}
+                            mapStyle="mapbox://styles/mapbox/streets-v11"
+                            mapboxAccessToken=""
+                        >
+                            {addresses.map((addr, idx) => (
+                                addr.lat && addr.lng ? (
+                                    <Marker key={idx} longitude={addr.lng} latitude={addr.lat} color="red" />
+                                ) : null
+                            ))}
+                        </Map>
+                    </div>
+
                     <div className="w-full flex flex-col items-start">
                         <ContactSectionMobile className="mt-6 w-full"/>
                     </div>
@@ -179,6 +215,26 @@ export function Updates(): JSX.Element {
                                     </a>
                                 ))}
                             </div>
+                        </div>
+
+                        {/* Map */}
+                        <div className="w-full h-[400px] mb-12 rounded-lg overflow-hidden border border-gray-200">
+                            <Map
+                                initialViewState={{
+                                    longitude: 10.2,
+                                    latitude: 54.3,
+                                    zoom: 9
+                                }}
+                                style={{width: '100%', height: '100%'}}
+                                mapStyle="mapbox://styles/mapbox/streets-v11"
+                                mapboxAccessToken=""
+                            >
+                                {addresses.map((addr, idx) => (
+                                    addr.lat && addr.lng ? (
+                                        <Marker key={idx} longitude={addr.lng} latitude={addr.lat} color="red" />
+                                    ) : null
+                                ))}
+                            </Map>
                         </div>
                     </div>
 

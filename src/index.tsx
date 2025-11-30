@@ -29,7 +29,7 @@ createRoot(document.getElementById("app") as HTMLElement).render(
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/imprint" element={<Imprint />} />
         <Route path="/exhibitions" element={<Exhebitions />} />
-        <Route path="/aktuelles" element={<Updates />} />
+        <Route path="/updates" element={<Updates />} />
 
 
       </Routes>

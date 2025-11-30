@@ -238,7 +238,7 @@ export function Updates(): JSX.Element {
 
                                 style={{width: '100%', height: '100%'}}
                                 mapStyle="mapbox://styles/mapbox/streets-v11"
-                                mapboxAccessToken="{import.meta.env.VITE_MAPBOX_TOKEN}"
+                                mapboxAccessToken={import.meta.env.VITE_MAPBOX_TOKEN}
                             >
                                 {addresses.map((addr, idx) => (
                                     addr.lat && addr.lng ? (

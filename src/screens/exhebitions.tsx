@@ -58,7 +58,7 @@ export function Exhebitions(): JSX.Element {
 				id: 1,
 				title: "Offenes Atelier",
 				date: "6. und 7. Dezember 2024",
-				location: "Giesecke Licht + Design\nin Schwentinental",
+				location: "Giesecke Licht + Design \n Schwentinental",
 				image: Ausstellung3Img,
 				imageClasses: "w-[218px] h-[145px] top-[78px] left-1",
 				textClasses: "top-[132px] left-[249px]",
@@ -76,7 +76,7 @@ export function Exhebitions(): JSX.Element {
 				id: 3,
 				title: "Ausstellung",
 				date: "seit August 2024",
-				location: "Aumann Authentics, Kiel",
+				location: "Aumann Authentics \n Kiel",
 				image: Ausstellung1Img,
 				imageClasses: "w-[238px] h-[168px] top-[404px] left-[11px]",
 				textClasses: "top-[461px] left-[260px]",
@@ -92,8 +92,24 @@ export function Exhebitions(): JSX.Element {
 						{exhibitions.map((exhibition) => (
 							<div key={exhibition.id}>
 								<div className={`absolute ${exhibition.textClasses} [font-family:'Antonio',Helvetica] font-normal text-black text-sm tracking-[-0.28px] leading-[16.8px]`}>
-									<span className="tracking-[-0.04px]">{exhibition.title}<br /></span>
-									<span className="font-thin tracking-[-0.04px]">{exhibition.date}<br />{exhibition.location}</span>
+									<span className="tracking-[-0.04px]">
+										{exhibition.title.split('\n').map((line, index) => (
+											<span key={index}>
+												{line}
+												{index < exhibition.title.split('\n').length - 1 && <br />}
+											</span>
+										))}
+										<br />
+									</span>
+									<span className="font-thin tracking-[-0.04px]">
+										{exhibition.date}<br />
+										{exhibition.location.split('\n').map((line, index) => (
+											<span key={index}>
+												{line}
+												{index < exhibition.location.split('\n').length - 1 && <br />}
+											</span>
+										))}
+									</span>
 								</div>
 								<img className={`absolute ${exhibition.imageClasses} object-cover`} alt="Exhibition image" src={exhibition.image} />
 							</div>

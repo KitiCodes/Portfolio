@@ -235,6 +235,7 @@ export function Updates(): JSX.Element {
                                     latitude: 54.3,
                                     zoom: 9
                                 }}
+
                                 style={{width: '100%', height: '100%'}}
                                 mapStyle="mapbox://styles/mapbox/streets-v11"
                                 mapboxAccessToken="{import.meta.env.VITE_MAPBOX_TOKEN}"

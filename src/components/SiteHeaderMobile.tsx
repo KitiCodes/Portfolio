@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { MobileNavigation } from "./MobileNavigation";
+import { AnnouncementBar } from "./AnnouncementBar";
 
 export default function SiteHeaderMobile(): JSX.Element {
   const [open, setOpen] = useState(false);
@@ -94,6 +95,8 @@ export default function SiteHeaderMobile(): JSX.Element {
             {open ? '✕' : '☰'}
           </button>
         </div>
+
+        <AnnouncementBar />
 
   {/* Sliding nav (rendered only when open) */}
         {open && (

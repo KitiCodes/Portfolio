@@ -92,7 +92,7 @@ export function Updates(): JSX.Element {
 
                     {/* Images */}
                     <div className="flex flex-col gap-6 mb-6">
-                        <img className="w-[199px] h-[257px] object-cover shadow-md" alt="Kunstkalender April"
+                        <img className="w-[199px] h-[257px] object-cover" alt="Kunstkalender April"
                              src={CalendarBig}/>
                     </div>
 

@@ -10,4 +10,7 @@ export default defineConfig({
       plugins: [tailwind()],
     },
   },
+  define: {
+    "import.meta.env.VITE_MAPBOX_TOKEN": JSON.stringify(process.env.VITE_MAPBOX_TOKEN),
+  },
 });

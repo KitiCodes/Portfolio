@@ -57,13 +57,14 @@ const addresses: Address[] = [
 	},
 ];
 
-// Map center coordinates (center of all locations)
 const MAP_CENTER = { lat: 54.33, lng: 10.35 };
 const MAP_ZOOM = 11;
 
-// Leaflet CDN URLs
-const LEAFLET_CSS_URL = "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css";
-const LEAFLET_JS_URL = "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js";
+// Mapbox API token from environment variables
+const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN || "";
+
+const MAPBOX_GL_CSS_URL = "https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css";
+const MAPBOX_GL_JS_URL = "https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.min.js";
 
 function MapComponent() {
 	const mapContainer = useRef<HTMLDivElement>(null);
@@ -72,48 +73,54 @@ function MapComponent() {
 	useEffect(() => {
 		if (!mapContainer.current) return;
 
-		// Load Leaflet CSS and JS dynamically
+		// Load Mapbox CSS
 		const link = document.createElement("link");
 		link.rel = "stylesheet";
-		link.href = LEAFLET_CSS_URL;
+		link.href = MAPBOX_GL_CSS_URL;
 		document.head.appendChild(link);
 
-		// Load Leaflet script
+		// Load Mapbox GL JS
 		const script = document.createElement("script");
-		script.src = LEAFLET_JS_URL;
+		script.src = MAPBOX_GL_JS_URL;
 		script.async = true;
 		script.onload = () => {
-			const L = (window as any).L;
+			const mapboxgl = (window as any).mapboxgl;
+			mapboxgl.accessToken = MAPBOX_TOKEN;
 
-			// Initialize map
+			// Initialize Mapbox map
 			if (mapContainer.current && !map.current) {
-				map.current = L.map(mapContainer.current).setView(
-					[MAP_CENTER.lat, MAP_CENTER.lng],
-					MAP_ZOOM
-				);
-
-				// Add tile layer from OpenStreetMap
-				L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-					attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-					maxZoom: 19,
-				}).addTo(map.current);
+				map.current = new mapboxgl.Map({
+					container: mapContainer.current,
+					style: "mapbox://styles/mapbox/streets-v12",
+					center: [MAP_CENTER.lng, MAP_CENTER.lat],
+					zoom: MAP_ZOOM,
+				});
 
 				// Add markers for each address
 				addresses.forEach((addr) => {
-					const marker = L.marker([addr.coordinates.lat, addr.coordinates.lng], {
-						title: addr.name,
-					}).addTo(map.current);
+					// Create marker element
+					const el = document.createElement("div");
+					el.className = "marker";
+					el.style.backgroundImage = "url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Cpath fill=%22%23FF0000%22 d=%22M16 0C9.4 0 4 5.4 4 12c0 8 12 20 12 20s12-12 12-20c0-6.6-5.4-12-12-12z%22/%3E%3C/svg%3E')";
+					el.style.backgroundSize = "contain";
+					el.style.width = "32px";
+					el.style.height = "32px";
+					el.style.cursor = "pointer";
 
-					// Create popup content
-					const popupContent = `
-						<div class="p-2 font-sans">
-							<strong class="text-sm block text-gray-900">${addr.name}</strong>
-							<p class="text-xs text-gray-700 mt-1">${addr.street}</p>
-							<p class="text-xs text-gray-700">${addr.zipCode} ${addr.city}</p>
+					// Create popup
+					const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(`
+						<div style="font-family: sans-serif; padding: 8px;">
+							<strong style="display: block; font-size: 14px; color: #1f2937; margin-bottom: 4px;">${addr.name}</strong>
+							<p style="font-size: 12px; color: #4b5563; margin: 2px 0;">${addr.street}</p>
+							<p style="font-size: 12px; color: #4b5563; margin: 2px 0;">${addr.zipCode} ${addr.city}</p>
 						</div>
-					`;
+					`);
 
-					marker.bindPopup(popupContent);
+					// Add marker to map
+					new mapboxgl.Marker({ element: el })
+						.setLngLat([addr.coordinates.lng, addr.coordinates.lat])
+						.setPopup(popup)
+						.addTo(map.current);
 				});
 			}
 		};
@@ -193,7 +200,7 @@ export function Aktuelles(): JSX.Element {
 							In zwei Varianten gibt es ihn: im A3-Format als Wandkalender (29 Euro) oder als kleinen Tischkalender in einer Box 15 Euro. <br />
 							Für jeden verkauften Kalender gehen 5 Euro als Spende an das Frauenhaus Kreis Plön.<br />
 							<br />
-							Zu erwerben gibt es die Kalender an folgenden Verkaufsstellen oder online über Etsy:
+							Zu erwerben gibt es die Kalender an folgenden Verkaufsstellen oder online über <a href="https://www.etsy.com/de-en/shop/KitiPrints?ref=shop_profile&listing_id=4397423814&section_id=56484241" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:underline">Etsy</a>:
 						</div>
 
 						<div className="absolute w-[333px] top-[369px] left-[11px]">
@@ -237,7 +244,7 @@ export function Aktuelles(): JSX.Element {
 						</div>
 
 						<p className="text-center text-sm text-gray-600 mb-12">
-							Oder online verfügbar auf <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:underline">Etsy</a>
+							Oder online verfügbar auf <a href="https://www.etsy.com/de-en/shop/KitiPrints?ref=shop_profile&listing_id=4397423814&section_id=56484241" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:underline">Etsy</a>
 						</p>
 
 						{/* Address List */}

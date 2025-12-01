@@ -2,7 +2,7 @@
 import {ContactSection} from "../components/ContactSection";
 import {useEffect, useState} from "react";
 import ContactSectionMobile from "../components/ContactSectionMobile";
-import CalendarBig from "../assets/optimized/lg/VERT_calendar_big.webp";
+import CalendarBig from "../assets/optimized/lg/calendar_big.webp";
 import Map, { Marker } from 'react-map-gl/mapbox';
 import 'mapbox-gl/dist/mapbox-gl.css';
 

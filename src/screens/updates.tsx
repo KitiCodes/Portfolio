@@ -182,6 +182,7 @@ export function Updates(): JSX.Element {
         );
     }
 
+
     // Desktop markup preserved below
     return (
         <div className="min-h-screen bg-background text-foreground flex flex-col">

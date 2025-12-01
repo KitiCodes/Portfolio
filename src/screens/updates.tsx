@@ -116,12 +116,9 @@ export function Updates(): JSX.Element {
                     <div
                         className="w-full [font-family:'Antonio',Helvetica] font-thin text-black text-base text-center tracking-[0] leading-6 mb-6">
                         In zwei Varianten gibt es ihn: im A3-Format als Wandkalender (29 Euro) oder als kleinen
-                        Tischkalender in einer Box 15 Euro. <br/>
-                        Für jeden verkauften Kalender gehen 5 Euro als Spende an das Frauenhaus Kreis Plön.<br/>
+                            Tischkalender in einer Box (15 Euro) <br/> <br/>
+                            Für jeden verkauften Kalender geht eine Spende an das Frauenhaus Kreis Plön.<br/>
                         <br/>
-                        Zu erwerben gibt es die Kalender an folgenden Verkaufsstellen oder online über <a
-                        href="https://www.etsy.com/de-en/shop/KitiPrints?ref=shop_profile&listing_id=4397423814&section_id=56484241"
-                        target="_blank" rel="noopener noreferrer" className="text-red-600 hover:underline">Etsy</a>:
                     </div>
 
                     {/* Address List */}
@@ -204,7 +201,7 @@ export function Updates(): JSX.Element {
                         <p className="text-lg font-thin text-black mb-6 text-center">
                             In zwei Varianten gibt es ihn: im A3-Format als Wandkalender (29 Euro) oder als kleinen
                             Tischkalender in einer Box (15 Euro) <br/> <br/>
-                            Für jeden verkauften Kalender gehen 5 Euro als Spende an das Frauenhaus Kreis Plön.
+                            Für jeden verkauften Kalender geht eine Spende an das Frauenhaus Kreis Plön.
                         </p>
                         <br/>
 

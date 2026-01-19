@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useLanguage } from "../lib/LanguageContext";
 import SiteHeaderMobile from "./SiteHeaderMobile";
+import { AnnouncementBar } from "./AnnouncementBar";
 
 export const SiteHeader = (): JSX.Element => {
   const { t } = useLanguage();
@@ -23,6 +24,7 @@ export const SiteHeader = (): JSX.Element => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
   const navigationItems = [
+    { label: t("Aktuelles", "Updates"), href: "/updates" },
     { label: t("Ausstellungen", "Exhibitions"), href: "/exhibitions" },
     { label: t("Über mich", "About me"), href: "/about-me" },
     { label: t("Kontakt", "Contact"), href: "/contact" },
@@ -65,7 +67,8 @@ export const SiteHeader = (): JSX.Element => {
             ))}
           </nav>
         </div>
-  </header>
+        <AnnouncementBar />
+      </header>
     </div>
   );
 };

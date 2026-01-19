@@ -19,7 +19,10 @@ export const MobileNavigation = ({ isOpen, onClose, inline = false, refNav = nul
   const NavContent = (
     <>
       <div className="w-full px-4 py-3 flex flex-col gap-2">
-        <NavLink to="/exhibitions" onClick={onClose} className={({ isActive }) => (isActive ? 'text-[#854686]' : 'text-white')}>
+          <NavLink to="/updates" onClick={onClose} className={({ isActive }) => (isActive ? 'text-[#854686]' : 'text-white')}>
+          Aktuelles
+        </NavLink>
+          <NavLink to="/exhibitions" onClick={onClose} className={({ isActive }) => (isActive ? 'text-[#854686]' : 'text-white')}>
           Ausstellungen
         </NavLink>
         <NavLink to="/about-me" onClick={onClose} className={({ isActive }) => (isActive ? 'text-[#854686]' : 'text-white')}>

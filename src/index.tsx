@@ -2,13 +2,13 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HomePage } from "./screens/HomePage";
-//import { Galerie2020 } from "./screens/Galerie-2020";
-//import { Galerie2021 } from "./screens/Galerie-2021";
-//import { Galerie2022 } from "./screens/Galerie-2022";
+import { Galerie2020 } from "./screens/Galerie-2020";
+import { Galerie2021 } from "./screens/Galerie-2021";
+import { Galerie2022 } from "./screens/Galerie-2022";
 //import { Galerie2023 } from "./screens/Galerie-2023";
-//import { Galerie2024 } from "./screens/Galerie-2024";
-//import { Galerie2025 } from "./screens/Galerie-2025";
-//import { Galerie2026 } from "./screens/Galerie-2026";
+import { Galerie2024 } from "./screens/Galerie-2024";
+import { Galerie2025 } from "./screens/Galerie-2025";
+import { Galerie2026 } from "./screens/Galerie-2026";
 import { AboutMe } from "./screens/aboutMe";
 import { Contact } from "./screens/contact";
 import { Exhebitions } from "./screens/exhebitions";
@@ -31,6 +31,12 @@ createRoot(document.getElementById("app") as HTMLElement).render(
         <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/gallery-2020" element={<Galerie2020 />} />
+        <Route path="/gallery-2021" element={<Galerie2021 />} />
+        <Route path="/gallery-2022" element={<Galerie2022 />} />
+        <Route path="/gallery-2024" element={<Galerie2024 />} />
+        <Route path="/gallery-2025" element={<Galerie2025 />} />
+        <Route path="/gallery-2026" element={<Galerie2026 />} />
         <Route path="/exhibitions" element={<Exhebitions />} />
         <Route path="/about-me" element={<AboutMe />} />
         <Route path="/contact" element={<Contact />} />

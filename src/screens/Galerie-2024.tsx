@@ -10,9 +10,14 @@ import { ContactSection } from "../components/ContactSection";
 import ContactSectionMobile from "../components/ContactSectionMobile";
 
 // ─── Image imports ────────────────────────────────────────────────────────────
-import smEismeer from "../assets/optimized/sm/10-Eismeer-sm.webp";
-import smFruehling from "../assets/optimized/sm/12-Fruehling-sm.webp";
-import smTiefseetraum from "../assets/optimized/sm/20-Tiefseetraum-sm.webp";
+import smResonanzA from "../assets/optimized/sm/5-Resonanz-sm.webp";
+import smResonanzB from "../assets/optimized/sm/6-Resonanz-sm.webp";
+import smTanzendeA from "../assets/optimized/sm/8-Tanzende-sm.webp";
+import smTanzendeB from "../assets/optimized/sm/9-Tanzende-sm.webp";
+import smAufbruch from "../assets/optimized/sm/13-Aufbruch-sm.webp";
+import smEismeerII from "../assets/optimized/sm/19-Eismeer-II-sm.webp";
+import smFarbedrängt from "../assets/optimized/sm/23-Farbe-draengt-zwischen-Hitze-und-Form-sm.webp";
+import smWennBewegung from "../assets/optimized/sm/24-Wenn-Bewegung-bleibt-sm.webp";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 type Artwork = {
@@ -93,42 +98,69 @@ const pct = (px: number) => (px / REF_W) * 100;
  * container's height is fully determined by content flow.
  */
 const desktopLayout: DesktopLayoutItem[] = [
-  {
-    id: 20,
-    widthPct: pct(850),
-    marginLeftPct: pct(543),
-    marginTopPct: pct(180),
-    captionSide: "left",
-    captionPos: {mt: "50px", alignSelf: "flex-start" },
-  },
-  {
-    id: 12,
-    widthPct: pct(800),
+    {
+    id: 5,
+    widthPct: pct(300),
     marginLeftPct: pct(26),
-    marginTopPct: pct(-200),
+    marginTopPct: pct(200),
     captionSide: "right",
-    captionPos: {mt: "250px", alignSelf: "center" },  },
+    captionPos: {mt: "50px", alignSelf: "center" },  },
+
   {
-    id: 10,
-    widthPct: pct(1200),
-    marginLeftPct: pct(220),
+    id: 6,
+    widthPct: pct(300),
+    marginLeftPct: pct(26),
+    marginTopPct: pct(0),
+    captionSide: "right",
+    captionPos: {mt: "50px", alignSelf: "center" },  },
+  {
+    id: 23,
+    widthPct: pct(800),
+    marginLeftPct: pct(580),
+    marginTopPct: pct(-20),
+    captionSide: "left",
+    captionPos: {mt: "", alignSelf: "center" },  },
+  {
+    id: 13,
+    widthPct: pct(850),
+    marginLeftPct: pct(33),
+    marginTopPct: pct(50),
+    captionSide: "right",
+    captionPos: {mt: "150px", alignSelf: "flex-start" },  },
+  {
+    id: 8,
+    widthPct: pct(300),
+    marginLeftPct: pct(500),
+    marginTopPct: pct(30),
+    captionSide: "left",
+    captionPos: {mt: "50px", alignSelf: "flex-start" },  },
+  {
+    id: 9,
+    widthPct: pct(300),
+    marginLeftPct: pct(500),
+    marginTopPct: pct(30),
+    captionSide: "left",
+    captionPos: {mt: "50px", alignSelf: "flex-start" },  },
+  {
+    id: 24,
+    widthPct: pct(800),
+    marginLeftPct: pct(10),
+    marginTopPct: pct(10),
+    captionSide: "right",
+    captionPos: {mt: "0px", alignSelf: "center" },  },
+  {
+    id: 19,
+    widthPct: pct(1050),
+    marginLeftPct: pct(360),
     marginTopPct: pct(50),
     captionSide: "left",
-    captionPos: {mt: "350px", alignSelf: "center" },  },
+    captionPos: {mt: "50px", alignSelf: "center" },  },
 ];
 
 // ─── Mobile layout data ──────────────────────────────────────────────────────
 const mobileLayout: MobileLayoutItem[] = [
-  {
-    id: 20,
-    widthPct: 96,
-    marginLeftPct: 3,
-    marginTopRem: 3,
-    captionSide: "right",
-    captionPos: {mt: "20px", alignSelf: "flex-start" },
-  },
-  {
-    id: 12,
+    {
+    id: 5,
     widthPct: 95,
     marginLeftPct: 4,
     marginTopRem: 1.5,
@@ -136,43 +168,140 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "", alignSelf: "center" },
   },
   {
-    id: 10,
+    id: 6,
+    widthPct: 95,
+    marginLeftPct: 4,
+    marginTopRem: 1.5,
+    captionSide: "left",
+    captionPos: {mt: "", alignSelf: "center" },
+  },
+  {
+    id: 23,
     widthPct: 100,
     marginLeftPct: 1,
-    marginTopRem: 2,
+    marginTopRem: 1,
     captionSide: "right",
     captionPos: {mt: "20px", alignSelf: "flex-start" },
+  },
+  {
+    id: 13,
+    widthPct: 100,
+    marginLeftPct: 0,
+    marginTopRem: 1.7,
+    captionSide: "left",
+    captionPos: {mt: "50px", alignSelf: "center" },
+  },
+  {
+    id: 8,
+    widthPct: 90,
+    marginLeftPct: 3,
+    marginTopRem: 1.5,
+    captionSide: "right",
+    captionPos: {mt: "", alignSelf: "center" },
+  },
+    {
+    id: 9,
+    widthPct: 90,
+    marginLeftPct: 3,
+    marginTopRem: 1.5,
+    captionSide: "right",
+    captionPos: {mt: "", alignSelf: "center" },
+  },
+  {
+    id: 24,
+    widthPct: 95,
+    marginLeftPct: 5,
+    marginTopRem: 1.5,
+    captionSide: "left",
+    captionPos: {mt: "10px", alignSelf: "flex-start" },
+  },
+  {
+    id: 19,
+    widthPct: 91,
+    marginLeftPct: 0,
+    marginTopRem: 2,
+    captionSide: "right",
+    captionPos: {mt: "130px", alignSelf: "center" },
   },
 ];
 
 // ─── Artwork data ─────────────────────────────────────────────────────────────
 const artworks: Artwork[] = [
   {
-    id: 10,
-    smallSrc: smEismeer,
-    largeSrc: smEismeer,
-    alt: "Eismeer",
-    title: "Eismeer",
-    year: "2020",
+    id: 5,
+    smallSrc: smResonanzA,
+    largeSrc: smResonanzA,
+    alt: "Resonanz A",
+    title: "Resonanz",
+    year: "2024",
+    dimensions: "je 40 x 80 cm",
+    groupId: "resonanz",
+  },
+  {
+    id: 6,
+    smallSrc: smResonanzB,
+    largeSrc: smResonanzB,
+    alt: "Resonanz B",
+    title: "",
+    year: "2024",
+    dimensions: "40 x 80 cm",
+    groupId: "resonanz",
+  },
+  {
+    id: 8,
+    smallSrc: smTanzendeA,
+    largeSrc: smTanzendeA,
+    alt: "Tanzende A",
+    title: "Tanzende",
+    year: "2024",
+    dimensions: "je 40 x 80 cm",
+    groupId: "tanzende",
+  },
+  {
+    id: 9,
+    smallSrc: smTanzendeB,
+    largeSrc: smTanzendeB,
+    alt: "Tanzende B",
+    title: "",
+    year: "2024",
+    dimensions: "40 x 80 cm",
+    groupId: "tanzende",
+  },
+  {
+    id: 13,
+    smallSrc: smAufbruch,
+    largeSrc: smAufbruch,
+    alt: "Aufbruch",
+    title: "Aufbruch",
+    year: "2024",
+    dimensions: "100 x 100 cm",
+  },
+  {
+    id: 19,
+    smallSrc: smEismeerII,
+    largeSrc: smEismeerII,
+    alt: "Eismeer II",
+    title: "Eismeer II",
+    year: "2024",
     dimensions: "100 x 50 cm",
   },
   {
-    id: 12,
-    smallSrc: smFruehling,
-    largeSrc: smFruehling,
-    alt: "Frühling",
-    title: "Frühling",
-    year: "2020",
-    dimensions: "70 x 70 cm",
+    id: 23,
+    smallSrc: smFarbedrängt,
+    largeSrc: smFarbedrängt,
+    alt: "Farbe drängt – Zwischen Hitze und Form",
+    title: "Farbe drängt – Zwischen Hitze und Form",
+    year: "2024",
+    dimensions: "100 x 100 cm",
   },
   {
-    id: 20,
-    smallSrc: smTiefseetraum,
-    largeSrc: smTiefseetraum,
-    alt: "Tiefseetraum",
-    title: "Tiefseetraum",
-    year: "2020",
-    dimensions: "80 x 80 cm",
+    id: 24,
+    smallSrc: smWennBewegung,
+    largeSrc: smWennBewegung,
+    alt: "Wenn Bewegung bleibt",
+    title: "Wenn Bewegung bleibt",
+    year: "2024",
+    dimensions: "100 x 100 cm",
   },
 ];
 
@@ -203,7 +332,7 @@ function ArtworkCaption({
 }
 
 // ─── Component ────────────────────────────────────────────────────────────────
-export function Galerie2020(): JSX.Element {
+export function Galerie2024(): JSX.Element {
   // ── Lightbox state — shared between mobile & desktop ────────────────────
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);

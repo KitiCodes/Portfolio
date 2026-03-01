@@ -10,9 +10,8 @@ import { ContactSection } from "../components/ContactSection";
 import ContactSectionMobile from "../components/ContactSectionMobile";
 
 // ─── Image imports ────────────────────────────────────────────────────────────
-import smEismeer from "../assets/optimized/sm/10-Eismeer-sm.webp";
-import smFruehling from "../assets/optimized/sm/12-Fruehling-sm.webp";
-import smTiefseetraum from "../assets/optimized/sm/20-Tiefseetraum-sm.webp";
+import smKleineAufruhr from "../assets/optimized/sm/17-Kleine-Aufruhr-sm.webp";
+import smFokus from "../assets/optimized/sm/26-Fokus-sm.webp";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 type Artwork = {
@@ -94,85 +93,60 @@ const pct = (px: number) => (px / REF_W) * 100;
  */
 const desktopLayout: DesktopLayoutItem[] = [
   {
-    id: 20,
-    widthPct: pct(850),
-    marginLeftPct: pct(543),
-    marginTopPct: pct(180),
-    captionSide: "left",
-    captionPos: {mt: "50px", alignSelf: "flex-start" },
-  },
-  {
-    id: 12,
+    id: 26,
     widthPct: pct(800),
     marginLeftPct: pct(26),
-    marginTopPct: pct(-200),
+    marginTopPct: pct(180),
     captionSide: "right",
-    captionPos: {mt: "250px", alignSelf: "center" },  },
+    captionPos: {mt: "50px", alignSelf: "center" },  },
   {
-    id: 10,
-    widthPct: pct(1200),
-    marginLeftPct: pct(220),
-    marginTopPct: pct(50),
+    id: 17,
+    widthPct: pct(850),
+    marginLeftPct: pct(570),
+    marginTopPct: pct(-150),
     captionSide: "left",
-    captionPos: {mt: "350px", alignSelf: "center" },  },
+    captionPos: {mt: "300px", alignSelf: "center" },  },
 ];
 
 // ─── Mobile layout data ──────────────────────────────────────────────────────
 const mobileLayout: MobileLayoutItem[] = [
-  {
-    id: 20,
-    widthPct: 96,
-    marginLeftPct: 3,
-    marginTopRem: 3,
-    captionSide: "right",
-    captionPos: {mt: "20px", alignSelf: "flex-start" },
-  },
-  {
-    id: 12,
+    {
+    id: 26,
     widthPct: 95,
     marginLeftPct: 4,
-    marginTopRem: 1.5,
+    marginTopRem: 2.5,
     captionSide: "left",
     captionPos: {mt: "", alignSelf: "center" },
   },
   {
-    id: 10,
+    id: 17,
     widthPct: 100,
     marginLeftPct: 1,
-    marginTopRem: 2,
+    marginTopRem: 1,
     captionSide: "right",
-    captionPos: {mt: "20px", alignSelf: "flex-start" },
+    captionPos: {mt: "70px", alignSelf: "flex-start" },
   },
 ];
 
 // ─── Artwork data ─────────────────────────────────────────────────────────────
 const artworks: Artwork[] = [
   {
-    id: 10,
-    smallSrc: smEismeer,
-    largeSrc: smEismeer,
-    alt: "Eismeer",
-    title: "Eismeer",
-    year: "2020",
-    dimensions: "100 x 50 cm",
+    id: 17,
+    smallSrc: smKleineAufruhr,
+    largeSrc: smKleineAufruhr,
+    alt: "Kleine Aufruhr",
+    title: "Kleine Aufruhr",
+    year: "2026",
+    dimensions: "60 x 70 cm",
   },
   {
-    id: 12,
-    smallSrc: smFruehling,
-    largeSrc: smFruehling,
-    alt: "Frühling",
-    title: "Frühling",
-    year: "2020",
-    dimensions: "70 x 70 cm",
-  },
-  {
-    id: 20,
-    smallSrc: smTiefseetraum,
-    largeSrc: smTiefseetraum,
-    alt: "Tiefseetraum",
-    title: "Tiefseetraum",
-    year: "2020",
-    dimensions: "80 x 80 cm",
+    id: 26,
+    smallSrc: smFokus,
+    largeSrc: smFokus,
+    alt: "Fokus",
+    title: "Fokus",
+    year: "2026",
+    dimensions: "100 x 100 cm",
   },
 ];
 
@@ -203,7 +177,7 @@ function ArtworkCaption({
 }
 
 // ─── Component ────────────────────────────────────────────────────────────────
-export function Galerie2020(): JSX.Element {
+export function Galerie2026(): JSX.Element {
   // ── Lightbox state — shared between mobile & desktop ────────────────────
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);

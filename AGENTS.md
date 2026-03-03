@@ -26,7 +26,7 @@ if (isMobile) {
 return <div className="relative w-[1440px]">...</div>;
 ```
 
-Example from `src/screens/HomePage.tsx` (flow-layout screen):
+All gallery pages (HomePage, Galerie-2020 through Galerie-2026) use this flow-layout pattern, implemented once in `src/components/GalleryPage.tsx`:
 ```tsx
 {/* Mobile — flow layout with margin offsets */}
 <div className="md:hidden bg-[#d4cdc4] w-full px-2 pt-5 pb-8 overflow-hidden">
@@ -100,15 +100,15 @@ npm run dev          # Vite dev server with --host (accessible on network)
 
 ### Artwork Data Structure
 
-**HomePage** (flow layout) separates artwork metadata from layout positioning:
+All shared types are defined once in **`src/lib/gallery.ts`** and imported by every gallery file:
 
-```tsx
+```ts
 // Pure artwork data — no positioning info
 type Artwork = {
   id: number;
   smallSrc: string; largeSrc: string; // WebP imports
   alt: string; title: string; year: string; dimensions: string;
-  groupId?: string; // For diptychs (shared lightbox navigation)
+  groupId?: string; // For diptychs — artworks with the same groupId are paired
 };
 
 // Caption position relative to its image (applied to the caption wrapper)
@@ -127,7 +127,7 @@ type DesktopLayoutItem = {
   marginLeftPct: number;  // horizontal offset as % of container
   marginTopPct: number;   // vertical spacing (can be negative for overlaps)
   captionSide: "left" | "right";
-  captionPos?: CaptionPosition; // fine-tune caption placement per artwork
+  captionPos?: CaptionPosition;
 };
 
 // Mobile layout — simpler staggered cards
@@ -137,13 +137,14 @@ type MobileLayoutItem = {
   marginLeftPct: number;  // horizontal offset as %
   marginTopRem: number;   // vertical spacing in rem
   captionSide: "left" | "right";
-  captionPos?: CaptionPosition; // fine-tune caption placement per artwork
+  captionPos?: CaptionPosition;
 };
 ```
 - **Desktop**: Each artwork is a `flex` row (image + caption) with `margin-left`, `margin-top`, and `width` in `%`. Negative `marginTopPct` creates overlapping rows. Container height grows naturally with content — **no hardcoded height**.
 - **Mobile**: Same flex-row approach, with `rem`-based vertical spacing.
-- **Helper**: `const pct = (px: number) => (px / 1440) * 100` converts original pixel coords to percentages.
-- **Caption positioning**: `captionSide` controls which side the caption sits on. The optional `captionPos` object fine-tunes the caption's exact placement via margin offsets (`mt`, `mr`, `mb`, `ml`) and `alignSelf` (vertical alignment within the flex row: `"flex-start"` = top, `"center"` = middle, `"flex-end"` = bottom). All values are CSS strings, so any unit works (`%`, `px`, `rem`, etc.). If `captionPos` is omitted the caption stays at its default position (top-aligned, snug against the image).
+- **Helper**: `pct(px)` exported from `src/lib/gallery.ts` — converts pixel values (designed at 1440px) to percentages.
+- **Caption positioning**: `captionSide` controls which side the caption sits on. The optional `captionPos` object fine-tunes placement via margin offsets and `alignSelf`. All values are CSS strings (`%`, `px`, `rem`, etc.). Omitting `captionPos` keeps the default top-aligned position.
+- **IDs are positional**: `id` values are sequential integers (1 = first artwork shown on screen). Both `artworks[]` and `desktopLayout[]`/`mobileLayout[]` must be kept in the same visual order so array index is the implicit link. The lightbox uses `artworks[]` indices for prev/next navigation.
 
 **Other screens** (exhibitions, contact, about) still use the older absolute-positioned pattern with `img: { w, top, left }` and `caption` coords.
 
@@ -163,9 +164,9 @@ useEffect(() => {
   // Also update on image load, window resize
 }, []);
 ```
-This pattern appears in `contact.tsx`, `exhebitions.tsx`, and `aboutMe.tsx` mobile blocks. **`HomePage.tsx` no longer uses this** — it uses a pure flow layout with no ResizeObserver or fixed canvas height.
+This pattern appears in `contact.tsx`, `exhebitions.tsx`, and `aboutMe.tsx` mobile blocks. **Gallery pages no longer use this** — they use `GalleryPage.tsx` which renders a pure flow layout with no ResizeObserver or fixed canvas height.
 
-## Key Files & Navigation
+### Key Files & Navigation
 
 ### Entry Points
 - `index.html` → loads `src/index.tsx` (React root)
@@ -177,6 +178,31 @@ This pattern appears in `contact.tsx`, `exhebitions.tsx`, and `aboutMe.tsx` mobi
   - `/updates` → Updates
   - `/updates/calendar-2026` → UpdatesCalendar2026
   - Legal pages: `/privacy-policy`, `/imprint`
+
+### Gallery Template System
+All gallery pages (HomePage, Galerie-2020 through Galerie-2026) share a common template:
+
+- **`src/lib/gallery.ts`** — Shared type definitions (`Artwork`, `CaptionPosition`, `DesktopLayoutItem`, `MobileLayoutItem`) and the `pct(px)` helper. Import types and the helper from here; do not re-declare them locally.
+
+- **`src/components/GalleryPage.tsx`** — Generic gallery template component. Contains ALL shared logic: lightbox state, keyboard navigation (←/→/Esc), scroll lock, touch swipe, diptych group detection (on-page side-by-side rendering + lightbox pairing), mobile and desktop render loops, lightbox overlay. Props: `artworks`, `desktopLayout`, `mobileLayout`.
+
+Each gallery screen file is a **thin data wrapper** (~50-80 lines):
+```tsx
+import { GalleryPage } from "../components/GalleryPage";
+import { pct } from "../lib/gallery";
+import type { Artwork, DesktopLayoutItem, MobileLayoutItem } from "../lib/gallery";
+// ... image imports ...
+
+const desktopLayout: DesktopLayoutItem[] = [ ... ];
+const mobileLayout: MobileLayoutItem[] = [ ... ];
+const artworks: Artwork[] = [ ... ];
+
+export function GalerieXXXX(): JSX.Element {
+  return <GalleryPage artworks={artworks} desktopLayout={desktopLayout} mobileLayout={mobileLayout} />;
+}
+```
+
+**Diptych rendering**: Artworks with the same `groupId` are rendered side by side on the page (in a shared `flex` container) and paired in the lightbox. The `GalleryPage` render loop uses a `renderedGroups: Set<string>` to skip secondary panels that were already rendered as part of a group. Caption is taken from the group member with a non-empty title. To add a diptych: set `groupId` to the same string on both artwork entries and make their layout items consecutive.
 
 ### State Management
 - **No Redux/Zustand** — only React Context for language
@@ -206,20 +232,21 @@ This pattern appears in `contact.tsx`, `exhebitions.tsx`, and `aboutMe.tsx` mobi
 1. **Mobile detection timing**: Initialize `isMobile` state with `() => window.innerWidth <= 768` to avoid hydration mismatches
 2. **Absolute positioning** (non-HomePage screens): Desktop artwork coords are hand-tuned; changing canvas width (1440px) breaks layout. HomePage uses flow layout with percentage-based margins instead.
 3. **WebP imports**: Must use `import` or `new URL(..., import.meta.url).href`, not dynamic `require()`
-4. **Lightbox diptychs**: Artworks with same `groupId` share prev/next navigation (see HomePage lightbox logic)
+4. **Lightbox diptychs**: Artworks with same `groupId` are rendered side by side both on-page and in the lightbox — logic lives in `GalleryPage.tsx`. Both panels remain separate `artworks[]` entries, so pressing next from panel A still shows panel B (same combined view) before advancing — minor known UX quirk.
 5. **Header offset**: Desktop header has dynamic `top` style based on scroll position (41px at top, 0px when scrolled)
-6. **Mobile stacking height** (non-HomePage screens): Initial guess must be reasonable to avoid layout shift; ResizeObserver adjusts after render. HomePage mobile uses natural flow layout and needs no height guessing.
+6. **Mobile stacking height** (non-gallery screens): Initial guess must be reasonable to avoid layout shift; ResizeObserver adjusts after render. Gallery pages use `GalleryPage.tsx` natural flow layout and need no height guessing.
 7. **HTTPS redirect**: Server.js forces HTTPS in production via `x-forwarded-proto` header (Heroku-specific)
 
 ## Adding New Content
 
-### New Artwork to Gallery (HomePage)
+### New Artwork to Gallery (any gallery page)
 1. Add WebP files to `src/assets/optimized/{sm,lg}/`
-2. Import both sizes in `HomePage.tsx`
-3. Add entry to `artworks` array (id, sources, title, year, dimensions — no positioning)
-4. Add a `DesktopLayoutItem` entry to `desktopLayout` with `widthPct`, `marginLeftPct`, `marginTopPct` (use `pct(pixels)` helper), `captionSide`, and optionally `captionPos` to fine-tune caption placement
-5. Add a `MobileLayoutItem` entry to `mobileLayout` with `widthPct`, `marginLeftPct`, `marginTopRem`, `captionSide`, and optionally `captionPos`
-6. No canvas height adjustment needed — the page grows naturally with content
+2. Import both sizes in the gallery file (e.g. `Galerie-2026.tsx` or `HomePage.tsx`)
+3. Add entry to `artworks` array: `{ id, smallSrc, largeSrc, alt, title, year, dimensions }`. For a diptych add `groupId: "some-name"` on both artworks.
+4. Add a `DesktopLayoutItem` entry to `desktopLayout`: `{ id, widthPct, marginLeftPct, marginTopPct, captionSide, captionPos? }` — use `pct(pixels)` for the percentage values
+5. Add a `MobileLayoutItem` entry to `mobileLayout`: `{ id, widthPct, marginLeftPct, marginTopRem, captionSide, captionPos? }`
+6. Keep `artworks`, `desktopLayout`, and `mobileLayout` in the same visual order (id = position shown on screen). The lightbox uses array index for prev/next navigation.
+7. No canvas height adjustment needed — the page grows naturally with content
 
 ### New Exhibition
 1. Update `exhebitions.tsx` exhibitions array
@@ -235,6 +262,6 @@ This pattern appears in `contact.tsx`, `exhebitions.tsx`, and `aboutMe.tsx` mobi
 
 ---
 
-**Last Updated**: 2026-02-28  
+**Last Updated**: 2026-03-03  
 **For more context**: See `summary.md` (project exploration).
 

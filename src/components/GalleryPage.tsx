@@ -160,13 +160,13 @@ export function GalleryPage({
         group.find((a) => (a.title ?? "").trim().length > 0) ?? group[0];
       return (
         <div className="flex flex-col items-center gap-4 w-full">
-          <div className="flex gap-2 md:gap-8 items-center justify-center w-full">
+          <div className="flex gap-2 md:gap-2 items-center justify-center w-full">
             {group.map((a) => (
               <img
                 key={a.id}
                 src={a.largeSrc}
                 alt={a.alt}
-                className="flex-1 max-w-[45vw] max-h-[65vh] object-contain"
+                className="max-w-[45vw] max-h-[65vh] object-contain"
               />
             ))}
           </div>

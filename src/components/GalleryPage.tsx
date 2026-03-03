@@ -21,7 +21,7 @@ function ArtworkCaption({
   if (!art.title) return null;
   return (
     <div
-      className="[font-family:'Antonio',Helvetica] text-black shrink-0"
+      className="[font-family:'Antonio',Helvetica] text-black w-full"
       style={{
         fontSize: mobile
           ? "clamp(0.65rem, 4.1vw, 1rem)"
@@ -29,7 +29,7 @@ function ArtworkCaption({
         lineHeight: 1.2,
       }}
     >
-      <div className="font-normal">{art.title}</div>
+      <div className="font-normal break-words">{art.title}</div>
       <div className="font-thin">{art.year}</div>
       <div className="font-thin">{art.dimensions}</div>
     </div>

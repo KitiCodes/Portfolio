@@ -487,54 +487,85 @@ export function Galerie2024(): JSX.Element {
           no fixed container height — the page grows with content.
       */}
       <div className="md:hidden bg-[#d4cdc4] w-full px-2 pt-5 pb-8 overflow-hidden">
-        {mobileLayout.map((item) => {
-          const artIdx = artworks.findIndex((a) => a.id === item.id);
-          const art = artworks[artIdx];
+        {(() => {
+          const renderedGroups = new Set<string>();
+          return mobileLayout.map((item) => {
+            const artIdx = artworks.findIndex((a) => a.id === item.id);
+            const art = artworks[artIdx];
 
-          const isRight = item.captionSide === "right";
+            // Skip secondary diptych panels (rendered with the primary)
+            if (art.groupId && renderedGroups.has(art.groupId)) return null;
+            if (art.groupId) renderedGroups.add(art.groupId);
 
-          return (
-            <div
-              key={item.id}
-              className="flex items-start gap-2"
-              style={{
-                width: `${item.widthPct}%`,
-                marginLeft: `${item.marginLeftPct}%`,
-                marginTop: `${item.marginTopRem}rem`,
-                flexDirection: isRight ? "row" : "row-reverse",
-              }}
-            >
-              {/* Image */}
-              <img
-                src={art.smallSrc}
-                alt={art.alt}
-                loading="lazy"
-                className="w-full h-auto cursor-pointer flex-1 min-w-0"
-                onClick={() => openPreview(artIdx)}
-              />
+            const groupArts = art.groupId
+              ? artworks.filter((a) => a.groupId === art.groupId)
+              : null;
+            const captionArt = groupArts
+              ? (groupArts.find((a) => (a.title ?? "").trim().length > 0) ?? groupArts[0])
+              : art;
 
-              {/* Caption */}
-              {art.title && (
-                <div
-                  className="flex items-start"
-                  style={{
-                    writingMode: "horizontal-tb",
-                    minWidth: "5rem",
-                    maxWidth: "6rem",
-                    textAlign: isRight ? "left" : "right",
-                    marginTop: item.captionPos?.mt,
-                    marginRight: item.captionPos?.mr,
-                    marginBottom: item.captionPos?.mb,
-                    marginLeft: item.captionPos?.ml,
-                    alignSelf: item.captionPos?.alignSelf,
-                  }}
-                >
-                  <ArtworkCaption art={art} mobile />
-                </div>
-              )}
-            </div>
-          );
-        })}
+            const isRight = item.captionSide === "right";
+
+            return (
+              <div
+                key={item.id}
+                className="flex items-start gap-2"
+                style={{
+                  width: `${item.widthPct}%`,
+                  marginLeft: `${item.marginLeftPct}%`,
+                  marginTop: `${item.marginTopRem}rem`,
+                  flexDirection: isRight ? "row" : "row-reverse",
+                }}
+              >
+                {/* Image(s) — diptychs render side by side */}
+                {groupArts ? (
+                  <div
+                    className="flex gap-1 cursor-pointer flex-1 min-w-0"
+                    onClick={() => openPreview(artIdx)}
+                  >
+                    {groupArts.map((a) => (
+                      <img
+                        key={a.id}
+                        src={a.smallSrc}
+                        alt={a.alt}
+                        loading="lazy"
+                        className="w-full h-auto flex-1 min-w-0"
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <img
+                    src={art.smallSrc}
+                    alt={art.alt}
+                    loading="lazy"
+                    className="w-full h-auto cursor-pointer flex-1 min-w-0"
+                    onClick={() => openPreview(artIdx)}
+                  />
+                )}
+
+                {/* Caption */}
+                {captionArt.title && (
+                  <div
+                    className="flex items-start"
+                    style={{
+                      writingMode: "horizontal-tb",
+                      minWidth: "5rem",
+                      maxWidth: "6rem",
+                      textAlign: isRight ? "left" : "right",
+                      marginTop: item.captionPos?.mt,
+                      marginRight: item.captionPos?.mr,
+                      marginBottom: item.captionPos?.mb,
+                      marginLeft: item.captionPos?.ml,
+                      alignSelf: item.captionPos?.alignSelf,
+                    }}
+                  >
+                    <ArtworkCaption art={captionArt} mobile />
+                  </div>
+                )}
+              </div>
+            );
+          });
+        })()}
 
         {/* ── Contact footer ───────────────────────────────────────────── */}
         <ContactSectionMobile className="mt-6 w-full" />
@@ -557,53 +588,84 @@ export function Galerie2024(): JSX.Element {
       */}
       <div className="hidden md:block w-full bg-background">
         <div className="w-full max-w-[1440px] mx-auto overflow-hidden pb-16">
-          {desktopLayout.map((item) => {
-            const artIdx = artworks.findIndex((a) => a.id === item.id);
-            const art = artworks[artIdx];
+          {(() => {
+            const renderedGroups = new Set<string>();
+            return desktopLayout.map((item) => {
+              const artIdx = artworks.findIndex((a) => a.id === item.id);
+              const art = artworks[artIdx];
 
-            const isRight = item.captionSide === "right";
+              // Skip secondary diptych panels (rendered with the primary)
+              if (art.groupId && renderedGroups.has(art.groupId)) return null;
+              if (art.groupId) renderedGroups.add(art.groupId);
 
-            return (
-              <div
-                key={item.id}
-                className="flex items-start"
-                style={{
-                  width: `${item.widthPct}%`,
-                  marginLeft: `${item.marginLeftPct}%`,
-                  marginTop: `${item.marginTopPct}%`,
-                  flexDirection: isRight ? "row" : "row-reverse",
-                  gap: "clamp(0.5rem, 1.5vw, 1.5rem)",
-                }}
-              >
-                {/* Image */}
-                <img
-                  src={art.smallSrc}
-                  alt={art.alt}
-                  loading="lazy"
-                  className="h-auto cursor-pointer flex-1 min-w-0"
-                  onClick={() => openPreview(artIdx)}
-                />
+              const groupArts = art.groupId
+                ? artworks.filter((a) => a.groupId === art.groupId)
+                : null;
+              const captionArt = groupArts
+                ? (groupArts.find((a) => (a.title ?? "").trim().length > 0) ?? groupArts[0])
+                : art;
 
-                {/* Caption — pinned to the side of the image */}
-                {art.title && (
-                  <div
-                    className="shrink-0 flex items-start pt-2"
-                    style={{
-                      width: "clamp(8rem, 13.6%, 196px)",
-                      textAlign: item.captionSide === "left" ? "right" : "left",
-                      marginTop: item.captionPos?.mt,
-                      marginRight: item.captionPos?.mr,
-                      marginBottom: item.captionPos?.mb,
-                      marginLeft: item.captionPos?.ml,
-                      alignSelf: item.captionPos?.alignSelf,
-                    }}
-                  >
-                    <ArtworkCaption art={art} />
-                  </div>
-                )}
-              </div>
-            );
-          })}
+              const isRight = item.captionSide === "right";
+
+              return (
+                <div
+                  key={item.id}
+                  className="flex items-start"
+                  style={{
+                    width: `${item.widthPct}%`,
+                    marginLeft: `${item.marginLeftPct}%`,
+                    marginTop: `${item.marginTopPct}%`,
+                    flexDirection: isRight ? "row" : "row-reverse",
+                    gap: "clamp(0.5rem, 1.5vw, 1.5rem)",
+                  }}
+                >
+                  {/* Image(s) — diptychs render side by side */}
+                  {groupArts ? (
+                    <div
+                      className="flex gap-2 cursor-pointer flex-1 min-w-0"
+                      onClick={() => openPreview(artIdx)}
+                    >
+                      {groupArts.map((a) => (
+                        <img
+                          key={a.id}
+                          src={a.smallSrc}
+                          alt={a.alt}
+                          loading="lazy"
+                          className="h-auto flex-1 min-w-0"
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <img
+                      src={art.smallSrc}
+                      alt={art.alt}
+                      loading="lazy"
+                      className="h-auto cursor-pointer flex-1 min-w-0"
+                      onClick={() => openPreview(artIdx)}
+                    />
+                  )}
+
+                  {/* Caption — pinned to the side of the image */}
+                  {captionArt.title && (
+                    <div
+                      className="shrink-0 flex items-start pt-2"
+                      style={{
+                        width: "clamp(8rem, 13.6%, 196px)",
+                        textAlign: item.captionSide === "left" ? "right" : "left",
+                        marginTop: item.captionPos?.mt,
+                        marginRight: item.captionPos?.mr,
+                        marginBottom: item.captionPos?.mb,
+                        marginLeft: item.captionPos?.ml,
+                        alignSelf: item.captionPos?.alignSelf,
+                      }}
+                    >
+                      <ArtworkCaption art={captionArt} />
+                    </div>
+                  )}
+                </div>
+              );
+            });
+          })()}
 
           {/* ── Contact / footer section ───────────────────────────── */}
           <div className="mt-[6%] flex justify-center">

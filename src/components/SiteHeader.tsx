@@ -1,10 +1,11 @@
 import { useRef, useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { useLanguage } from "../lib/LanguageContext";
 import SiteHeaderMobile from "./SiteHeaderMobile";
 
 export const SiteHeader = (): JSX.Element => {
   const { t } = useLanguage();
+  const location = useLocation();
   const [isMobile, setIsMobile] = useState(() => (typeof window !== "undefined" ? window.innerWidth <= 768 : false));
   const [atTop, setAtTop] = useState(true);
 
@@ -22,6 +23,10 @@ export const SiteHeader = (): JSX.Element => {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const galleryYears = [2026, 2025, 2024, 2022, 2021,2020];
+  const isGalleryActive = galleryYears.some((y) => location.pathname === `/gallery-${y}`);
+
   const navigationItems = [
     { label: t("Aktuelles", "Updates"), href: "/updates" },
     { label: t("Ausstellungen", "Exhibitions"), href: "/exhibitions" },
@@ -48,7 +53,47 @@ export const SiteHeader = (): JSX.Element => {
             </Link>
           </h1>
           <nav className="flex items-center gap-[72px] [font-family:'Antonio',Helvetica]">
-            {navigationItems.map((item) => (
+            {/* Aktuelles first */}
+            {navigationItems.slice(0, 1).map((item) => (
+              <NavLink
+                key={item.label}
+                to={item.href}
+                className={({ isActive }) =>
+                  [
+                    "text-[16px] font-thin px-0",
+                    "hover:text-[#854686] hover:bg-transparent",
+                    isActive ? "text-[#854686]" : "text-white",
+                  ].join(" ")
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
+            {/* Gallery dropdown */}
+            <div className="relative group">
+              <span
+                className={`text-[16px] font-thin cursor-default hover:text-[#854686] ${isGalleryActive ? "text-[#854686]" : "text-white"}`}
+              >
+                {t("Galerie", "Gallery")}
+              </span>
+              <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 hidden group-hover:block z-50">
+                <div className="bg-[#af8f5b] shadow-lg py-2 flex flex-col items-center min-w-[90px]">
+                  {galleryYears.map((year) => (
+                    <NavLink
+                      key={year}
+                      to={`/gallery-${year}`}
+                      className={({ isActive }) =>
+                        `block text-[16px] font-thin px-6 py-1 w-full text-center hover:text-[#854686] ${isActive ? "text-[#854686]" : "text-white"}`
+                      }
+                    >
+                      {year}
+                    </NavLink>
+                  ))}
+                </div>
+              </div>
+            </div>
+            {/* Remaining items */}
+            {navigationItems.slice(1).map((item) => (
               <NavLink
                 key={item.label}
                 to={item.href}

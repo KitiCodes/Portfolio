@@ -2,7 +2,7 @@ import { X } from "lucide-react";
 import { Button } from "./ui/button-mobile";
 // import { useLanguage } from "../lib/LanguageContext";
 import { NavLink } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 
 interface MobileNavigationProps {
   isOpen: boolean;
@@ -14,6 +14,9 @@ interface MobileNavigationProps {
 }
 
 export const MobileNavigation = ({ isOpen, onClose, inline = false, refNav = null }: MobileNavigationProps): JSX.Element => {
+  const galleryYears = [2026, 2025, 2024, 2022, 2021,2020];
+  const [galleryOpen, setGalleryOpen] = useState(false);
+
   if (!isOpen) return <></>;
 
   const NavContent = (
@@ -22,6 +25,27 @@ export const MobileNavigation = ({ isOpen, onClose, inline = false, refNav = nul
           <NavLink to="/updates" onClick={onClose} className={({ isActive }) => (isActive ? 'text-[#854686]' : 'text-white')}>
           Aktuelles
         </NavLink>
+          {/* Gallery expandable */}
+          <button
+            onClick={() => setGalleryOpen((v) => !v)}
+            className="text-left text-white hover:text-[#854686] flex items-center gap-1"
+          >
+            Galerie <span className="text-xs">{galleryOpen ? "▲" : "▼"}</span>
+          </button>
+          {galleryOpen && (
+            <div className="flex flex-col gap-1 pl-4">
+              {galleryYears.map((year) => (
+                <NavLink
+                  key={year}
+                  to={`/gallery-${year}`}
+                  onClick={onClose}
+                  className={({ isActive }) => (isActive ? "text-[#854686]" : "text-white")}
+                >
+                  {year}
+                </NavLink>
+              ))}
+            </div>
+          )}
           <NavLink to="/exhibitions" onClick={onClose} className={({ isActive }) => (isActive ? 'text-[#854686]' : 'text-white')}>
           Ausstellungen
         </NavLink>

@@ -1,6 +1,8 @@
 run website:
 npm run dev
 
+wenn Taha dran arbeiten will:
+Push in side bar
 
 go live:
 1. github - pull requests - open - commit

@@ -111,7 +111,7 @@ const pct = (px: number) => (px / REF_W) * 100;
  */
 const desktopLayout: DesktopLayoutItem[] = [
   {
-    id: 4,
+    id: 1,
     widthPct: pct(750),
     marginLeftPct: pct(643),
     marginTopPct: pct(180),
@@ -119,56 +119,56 @@ const desktopLayout: DesktopLayoutItem[] = [
     captionPos: {mt: "50px", alignSelf: "flex-start" },
   },
   {
-    id: 13,
+    id: 2,
     widthPct: pct(800),
     marginLeftPct: pct(26),
     marginTopPct: pct(-100),
     captionSide: "right",
     captionPos: {mt: "50px", alignSelf: "center" },  },
   {
-    id: 10,
+    id: 3,
     widthPct: pct(1200),
     marginLeftPct: pct(220),
     marginTopPct: pct(20),
     captionSide: "left",
     captionPos: {mt: "350px", alignSelf: "center" },  },
   {
-    id: 19,
+    id: 4,
     widthPct: pct(1100),
     marginLeftPct: pct(33),
     marginTopPct: pct(50),
     captionSide: "right",
     captionPos: {mt: "150px", alignSelf: "flex-start" },  },
   {
-    id: 16,
+    id: 5,
     widthPct: pct(830),
     marginLeftPct: pct(500),
     marginTopPct: pct(30),
     captionSide: "left",
     captionPos: {mt: "50px", alignSelf: "flex-start" },  },
   {
-    id: 2,
+    id: 6,
     widthPct: pct(1000),
     marginLeftPct: pct(10),
     marginTopPct: pct(10),
     captionSide: "right",
     captionPos: {mt: "0px", alignSelf: "center" },  },
   {
-    id: 14,
+    id: 7,
     widthPct: pct(850),
     marginLeftPct: pct(560),
     marginTopPct: pct(50),
     captionSide: "left",
     captionPos: {mt: "450px", alignSelf: "center" },  },
   {
-    id: 1,
+    id: 8,
     widthPct: pct(1104),
     marginLeftPct: pct(50),
     marginTopPct: pct(25),
     captionSide: "right",
     captionPos: {mt: "150px", alignSelf: "flex-start" },  },
   {
-    id: 7,
+    id: 9,
     widthPct: pct(906),
     marginLeftPct: pct(520),
     marginTopPct: pct(40),
@@ -179,7 +179,7 @@ const desktopLayout: DesktopLayoutItem[] = [
 // ─── Mobile layout data ──────────────────────────────────────────────────────
 const mobileLayout: MobileLayoutItem[] = [
   {
-    id: 4,
+    id: 1,
     widthPct: 85,
     marginLeftPct: 3,
     marginTopRem: 3,
@@ -187,7 +187,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "20px", alignSelf: "flex-start" },
   },
   {
-    id: 13,
+    id: 2,
     widthPct: 95,
     marginLeftPct: 4,
     marginTopRem: 1.5,
@@ -195,7 +195,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "", alignSelf: "center" },
   },
   {
-    id: 10,
+    id: 3,
     widthPct: 100,
     marginLeftPct: 1,
     marginTopRem: 1,
@@ -203,7 +203,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "20px", alignSelf: "flex-start" },
   },
   {
-    id: 19,
+    id: 4,
     widthPct: 100,
     marginLeftPct: 0,
     marginTopRem: 1.7,
@@ -211,7 +211,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "50px", alignSelf: "center" },
   },
   {
-    id: 16,
+    id: 5,
     widthPct: 90,
     marginLeftPct: 3,
     marginTopRem: 1.5,
@@ -219,7 +219,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "", alignSelf: "center" },
   },
   {
-    id: 2,
+    id: 6,
     widthPct: 95,
     marginLeftPct: 5,
     marginTopRem: 1.5,
@@ -227,7 +227,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "10px", alignSelf: "flex-start" },
   },
   {
-    id: 14,
+    id: 7,
     widthPct: 91,
     marginLeftPct: 0,
     marginTopRem: 2,
@@ -235,7 +235,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "130px", alignSelf: "center" },
   },
   {
-    id: 1,
+    id: 8,
     widthPct: 100,
     marginLeftPct: 1,
     marginTopRem: 1,
@@ -243,7 +243,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "20px", alignSelf: "flex-start" },
   },
   {
-    id: 7,
+    id: 9,
     widthPct: 95,
     marginLeftPct: 6,
     marginTopRem: 1.5,
@@ -255,7 +255,7 @@ const mobileLayout: MobileLayoutItem[] = [
 // ─── Artwork data ─────────────────────────────────────────────────────────────
 const artworks: Artwork[] = [
   {
-    id: 4,
+    id: 1,
     smallSrc: smPower,
     largeSrc: smPower,
     alt: "power",
@@ -264,7 +264,7 @@ const artworks: Artwork[] = [
     dimensions: "70 x 70 cm",
   },
   {
-    id: 13,
+    id: 2,
     smallSrc: smAufbruch,
     largeSrc: smAufbruch,
     alt: "Aufbruch",
@@ -273,7 +273,7 @@ const artworks: Artwork[] = [
     dimensions: "100 x 100 cm",
   },
   {
-    id: 10,
+    id: 3,
     smallSrc: smEismeer,
     largeSrc: smEismeer,
     alt: "Eismeer",
@@ -282,7 +282,7 @@ const artworks: Artwork[] = [
     dimensions: "100 x 50 cm",
   },
   {
-    id: 19,
+    id: 4,
     smallSrc: smEismeerII,
     largeSrc: smEismeerII,
     alt: "Eismeer II",
@@ -291,7 +291,7 @@ const artworks: Artwork[] = [
     dimensions: "100 x 50 cm",
   },
   {
-    id: 16,
+    id: 5,
     smallSrc: smAufloesung,
     largeSrc: smAufloesung,
     alt: "Auflösung in blau",
@@ -300,7 +300,7 @@ const artworks: Artwork[] = [
     dimensions: "70 x 70 cm",
   },
   {
-    id: 2,
+    id: 6,
     smallSrc: smSonnenblumen,
     largeSrc: smSonnenblumen,
     alt: "Sonnenblumen",
@@ -309,7 +309,7 @@ const artworks: Artwork[] = [
     dimensions: "100 x 80 cm",
   },
   {
-    id: 14,
+    id: 7,
     smallSrc: smSpuren,
     largeSrc: smSpuren,
     alt: "Spuren",
@@ -318,7 +318,7 @@ const artworks: Artwork[] = [
     dimensions: "100 x 100 cm",
   },
   {
-    id: 1,
+    id: 8,
     smallSrc: smSandmeer,
     largeSrc: smSandmeer,
     alt: "Sandmeer",
@@ -327,7 +327,7 @@ const artworks: Artwork[] = [
     dimensions: "140 x 100 cm",
   },
   {
-    id: 7,
+    id: 9,
     smallSrc: smAusbruch,
     largeSrc: smAusbruch,
     alt: "Ausbruch",

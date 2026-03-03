@@ -94,7 +94,7 @@ const pct = (px: number) => (px / REF_W) * 100;
  */
 const desktopLayout: DesktopLayoutItem[] = [
   {
-    id: 11,
+    id: 1,
     widthPct: pct(800),
     marginLeftPct: pct(26),
     marginTopPct: pct(180),
@@ -108,7 +108,7 @@ const desktopLayout: DesktopLayoutItem[] = [
     captionSide: "left",
     captionPos: {mt: "350px", alignSelf: "center" },  },
   {
-    id: 18,
+    id: 3,
     widthPct: pct(1100),
     marginLeftPct: pct(33),
     marginTopPct: pct(50),
@@ -119,7 +119,7 @@ const desktopLayout: DesktopLayoutItem[] = [
 // ─── Mobile layout data ──────────────────────────────────────────────────────
 const mobileLayout: MobileLayoutItem[] = [
   {
-    id: 11,
+    id: 1,
     widthPct: 95,
     marginLeftPct: 5,
     marginTopRem: 2.5,
@@ -135,7 +135,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "20px", alignSelf: "center" },
   },
   {
-    id: 18,
+    id: 3,
     widthPct: 100,
     marginLeftPct: 0,
     marginTopRem: 0.5,
@@ -147,6 +147,15 @@ const mobileLayout: MobileLayoutItem[] = [
 // ─── Artwork data ─────────────────────────────────────────────────────────────
 const artworks: Artwork[] = [
   {
+    id: 1,
+    smallSrc: smZaghaft,
+    largeSrc: smZaghaft,
+    alt: "Zaghaft beginnt etwas Neues",
+    title: "Zaghaft beginnt etwas Neues",
+    year: "2021",
+    dimensions: "70 x 70 cm",
+  },
+  {
     id: 2,
     smallSrc: smSonnenblumen,
     largeSrc: smSonnenblumen,
@@ -156,16 +165,7 @@ const artworks: Artwork[] = [
     dimensions: "100 x 80 cm",
   },
   {
-    id: 11,
-    smallSrc: smZaghaft,
-    largeSrc: smZaghaft,
-    alt: "Zaghaft beginnt etwas Neues",
-    title: "Zaghaft beginnt etwas Neues",
-    year: "2021",
-    dimensions: "70 x 70 cm",
-  },
-  {
-    id: 18,
+    id: 3,
     smallSrc: smRiff,
     largeSrc: smRiff,
     alt: "Riff",

@@ -96,7 +96,7 @@ const pct = (px: number) => (px / REF_W) * 100;
  */
 const desktopLayout: DesktopLayoutItem[] = [
   {
-    id: 14,
+    id: 1,
     widthPct: pct(750),
     marginLeftPct: pct(665),
     marginTopPct: pct(180),
@@ -104,14 +104,14 @@ const desktopLayout: DesktopLayoutItem[] = [
     captionPos: {mt: "50px", alignSelf: "flex-start" },
   },
   {
-    id: 3,
+    id: 2,
     widthPct: pct(900),
     marginLeftPct: pct(26),
     marginTopPct: pct(-100),
     captionSide: "right",
     captionPos: {mt: "50px", alignSelf: "center" },  },
   {
-    id: 16,
+    id: 3,
     widthPct: pct(850),
     marginLeftPct: pct(570),
     marginTopPct: pct(20),
@@ -125,7 +125,7 @@ const desktopLayout: DesktopLayoutItem[] = [
     captionSide: "right",
     captionPos: {mt: "150px", alignSelf: "flex-start" },  },
   {
-    id: 7,
+    id: 5,
     widthPct: pct(1000),
     marginLeftPct: pct(350),
     marginTopPct: pct(30),
@@ -136,7 +136,7 @@ const desktopLayout: DesktopLayoutItem[] = [
 // ─── Mobile layout data ──────────────────────────────────────────────────────
 const mobileLayout: MobileLayoutItem[] = [
   {
-    id: 14,
+    id: 1,
     widthPct: 85,
     marginLeftPct: 3,
     marginTopRem: 3,
@@ -144,7 +144,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "20px", alignSelf: "flex-start" },
   },
   {
-    id: 3,
+    id: 2,
     widthPct: 100,
     marginLeftPct: 0,
     marginTopRem: 1.5,
@@ -152,7 +152,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mr: "20px", mt: "10px", alignSelf: "center" },
   },
   {
-    id: 16,
+    id: 3,
     widthPct: 90,
     marginLeftPct: 1,
     marginTopRem: 1,
@@ -168,7 +168,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "50px", alignSelf: "center" },
   },
   {
-    id: 7,
+    id: 5,
     widthPct: 95,
     marginLeftPct: 3,
     marginTopRem: 1.5,
@@ -180,13 +180,31 @@ const mobileLayout: MobileLayoutItem[] = [
 // ─── Artwork data ─────────────────────────────────────────────────────────────
 const artworks: Artwork[] = [
   {
-    id: 3,
+    id: 1,
+    smallSrc: smSpuren,
+    largeSrc: smSpuren,
+    alt: "Spuren",
+    title: "Spuren",
+    year: "2022",
+    dimensions: "100 x 100 cm",
+  },
+  {
+    id: 2,
     smallSrc: smKuechenphilosophie,
     largeSrc: smKuechenphilosophie,
     alt: "Küchenphilosophie",
     title: "Küchenphilosophie",
     year: "2022",
     dimensions: "100 x 100 cm",
+  },
+  {
+    id: 3,
+    smallSrc: smAufloesung,
+    largeSrc: smAufloesung,
+    alt: "Auflösung in blau",
+    title: "Auflösung in blau",
+    year: "2022",
+    dimensions: "70 x 70 cm",
   },
   {
     id: 4,
@@ -198,31 +216,13 @@ const artworks: Artwork[] = [
     dimensions: "70 x 70 cm",
   },
   {
-    id: 7,
+    id: 5,
     smallSrc: smAusbruch,
     largeSrc: smAusbruch,
     alt: "Ausbruch",
     title: "Ausbruch",
     year: "2022",
     dimensions: "70 x 60 cm",
-  },
-  {
-    id: 14,
-    smallSrc: smSpuren,
-    largeSrc: smSpuren,
-    alt: "Spuren",
-    title: "Spuren",
-    year: "2022",
-    dimensions: "100 x 100 cm",
-  },
-  {
-    id: 16,
-    smallSrc: smAufloesung,
-    largeSrc: smAufloesung,
-    alt: "Auflösung in blau",
-    title: "Auflösung in blau",
-    year: "2022",
-    dimensions: "70 x 70 cm",
   },
 ];
 

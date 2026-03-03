@@ -94,7 +94,7 @@ const pct = (px: number) => (px / REF_W) * 100;
  */
 const desktopLayout: DesktopLayoutItem[] = [
   {
-    id: 20,
+    id: 1,
     widthPct: pct(850),
     marginLeftPct: pct(543),
     marginTopPct: pct(180),
@@ -102,14 +102,14 @@ const desktopLayout: DesktopLayoutItem[] = [
     captionPos: {mt: "50px", alignSelf: "flex-start" },
   },
   {
-    id: 12,
+    id: 2,
     widthPct: pct(800),
     marginLeftPct: pct(26),
     marginTopPct: pct(-200),
     captionSide: "right",
     captionPos: {mt: "250px", alignSelf: "center" },  },
   {
-    id: 10,
+    id: 3,
     widthPct: pct(1200),
     marginLeftPct: pct(220),
     marginTopPct: pct(50),
@@ -120,7 +120,7 @@ const desktopLayout: DesktopLayoutItem[] = [
 // ─── Mobile layout data ──────────────────────────────────────────────────────
 const mobileLayout: MobileLayoutItem[] = [
   {
-    id: 20,
+    id: 1,
     widthPct: 96,
     marginLeftPct: 3,
     marginTopRem: 3,
@@ -128,7 +128,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "20px", alignSelf: "flex-start" },
   },
   {
-    id: 12,
+    id: 2,
     widthPct: 95,
     marginLeftPct: 4,
     marginTopRem: 1.5,
@@ -136,7 +136,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "", alignSelf: "center" },
   },
   {
-    id: 10,
+    id: 3,
     widthPct: 100,
     marginLeftPct: 1,
     marginTopRem: 2,
@@ -148,16 +148,16 @@ const mobileLayout: MobileLayoutItem[] = [
 // ─── Artwork data ─────────────────────────────────────────────────────────────
 const artworks: Artwork[] = [
   {
-    id: 10,
-    smallSrc: smEismeer,
-    largeSrc: smEismeer,
-    alt: "Eismeer",
-    title: "Eismeer",
+    id: 1,
+    smallSrc: smTiefseetraum,
+    largeSrc: smTiefseetraum,
+    alt: "Tiefseetraum",
+    title: "Tiefseetraum",
     year: "2020",
-    dimensions: "100 x 50 cm",
+    dimensions: "80 x 80 cm",
   },
   {
-    id: 12,
+    id: 2,
     smallSrc: smFruehling,
     largeSrc: smFruehling,
     alt: "Frühling",
@@ -166,13 +166,13 @@ const artworks: Artwork[] = [
     dimensions: "70 x 70 cm",
   },
   {
-    id: 20,
-    smallSrc: smTiefseetraum,
-    largeSrc: smTiefseetraum,
-    alt: "Tiefseetraum",
-    title: "Tiefseetraum",
+    id: 3,
+    smallSrc: smEismeer,
+    largeSrc: smEismeer,
+    alt: "Eismeer",
+    title: "Eismeer",
     year: "2020",
-    dimensions: "80 x 80 cm",
+    dimensions: "100 x 50 cm",
   },
 ];
 

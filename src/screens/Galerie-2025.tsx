@@ -96,7 +96,7 @@ const pct = (px: number) => (px / REF_W) * 100;
  */
 const desktopLayout: DesktopLayoutItem[] = [
     {
-    id: 21,
+    id: 1,
     widthPct: pct(600),
     marginLeftPct: pct(700),
     marginTopPct: pct(170),
@@ -104,28 +104,28 @@ const desktopLayout: DesktopLayoutItem[] = [
     captionPos: { alignSelf: "center" },  },
 
   {
-    id: 15,
+    id: 2,
     widthPct: pct(900),
     marginLeftPct: pct(26),
     marginTopPct: pct(50),
     captionSide: "right",
     captionPos: {mt: "150px", alignSelf: "center" },  },
   {
-    id: 22,
+    id: 3,
     widthPct: pct(1100),
     marginLeftPct: pct(330),
     marginTopPct: pct(20),
     captionSide: "left",
     captionPos: {mt: "300px", alignSelf: "center" },  },
   {
-    id: 1,
+    id: 4,
     widthPct: pct(1000),
     marginLeftPct: pct(70),
     marginTopPct: pct(50),
     captionSide: "right",
     captionPos: {mt: "150px", alignSelf: "flex-start" },  },
   {
-    id: 25,
+    id: 5,
     widthPct: pct(850),
     marginLeftPct: pct(550),
     marginTopPct: pct(30),
@@ -136,7 +136,7 @@ const desktopLayout: DesktopLayoutItem[] = [
 // ─── Mobile layout data ──────────────────────────────────────────────────────
 const mobileLayout: MobileLayoutItem[] = [
     {
-    id: 21,
+    id: 1,
     widthPct: 85,
     marginLeftPct: 1,
     marginTopRem: 2.5,
@@ -144,7 +144,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "", alignSelf: "center" },
   },
   {
-    id: 15,
+    id: 2,
     widthPct: 95,
     marginLeftPct: 4,
     marginTopRem: 1.5,
@@ -152,7 +152,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "", alignSelf: "center" },
   },
   {
-    id: 22,
+    id: 3,
     widthPct: 100,
     marginLeftPct: 1,
     marginTopRem: 1,
@@ -160,7 +160,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "20px", alignSelf: "flex-start" },
   },
   {
-    id: 1,
+    id: 4,
     widthPct: 100,
     marginLeftPct: 0,
     marginTopRem: 1.7,
@@ -168,7 +168,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "50px", alignSelf: "center" },
   },
   {
-    id: 25,
+    id: 5,
     widthPct: 88,
     marginLeftPct: 1,
     marginTopRem: 1.5,
@@ -181,24 +181,6 @@ const mobileLayout: MobileLayoutItem[] = [
 const artworks: Artwork[] = [
   {
       id: 1,
-    smallSrc: smSandmeer,
-    largeSrc: smSandmeer,
-    alt: "Sandmeer",
-    title: "Sandmeer",
-    year: "2025",
-    dimensions: "140 x 100 cm",
-  },
-  {
-    id: 15,
-    smallSrc: smVonderDunkelheit,
-    largeSrc: smVonderDunkelheit,
-    alt: "Von der Dunkelheit ins Licht",
-    title: "Von der Dunkelheit ins Licht",
-    year: "2025",
-    dimensions: "80 x 80 cm",
-  },
-  {
-    id: 21,
     smallSrc: smUnterwasserwunder,
     largeSrc: smUnterwasserwunder,
     alt: "Unterwasserwunder",
@@ -207,7 +189,16 @@ const artworks: Artwork[] = [
     dimensions: "70 x 140 cm",
   },
   {
-    id: 22,
+    id: 2,
+    smallSrc: smVonderDunkelheit,
+    largeSrc: smVonderDunkelheit,
+    alt: "Von der Dunkelheit ins Licht",
+    title: "Von der Dunkelheit ins Licht",
+    year: "2025",
+    dimensions: "80 x 80 cm",
+  },
+  {
+    id: 3,
     smallSrc: smAufruhr,
     largeSrc: smAufruhr,
     alt: "Aufruhr",
@@ -216,7 +207,16 @@ const artworks: Artwork[] = [
     dimensions: "140 x 70 cm",
   },
   {
-    id: 25,
+    id: 4,
+    smallSrc: smSandmeer,
+    largeSrc: smSandmeer,
+    alt: "Sandmeer",
+    title: "Sandmeer",
+    year: "2025",
+    dimensions: "140 x 100 cm",
+  },
+  {
+    id: 5,
     smallSrc: smZustandeines,
     largeSrc: smZustandeines,
     alt: "Zustand eines Himmels",

@@ -93,14 +93,14 @@ const pct = (px: number) => (px / REF_W) * 100;
  */
 const desktopLayout: DesktopLayoutItem[] = [
   {
-    id: 26,
+    id: 1,
     widthPct: pct(800),
     marginLeftPct: pct(26),
     marginTopPct: pct(180),
     captionSide: "right",
     captionPos: {mt: "50px", alignSelf: "center" },  },
   {
-    id: 17,
+    id: 2,
     widthPct: pct(850),
     marginLeftPct: pct(570),
     marginTopPct: pct(-150),
@@ -111,7 +111,7 @@ const desktopLayout: DesktopLayoutItem[] = [
 // ─── Mobile layout data ──────────────────────────────────────────────────────
 const mobileLayout: MobileLayoutItem[] = [
     {
-    id: 26,
+    id: 1,
     widthPct: 95,
     marginLeftPct: 4,
     marginTopRem: 2.5,
@@ -119,7 +119,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "", alignSelf: "center" },
   },
   {
-    id: 17,
+    id: 2,
     widthPct: 100,
     marginLeftPct: 1,
     marginTopRem: 1,
@@ -131,22 +131,22 @@ const mobileLayout: MobileLayoutItem[] = [
 // ─── Artwork data ─────────────────────────────────────────────────────────────
 const artworks: Artwork[] = [
   {
-    id: 17,
-    smallSrc: smKleineAufruhr,
-    largeSrc: smKleineAufruhr,
-    alt: "Kleine Aufruhr",
-    title: "Kleine Aufruhr",
-    year: "2026",
-    dimensions: "60 x 70 cm",
-  },
-  {
-    id: 26,
+    id: 1,
     smallSrc: smFokus,
     largeSrc: smFokus,
     alt: "Fokus",
     title: "Fokus",
     year: "2026",
     dimensions: "100 x 100 cm",
+  },
+  {
+    id: 2,
+    smallSrc: smKleineAufruhr,
+    largeSrc: smKleineAufruhr,
+    alt: "Kleine Aufruhr",
+    title: "Kleine Aufruhr",
+    year: "2026",
+    dimensions: "60 x 70 cm",
   },
 ];
 

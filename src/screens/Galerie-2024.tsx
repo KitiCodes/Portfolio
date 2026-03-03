@@ -99,7 +99,7 @@ const pct = (px: number) => (px / REF_W) * 100;
  */
 const desktopLayout: DesktopLayoutItem[] = [
     {
-    id: 5,
+    id: 1,
     widthPct: pct(300),
     marginLeftPct: pct(26),
     marginTopPct: pct(200),
@@ -107,49 +107,49 @@ const desktopLayout: DesktopLayoutItem[] = [
     captionPos: {mt: "50px", alignSelf: "center" },  },
 
   {
-    id: 6,
+    id: 2,
     widthPct: pct(300),
     marginLeftPct: pct(26),
     marginTopPct: pct(0),
     captionSide: "right",
     captionPos: {mt: "50px", alignSelf: "center" },  },
   {
-    id: 23,
+    id: 3,
     widthPct: pct(800),
     marginLeftPct: pct(580),
     marginTopPct: pct(-20),
     captionSide: "left",
     captionPos: {mt: "", alignSelf: "center" },  },
   {
-    id: 13,
+    id: 4,
     widthPct: pct(850),
     marginLeftPct: pct(33),
     marginTopPct: pct(50),
     captionSide: "right",
     captionPos: {mt: "150px", alignSelf: "flex-start" },  },
   {
-    id: 8,
+    id: 5,
     widthPct: pct(300),
     marginLeftPct: pct(500),
     marginTopPct: pct(30),
     captionSide: "left",
     captionPos: {mt: "50px", alignSelf: "flex-start" },  },
   {
-    id: 9,
+    id: 6,
     widthPct: pct(300),
     marginLeftPct: pct(500),
     marginTopPct: pct(30),
     captionSide: "left",
     captionPos: {mt: "50px", alignSelf: "flex-start" },  },
   {
-    id: 24,
+    id: 7,
     widthPct: pct(800),
     marginLeftPct: pct(10),
     marginTopPct: pct(10),
     captionSide: "right",
     captionPos: {mt: "0px", alignSelf: "center" },  },
   {
-    id: 19,
+    id: 8,
     widthPct: pct(1050),
     marginLeftPct: pct(360),
     marginTopPct: pct(50),
@@ -160,7 +160,7 @@ const desktopLayout: DesktopLayoutItem[] = [
 // ─── Mobile layout data ──────────────────────────────────────────────────────
 const mobileLayout: MobileLayoutItem[] = [
     {
-    id: 5,
+    id: 1,
     widthPct: 95,
     marginLeftPct: 4,
     marginTopRem: 1.5,
@@ -168,7 +168,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "", alignSelf: "center" },
   },
   {
-    id: 6,
+    id: 2,
     widthPct: 95,
     marginLeftPct: 4,
     marginTopRem: 1.5,
@@ -176,7 +176,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "", alignSelf: "center" },
   },
   {
-    id: 23,
+    id: 3,
     widthPct: 100,
     marginLeftPct: 1,
     marginTopRem: 1,
@@ -184,7 +184,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "20px", alignSelf: "flex-start" },
   },
   {
-    id: 13,
+    id: 4,
     widthPct: 100,
     marginLeftPct: 0,
     marginTopRem: 1.7,
@@ -192,7 +192,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "50px", alignSelf: "center" },
   },
   {
-    id: 8,
+    id: 5,
     widthPct: 90,
     marginLeftPct: 3,
     marginTopRem: 1.5,
@@ -200,7 +200,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "", alignSelf: "center" },
   },
     {
-    id: 9,
+    id: 6,
     widthPct: 90,
     marginLeftPct: 3,
     marginTopRem: 1.5,
@@ -208,7 +208,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "", alignSelf: "center" },
   },
   {
-    id: 24,
+    id: 7,
     widthPct: 95,
     marginLeftPct: 5,
     marginTopRem: 1.5,
@@ -216,7 +216,7 @@ const mobileLayout: MobileLayoutItem[] = [
     captionPos: {mt: "10px", alignSelf: "flex-start" },
   },
   {
-    id: 19,
+    id: 8,
     widthPct: 91,
     marginLeftPct: 0,
     marginTopRem: 2,
@@ -228,7 +228,7 @@ const mobileLayout: MobileLayoutItem[] = [
 // ─── Artwork data ─────────────────────────────────────────────────────────────
 const artworks: Artwork[] = [
   {
-    id: 5,
+    id: 1,
     smallSrc: smResonanzA,
     largeSrc: smResonanzA,
     alt: "Resonanz A",
@@ -238,7 +238,7 @@ const artworks: Artwork[] = [
     groupId: "resonanz",
   },
   {
-    id: 6,
+    id: 2,
     smallSrc: smResonanzB,
     largeSrc: smResonanzB,
     alt: "Resonanz B",
@@ -248,7 +248,25 @@ const artworks: Artwork[] = [
     groupId: "resonanz",
   },
   {
-    id: 8,
+    id: 3,
+    smallSrc: smFarbedrängt,
+    largeSrc: smFarbedrängt,
+    alt: "Farbe drängt – Zwischen Hitze und Form",
+    title: "Farbe drängt – Zwischen Hitze und Form",
+    year: "2024",
+    dimensions: "100 x 100 cm",
+  },
+  {
+    id: 4,
+    smallSrc: smAufbruch,
+    largeSrc: smAufbruch,
+    alt: "Aufbruch",
+    title: "Aufbruch",
+    year: "2024",
+    dimensions: "100 x 100 cm",
+  },
+  {
+    id: 5,
     smallSrc: smTanzendeA,
     largeSrc: smTanzendeA,
     alt: "Tanzende A",
@@ -258,7 +276,7 @@ const artworks: Artwork[] = [
     groupId: "tanzende",
   },
   {
-    id: 9,
+    id: 6,
     smallSrc: smTanzendeB,
     largeSrc: smTanzendeB,
     alt: "Tanzende B",
@@ -268,34 +286,7 @@ const artworks: Artwork[] = [
     groupId: "tanzende",
   },
   {
-    id: 13,
-    smallSrc: smAufbruch,
-    largeSrc: smAufbruch,
-    alt: "Aufbruch",
-    title: "Aufbruch",
-    year: "2024",
-    dimensions: "100 x 100 cm",
-  },
-  {
-    id: 19,
-    smallSrc: smEismeerII,
-    largeSrc: smEismeerII,
-    alt: "Eismeer II",
-    title: "Eismeer II",
-    year: "2024",
-    dimensions: "100 x 50 cm",
-  },
-  {
-    id: 23,
-    smallSrc: smFarbedrängt,
-    largeSrc: smFarbedrängt,
-    alt: "Farbe drängt – Zwischen Hitze und Form",
-    title: "Farbe drängt – Zwischen Hitze und Form",
-    year: "2024",
-    dimensions: "100 x 100 cm",
-  },
-  {
-    id: 24,
+    id: 7,
     smallSrc: smWennBewegung,
     largeSrc: smWennBewegung,
     alt: "Wenn Bewegung bleibt",
@@ -303,8 +294,16 @@ const artworks: Artwork[] = [
     year: "2024",
     dimensions: "100 x 100 cm",
   },
+  {
+    id: 8,
+    smallSrc: smEismeerII,
+    largeSrc: smEismeerII,
+    alt: "Eismeer II",
+    title: "Eismeer II",
+    year: "2024",
+    dimensions: "100 x 50 cm",
+  },
 ];
-
 // ─── Caption sub-component ────────────────────────────────────────────────────
 function ArtworkCaption({
   art,

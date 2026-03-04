@@ -46,10 +46,10 @@ const desktopLayout: DesktopLayoutItem[] = [
   {
     id: 4,
     widthPct: pct(850),
-    marginLeftPct: pct(33),
-    marginTopPct: pct(50),
+    marginLeftPct: pct(20),
+    marginTopPct: pct(-100),
     captionSide: "right",
-    captionPos: {mt: "150px", alignSelf: "flex-start" },  },
+    captionPos: {mt: "150px", alignSelf: "center" },  },
   {
     id: 5,
     widthPct: pct(900),
@@ -67,7 +67,7 @@ const desktopLayout: DesktopLayoutItem[] = [
   {
     id: 7,
     widthPct: pct(800),
-    marginLeftPct: pct(10),
+    marginLeftPct: pct(60),
     marginTopPct: pct(10),
     captionSide: "right",
     captionPos: {mt: "0px", alignSelf: "center" },  },
@@ -86,7 +86,7 @@ const mobileLayout: MobileLayoutItem[] = [
     id: 1,
     widthPct: 95,
     marginLeftPct: 4,
-    marginTopRem: 1.5,
+    marginTopRem: 2.5,
     captionSide: "left",
     captionPos: {mt: "", alignSelf: "center" },
   },
@@ -94,7 +94,7 @@ const mobileLayout: MobileLayoutItem[] = [
     id: 2,
     widthPct: 95,
     marginLeftPct: 4,
-    marginTopRem: 1.5,
+    marginTopRem: 2.5,
     captionSide: "left",
     captionPos: {mt: "", alignSelf: "center" },
   },
@@ -134,7 +134,7 @@ const mobileLayout: MobileLayoutItem[] = [
     id: 7,
     widthPct: 95,
     marginLeftPct: 5,
-    marginTopRem: 1.5,
+    marginTopRem: 1,
     captionSide: "left",
     captionPos: {mt: "10px", alignSelf: "flex-start" },
   },
@@ -144,7 +144,7 @@ const mobileLayout: MobileLayoutItem[] = [
     marginLeftPct: 0,
     marginTopRem: 2,
     captionSide: "right",
-    captionPos: {mt: "130px", alignSelf: "center" },
+    captionPos: {mt: "30px", alignSelf: "center" },
   },
 ];
 

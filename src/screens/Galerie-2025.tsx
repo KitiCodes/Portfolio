@@ -30,7 +30,7 @@ const desktopLayout: DesktopLayoutItem[] = [
     id: 2,
     widthPct: pct(900),
     marginLeftPct: pct(26),
-    marginTopPct: pct(50),
+    marginTopPct: pct(-200),
     captionSide: "right",
     captionPos: {mt: "150px", alignSelf: "center" },  },
   {
@@ -107,7 +107,7 @@ const artworks: Artwork[] = [
     smallSrc: smUnterwasserwunder,
     largeSrc: smUnterwasserwunder,
     alt: "Unterwasserwunder",
-    title: "Unterwasserwunder",
+    title: <>Unterwasser-<br />wunder</>,
     year: "2025",
     dimensions: "70 x 140 cm",
   },

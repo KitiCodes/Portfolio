@@ -116,7 +116,7 @@ const artworks: Artwork[] = [
     smallSrc: smKuechenphilosophie,
     largeSrc: smKuechenphilosophie,
     alt: "Küchenphilosophie",
-    title: "Küchenphilosophie",
+    title: <>Küchen-<br />philosophie</>,
     year: "2022",
     dimensions: "100 x 100 cm",
   },
